@@ -19,10 +19,10 @@ Route::get('/', function () {
 
 Route::get('/admin',function(){
     return view('pages.admin.home');
-});
+})->name('admin.index');
 
 Route::get('/kategori',function(){
     return view('pages.admin.table.kategori');
-});
+})->name('kategori.index');
 
 
