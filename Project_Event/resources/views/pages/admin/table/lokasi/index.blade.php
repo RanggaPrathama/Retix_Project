@@ -49,25 +49,26 @@
               <!-- /.card-header -->
               <div class="card-body">
 
-                    <a href="{{ route('kategori.create') }}"><button type="button" class="btn btn-primary">Create</button></a>
+                    <a href="{{ route('kecamatan.create') }}"><button type="button" class="btn btn-primary">Create</button></a>
 
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                          <th>Id Kategori</th>
-                          <th>Nama Kategori</th>
+                          <th>Id Lokasi</th>
+                          <th>Nama Lokasi</th>
+                          <th>Id Kecamatan</th>
+                          <th>Nama Kecamatan</th>
                           <th>Action</th>
-
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach ($kategoris as $kategori )
+                            @foreach ($kecamatans as $kecamatan )
                         <tr>
-                          <td>{{ $kategori->id_kategori  }}</td>
-                          <td>{{ $kategori->nama_kategori }}</td>
+                          <td>{{ $kecamatan->id_kecamatan  }}</td>
+                          <td>{{ $kecamatan->nama_kecamatan }}</td>
                           <td>
-                            <a href="{{ route('kategori.edit',$kategori->id_kategori) }}"><button type='submit'class="btn btn-success"><i class="bi bi-pencil-square"></i></button></a>
-                            <form action="{{ route('kategori.destroy', $kategori->id_kategori) }}"
+                            <a href="{{ route('kecamatan.edit',$kecamatan->id_kecamatan) }}"><button type='submit'class="btn btn-success"><i class="bi bi-pencil-square"></i></button></a>
+                            <form action="{{ route('kecamatan.delete',$kecamatan->id_kecamatan )}}"
                                 method="POST" style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')
@@ -86,9 +87,11 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                          <th>Id Kategori</th>
-                          <th>Nama Kategori</th>
-                          <th> Action</th>
+                            <th>Id Lokasi</th>
+                            <th>Nama Lokasi</th>
+                            <th>Id Kecamatan</th>
+                            <th>Nama Kecamatan</th>
+                            <th>Action</th>
                         </tr>
                         </tfoot>
                 </table>

@@ -35,7 +35,7 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
         $validateddata = $request->validate([
-            'nama_kategori'=>'required'
+            'nama_kategori'=>'required|min:5'
         ]);
 
         $kategori =Kategori::create($validateddata);
@@ -63,24 +63,34 @@ class KategoriController extends Controller
         $kategoris=DB::table('kategoris')
         ->select('id_kategori','nama_kategori')
         ->where('id_kategori',$id)
-        ->get();
+        ->first();
 
-        return view('pages.admin.table.kategori.update',['kategoris',$kategoris]);
+        return view('pages.admin.table.kategori.update',['kategoris'=> $kategoris]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateKategoriRequest $request, Kategori $kategori)
+    public function update(Request $request, $id)
     {
-        //
+        $validateddata= $request->validate([
+            'nama_kategori'=>'required'
+        ]);
+        $kategori= Kategori::findorFail($id);
+       $validasi= $kategori->update($validateddata);
+       if($validasi){
+        return redirect()->route('kategori.index')->with('success','Berhasil');
+       }
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Kategori $kategori)
+    public function destroy($id)
     {
-        //
+        $kategori=Kategori::findorFail($id);
+        $kategori->delete();
+        return redirect()->route('kategori.index')->with('success','Berhasil !');
     }
 }

@@ -38,12 +38,15 @@
               <!-- /.card-header -->
               <div class="card-body">
 
-                <form action="{{ route('kategori.update',$kategoris->id_kategori) }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('kecamatan.update',$kecamatans->id_kecamatan) }}" method="post" enctype="multipart/form-data">
 
                     @csrf
                     @method('PUT')
-                    <label>Name Kategori</label></br>
-                    <input type="text" name="nama_kategori" id="name" class="form-control" value="{{ old('nama_kategori',$kategoris->nama_kategori) }}"></br>
+                    <label>Name Kecamatan</label></br>
+                    <input type="text" name="nama_kecamatan" id="name" class="form-control @error('nama_kecamatan') is-invalid @enderror" value="{{ old('nama_kecamatan',$kecamatans->nama_kecamatan) }}">
+                    @error('nama_kecamatan')
+                        <div class="invalid-feedback">{{$message}}</div>
+                    @enderror <br>
                     <input type="submit" value="Save" class="btn btn-success"></br>
 
                 </form>
