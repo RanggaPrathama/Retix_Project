@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KategoriController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,8 +22,14 @@ Route::get('/admin',function(){
     return view('pages.admin.home');
 })->name('admin.index');
 
-Route::get('/kategori',function(){
-    return view('pages.admin.table.kategori');
-})->name('kategori.index');
+//TABLE
+
+//KATEGORI
+Route::get('/kategori',[KategoriController::class,'index'])->name('kategori.index');
+Route::get('/kategori/create',[KategoriController::class,'create'])->name('kategori.create');
+Route::post('/kategori/create',[KategoriController::class,'store'])->name('kategori.store');
+Route::get('/user',function(){
+    return view('pages.admin.table.user');
+})->name('user.index');
 
 

@@ -38,44 +38,36 @@
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
+                    <th>Id Kategori</th>
+                    <th>Nama Kategori</th>
+
                   </tr>
                   </thead>
                   <tbody>
 
                   <tr>
-                    <td>Misc</td>
+                    <td>1</td>
                     <td>NetFront 3.4</td>
-                    <td>Embedded devices</td>
-                    <td>-</td>
-                    <td>A</td>
+
                   </tr>
 
                   <tr>
-                    <td>Other browsers</td>
+                    <td>2</td>
                     <td>All others</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>U</td>
+
                   </tr>
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
+                    <th>Id Kategori</th>
+                    <th>Nama Kategori</th>
+
                   </tr>
                   </tfoot>
                 </table>
               </div>
               <!-- /.card-body -->
-            </div> 
+            </div>
             <!-- /.card -->
 
             <div class="card">
@@ -85,46 +77,34 @@
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                  <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
-                  </tr>
-                  </thead>
-                  <tbody>
+                    <thead>
+                        <tr>
+                          <th>Id Kategori</th>
+                          <th>Nama Kategori</th>
 
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.5
-                    </td>
-                    <td>Win 95+</td>
-                    <td>5.5</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 6
-                    </td>
-                    <td>Win 98+</td>
-                    <td>6</td>
-                    <td>A</td>
-                  </tr>
+                        </tr>
+                        </thead>
+                        <tbody>
 
-                  </tbody>
-                  <tfoot>
-                  <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
-                  </tr>
-                  </tfoot>
+                        <tr>
+                          <td>1</td>
+                          <td>NetFront 3.4</td>
+
+                        </tr>
+
+                        <tr>
+                          <td>2</td>
+                          <td>All others</td>
+
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                          <th>Id Kategori</th>
+                          <th>Nama Kategori</th>
+
+                        </tr>
+                        </tfoot>
                 </table>
               </div>
               <!-- /.card-body -->

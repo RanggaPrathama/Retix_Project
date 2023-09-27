@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use App\Http\Requests\StoreKategoriRequest;
 use App\Http\Requests\UpdateKategoriRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KategoriController extends Controller
 {
@@ -13,7 +15,10 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        //
+        $kategoris = DB::table('kategoris')
+            ->select('id_kategori','nama_kategori')
+            ->get();
+        return view('pages.admin.table.kategori.index',['kategoris'=>$kategoris]);
     }
 
     /**
@@ -21,15 +26,25 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.admin.table.kategori.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreKategoriRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validateddata = $request->validate([
+            'nama_kategori'=>'required'
+        ]);
+
+        $kategori =Kategori::create($validateddata);
+
+        if($kategori){
+            session()->flash('success', 'Data kategori berhasil disimpan.');
+            return redirect()->route('kategori.index');
+        }
+
     }
 
     /**
@@ -43,9 +58,14 @@ class KategoriController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Kategori $kategori)
+    public function edit($id)
     {
-        //
+        $kategoris=DB::table('kategoris')
+        ->select('id_kategori','nama_kategori')
+        ->where('id_kategori',$id)
+        ->get();
+
+        return view('pages.admin.table.kategori.update',['kategoris',$kategoris]);
     }
 
     /**
