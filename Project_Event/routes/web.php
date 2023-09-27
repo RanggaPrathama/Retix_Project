@@ -27,6 +27,10 @@ Route::get('/admin',function(){
 Route::get('/user',function(){
     return view('pages.admin.table.user');
 })->name('user.index');
+
+
+// ADMIN LUR
+
 //TABLE
 
 //KATEGORI
