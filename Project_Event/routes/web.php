@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KecamatanController;
+use App\Http\Controllers\LokasiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,7 @@ Route::get('/user',function(){
 //TABLE
 
 //KATEGORI
+
 Route::get('/kategori',[KategoriController::class,'index'])->name('kategori.index');
 Route::get('/kategori/create',[KategoriController::class,'create'])->name('kategori.create');
 Route::post('/kategori/create',[KategoriController::class,'store'])->name('kategori.store');
@@ -37,9 +39,19 @@ Route::put('/kategori/edit/{id}',[KategoriController::class,'update'])->name('ka
 Route::delete('/kategori/delete/{id}',[KategoriController::class,'destroy'])->name('kategori.destroy');
 
 //KECAMATAN
+
 Route::get('/kecamatan',[KecamatanController::class,'index'])->name('kecamatan.index');
 Route::get('/kecamatan/create',[KecamatanController::class,'create'])->name('kecamatan.create');
 Route::post('/kecamatan/store',[KecamatanController::class,'store'])->name('kecamatan.store');
 Route::get('/kecamatan/edit/{id}',[KecamatanController::class,'edit'])->name('kecamatan.edit');
 Route::put('/kecamatan/edit/{id}',[KecamatanController::class,'update'])->name('kecamatan.update');
 Route::delete('/kecamatan/delete/{id}',[KecamatanController::class,'destroy'])->name('kecamatan.delete');
+
+//LOKASI
+
+Route::get('/lokasi/index',[LokasiController::class,'index'])->name('lokasi.index');
+Route::get('/lokasi/create',[LokasiController::class,'create'])->name('lokasi.create');
+Route::post('/lokasi/store',[LokasiController::class,'store'])->name('lokasi.store');
+Route::get('/lokasi/edit/{id}',[LokasiController::class,'edit'])->name('lokasi.edit');
+Route::put('/lokasi/edit/{id}',[LokasiController::class,'update'])->name('lokasi.update');
+Route::delete('lokasi/destroy/{id}',[LokasiController::class,'destroy'])->name('lokasi.destroy');

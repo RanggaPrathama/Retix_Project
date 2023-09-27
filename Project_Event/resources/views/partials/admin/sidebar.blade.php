@@ -81,7 +81,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/tables/jsgrid.html" class="nav-link">
+                <a href="{{ route('lokasi.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Lokasi Tables</p>
                 </a>
@@ -96,6 +96,12 @@
                 <a href="pages/tables/jsgrid.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Pemesanan Tables</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/tables/jsgrid.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pembayaran Tables</p>
                 </a>
               </li>
             </ul>

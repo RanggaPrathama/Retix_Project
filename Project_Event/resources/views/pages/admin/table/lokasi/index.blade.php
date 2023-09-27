@@ -49,7 +49,7 @@
               <!-- /.card-header -->
               <div class="card-body">
 
-                    <a href="{{ route('kecamatan.create') }}"><button type="button" class="btn btn-primary">Create</button></a>
+                    <a href="{{ route('lokasi.create') }}"><button type="button" class="btn btn-primary">Create</button></a>
 
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
@@ -62,13 +62,15 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach ($kecamatans as $kecamatan )
+                            @foreach ($lokasis as $lokasi )
                         <tr>
-                          <td>{{ $kecamatan->id_kecamatan  }}</td>
-                          <td>{{ $kecamatan->nama_kecamatan }}</td>
+                          <td>{{ $lokasi->id_lokasi }}</td>
+                          <td>{{ $lokasi->nama_lokasi }}</td>
+                          <td>{{ $lokasi->id_kecamatan }}</td>
+                          <td>{{ $lokasi->nama_kecamatan }}</td>
                           <td>
-                            <a href="{{ route('kecamatan.edit',$kecamatan->id_kecamatan) }}"><button type='submit'class="btn btn-success"><i class="bi bi-pencil-square"></i></button></a>
-                            <form action="{{ route('kecamatan.delete',$kecamatan->id_kecamatan )}}"
+                            <a href="{{ route('lokasi.edit',$lokasi->id_lokasi) }}"><button type='submit'class="btn btn-success"><i class="bi bi-pencil-square"></i></button></a>
+                            <form action="{{ route('lokasi.destroy',$lokasi->id_lokasi) }}"
                                 method="POST" style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')
