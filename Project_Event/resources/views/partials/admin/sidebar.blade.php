@@ -69,7 +69,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/tables/data.html" class="nav-link">
+                <a href="{{ route('event.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Event Tables</p>
                 </a>
@@ -87,7 +87,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/tables/jsgrid.html" class="nav-link">
+                <a href="{{ route('detilevent.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Detil Event Tables</p>
                 </a>

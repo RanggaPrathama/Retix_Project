@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DetilEventController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\LokasiController;
@@ -59,3 +61,14 @@ Route::post('/lokasi/store',[LokasiController::class,'store'])->name('lokasi.sto
 Route::get('/lokasi/edit/{id}',[LokasiController::class,'edit'])->name('lokasi.edit');
 Route::put('/lokasi/edit/{id}',[LokasiController::class,'update'])->name('lokasi.update');
 Route::delete('lokasi/destroy/{id}',[LokasiController::class,'destroy'])->name('lokasi.destroy');
+
+//EVENT
+Route::get('/event/index',[EventController::class,'index'])->name('event.index');
+Route::get('/event/create',[EventController::class,'create'])->name('event.create');
+Route::post('/event/store',[EventController::class,'store'])->name('event.store');
+Route::get('/event/edit/{id}',[EventController::class,'edit'])->name('event.edit');
+Route::put('/event/edit/{id}',[EventController::class,'update'])->name('event.update');
+Route::delete('/events/delete/{id}',[EventController::class,'destroy'])->name('event.destroy');
+
+//DETAIL EVENT
+Route::get('/detilEvent/index',[DetilEventController::class,'index'])->name('detilevent.index');

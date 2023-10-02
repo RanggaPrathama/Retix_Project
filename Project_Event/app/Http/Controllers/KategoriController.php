@@ -7,6 +7,7 @@ use App\Http\Requests\StoreKategoriRequest;
 use App\Http\Requests\UpdateKategoriRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class KategoriController extends Controller
 {
@@ -34,10 +35,10 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
+        Session::flash('nama_kategori',$request->nama_kategori);
         $validateddata = $request->validate([
-            'nama_kategori'=>'required|min:5'
+            'nama_kategori'=>'required|min:5|unique:kategoris'
         ]);
-
         $kategori =Kategori::create($validateddata);
 
         if($kategori){

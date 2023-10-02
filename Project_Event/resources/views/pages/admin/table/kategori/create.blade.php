@@ -41,7 +41,7 @@
                 <form action="{{ route('kategori.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <label>Name Kategori</label></br>
-                    <input type="text" name="nama_kategori" id="name" class="form-control @error('nama_kategori') is-invalid  @enderror">
+                    <input type="text" name="nama_kategori" id="name" class="form-control @error('nama_kategori') is-invalid  @enderror" value="{{ old('nama_kategori') }}">
                     @error('nama_kategori')
                     <div class="invalid-feedback">{{$message}}</div>
                     @enderror
