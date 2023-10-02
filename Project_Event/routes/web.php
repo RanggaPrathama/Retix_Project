@@ -18,6 +18,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//COBA 
+Route::get('/login', function () {
+    return view('pages.admin.login');
+});
+
+Route::get('/register', function () {
+    return view('pages.register');
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -72,3 +81,4 @@ Route::delete('/events/delete/{id}',[EventController::class,'destroy'])->name('e
 
 //DETAIL EVENT
 Route::get('/detilEvent/index',[DetilEventController::class,'index'])->name('detilevent.index');
+
