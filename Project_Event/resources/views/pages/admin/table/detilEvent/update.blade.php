@@ -39,15 +39,18 @@
                                     <!-- /.card-header -->
                                     <div class="card-body">
 
-                                        <form action="{{ route('detilevent.store') }}" method="post"
+                                        <form action="{{ route('detilevent.update',$detilEvents->id_detilEvent) }}" method="post"
                                             enctype="multipart/form-data">
                                             @csrf
+                                            @method('PUT')
                                             <label>Pilih Event </label>
-
+                                            @php
+                                                $oldEvent = old('id_event',$detilEvents->id_event)
+                                            @endphp
                                             <select class="form-control @error('id_event') @enderror" name="id_event">
                                                 <option value="">Silahkan Memilih</option>
                                                 @foreach ($events as $event)
-                                                    <option value="{{ $event->id_event }}">{{ $event->nama_event }}</option>
+                                                    <option value="{{ $event->id_event }}" {{ $oldEvent == $event->id_event ? 'selected' : '' }}>{{ $event->nama_event }}</option>
                                                 @endforeach
                                             </select>
                                             @error('id_event')
@@ -56,27 +59,30 @@
                                             <br>
 
                                             <label>Pilih Kategori </label></br>
+                                            @php
+                                                $oldKategori = old('id_kategori',$detilEvents->id_kategori)
+                                            @endphp
                                             <select class="form-control @error('id_kategori') is-invalid @enderror "
                                                 name="id_kategori" aria-label="Default">
-                                                <option selected>Silahkan Memilih </option>
+                                                <option value="">Silahkan Memilih </option>
                                                 @foreach ($kategoris as $kategori)
-                                                    <option value="{{ $kategori->id_kategori }}">
-                                                        {{ $kategori->nama_kategori }}</option>
+                                                    <option value="{{ $kategori->id_kategori }}" {{ $oldKategori == $kategori->id_kategori ? 'selected' : '' }}> {{ $kategori->nama_kategori }}</option>
                                                 @endforeach
                                             </select>
                                             @error('id_kategori')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror <br>
+
                                             <label>Kuota Event</label></br>
                                             <input type="text" name="kuota_event" id="name"
-                                                class="form-control @error('kuota_event') is-invalid  @enderror" value="{{old('kuota_event') }}">
+                                                class="form-control @error('kuota_event') is-invalid  @enderror" value="{{old('kuota_event',$detilEvents->kuota_event) }}">
                                             @error('kuota_event')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                             <br>
                                             <label>Harga Event </label></br>
                                             <input type="text" name="harga_event" id="name"
-                                                class="form-control @error('harga_event') is-invalid  @enderror" value="{{ old('harga_event') }}">
+                                                class="form-control @error('harga_event') is-invalid  @enderror" value="{{ old('harga_event',$detilEvents->harga_event) }}">
                                             @error('harga_event')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror

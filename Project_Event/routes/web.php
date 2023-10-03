@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//COBA 
+//COBA
 Route::get('/login', function () {
-    return view('pages.admin.login');
+    return view('pages.login');
 });
 
 Route::get('/register', function () {
@@ -81,4 +81,8 @@ Route::delete('/events/delete/{id}',[EventController::class,'destroy'])->name('e
 
 //DETAIL EVENT
 Route::get('/detilEvent/index',[DetilEventController::class,'index'])->name('detilevent.index');
-
+Route::get('/detilEvent/create',[DetilEventController::class,'create'])->name('detilevent.create');
+Route::post('/detilEvent/store',[DetilEventController::class,'store'])->name('detilevent.store');
+Route::get('/detilEvent/edit/{id}',[DetilEventController::class,'edit'])->name('detilevent.edit');
+Route::put('/detilEvent/update/{id}',[DetilEventController::class,'update'])->name('detilevent.update');
+Route::delete('/detilEvent/destroy/{id}',[DetilEventController::class,'destroy'])->name('detilevent.destroy');

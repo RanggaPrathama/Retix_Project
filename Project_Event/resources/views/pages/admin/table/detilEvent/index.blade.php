@@ -49,14 +49,14 @@
               <!-- /.card-header -->
               <div class="card-body">
 
-                    <a href="{{ route('event.create') }}"><button type="button" class="btn btn-primary">Create</button></a>
+                    <a href="{{ route('detilevent.create') }}"><button type="button" class="btn btn-primary">Create</button></a>
 
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                         <th>Id Detil Event</th>
-                          <th>Id Event</th>
-                          <th>Id Kategori</th>
+                          <th>Nama Event</th>
+                          <th>Nama Kategori</th>
                           <th>Kuota Event </th>
                           <th>Harga Event </th>
                         <th>Action</th>
@@ -67,14 +67,14 @@
                             @foreach ($detilEvents as $detilEvent )
                         <tr>
                           <td>{{ $detilEvent->id_detilEvent  }}</td>
-                          <td>{{ $detilEvent->id_event }}</td>
-                          <td>{{ $detilEvent->id_kategori  }}</td>
+                          <td>{{ $detilEvent->nama_event }}</td>
+                          <td>{{ $detilEvent->nama_kategori  }}</td>
                           <td>{{ $detilEvent->kuota_event }}</td>
                           <td>{{ $detilEvent->harga_event }}</td>
 
                           <td>
-                            {{-- <a href="{{ route('event.edit',$event->id_event) }}"><button type='submit'class="btn btn-success"><i class="bi bi-pencil-square"></i></button></a>
-                            <form action="{{ route('event.destroy', $event->id_event) }}"
+                            <a href="{{ route('detilevent.edit',$detilEvent->id_detilEvent) }}"><button type='submit'class="btn btn-success"><i class="bi bi-pencil-square"></i></button></a>
+                            <form action="{{ route('detilevent.destroy',$detilEvent->id_detilEvent) }}"
                                 method="POST" style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')
@@ -82,7 +82,7 @@
                                 class="btn btn-danger"><i class="bi bi-trash3-fill"></i></button>
 
 
-                            </form> --}}
+                            </form>
 
                         </td>
 
