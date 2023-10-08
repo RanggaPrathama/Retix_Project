@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateEventRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class EventController extends Controller
 {
@@ -17,22 +18,46 @@ class EventController extends Controller
     public function index()
     {
         $events = DB::table('events')
-        ->select('id_event','lokasis.id_lokasi','lokasis.nama_lokasi','nama_event',DB::raw("DATE_FORMAT(tgl_event, '%d %M %y') as tgl_event"),'gambar_event','deskripsi_event')
-        ->join('lokasis','events.id_lokasi','=','lokasis.id_lokasi')
+        ->select('id_event','nama_lokasi','nama_event','provinsi','kota','kecamatan',DB::raw("DATE_FORMAT(tgl_event, '%d %M %y') as tgl_event"),'gambar_event','deskripsi_event','slug')
         ->get();
         return view('pages.admin.table.Event.index',['events'=>$events]);
 
     }
 
-    /**
+    public function provinsi(){
+        $data = DB::table('provinsis')
+                    ->select('*')
+                    ->where('nama_provinsi','LIKE','%'.request('q').'%')
+                    ->paginate(35);
+        return response()->json($data);
+    }
+
+
+    public function kota($id){
+        $data = DB::table('kotas')
+                ->select('*')
+                ->where('id_provinsi',$id)
+                ->where('nama_kota','LIKE','%'.request('q').'%')
+
+                ->paginate(100);
+        return response()->json($data);
+    }
+
+    public function kecamatan($id)
+{
+    $data = DB::table('kecamatans')
+                ->select('*')
+                ->where('id_kota',$id)
+                ->where('nama_kecamatan','LIKE','%'.request('q').'%')
+                ->paginate(100);
+
+    return response()->json($data);
+}    /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        $lokasis = DB::table('lokasis')
-                ->select('*')
-                ->get();
-        return view('pages.admin.table.Event.create',['lokasis'=>$lokasis]);
+        return view('pages.admin.table.Event.create');
     }
 
     /**
@@ -41,15 +66,33 @@ class EventController extends Controller
     public function store(Request $request)
     {
         $validateddata=$request->validate([
-            'id_lokasi'=>'required|exists:lokasis',
+            'nama_lokasi'=>'required',
             'nama_event'=>'required',
             'tgl_event'=>'required',
             'gambar_event'=>'required|mimes:png,jpg,jpeg',
             'deskripsi_event'=>'required',
+            'provinsi'=>'required',
+            'kota'=>'required',
+            'kecamatan'=>'required',
+
+
         ],
         ['nama_event.required'=>'Silahkan Mengisi ',
         'gambar_event.mimes'=>'Hanya bisa diisi dengan Png,Jpg,Jpeg']
     );
+
+
+        $validateddata['slug'] = Str::random(100);
+        $provinsi = DB::table('provinsis')->select('*')->where('id_provinsi',$request->provinsi)->first();
+        $kota = DB::table('kotas')->select('*')->where('id_kota',$request->kota)->first();
+        $kecamatan = DB::table('kecamatans')->select('*')->where('id_kecamatan',$request->kecamatan)->first();
+        $validateddata['id_kecamatan']=$kecamatan->id_kecamatan;
+        $validateddata['provinsi'] =$provinsi->nama_provinsi;
+        $validateddata['kota']=$kota->nama_kota;
+        $validateddata['kecamatan']=$kecamatan->nama_kecamatan;
+        $namalokasi = $request->input('nama_lokasi').''. '/'.''. $provinsi->nama_provinsi.''.'/'.''. $kota->nama_kota;
+        $validateddata['nama_lokasi']=$namalokasi;
+
         if($request->hasFile('gambar_event')){
            $gambar = $request->file('gambar_event')->getClientOriginalName();
             $request->file('gambar_event')->move(public_path('gambarEvent'),$gambar);
@@ -57,7 +100,9 @@ class EventController extends Controller
         }
 
         $create = Event::create($validateddata);
+
        if($create){
+
         return redirect()->route('event.index')->with('success','Berhasil !');
        }
        else{
@@ -77,48 +122,56 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit($slug)
     {
         $events = DB::table('events')
-                ->select('id_event','lokasis.id_lokasi','lokasis.nama_lokasi','events.nama_event','gambar_event','tgl_event','deskripsi_event')
-                ->join('lokasis','lokasis.id_lokasi','=','events.id_lokasi')
-                ->where('id_event',$id)
+                    ->select('*')
+                    ->where('slug',$slug)
+                    ->first();
                 // ->where('lokasis,id_lokasi',$id)
-                ->first();
-       $lokasis = DB::table('lokasis')
-       ->select('lokasis.id_lokasi','lokasis.nama_lokasi')
-       ->get();
-        return view('pages.admin.table.Event.update',['events'=>$events,'lokasis'=>$lokasis]);
+        return view('pages.admin.table.Event.update',['events'=>$events]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$id)
+    public function update(Request $request,$slug)
     {
         $validateddata = $request->validate([
-            'id_lokasi'=>'nullable|exists:lokasis|numeric',
+            'nama_lokasi'=>'required',
             'nama_event'=>'required',
-            'gambar_event'=>'required|mimes:png,jpg,jpeg',
             'tgl_event'=>'required',
+            'gambar_event'=>'required|mimes:png,jpg,jpeg',
             'deskripsi_event'=>'required',
+            'provinsi'=>'required',
+            'kota'=>'required',
+            'kecamatan'=>'required',
         ],
     [
         'gambar_event.mimes'=>'Hanya bisa diisi dengan Png,Jpg,Jpeg',
     ]);
 
-        $events= Event::findOrfail($id);
+        $events= Event::where('slug',$slug);
+
+        $provinsi = DB::table('provinsis')->select('*')->where('id_provinsi',$request->provinsi)->first();
+        $kota = DB::table('kotas')->select('*')->where('id_kota',$request->kota)->first();
+        $kecamatan = DB::table('kecamatans')->select('*')->where('id_kecamatan',$request->kecamatan)->first();
+        $validateddata['id_kecamatan']=$kecamatan->id_kecamatan;
+        $validateddata['provinsi'] =$provinsi->nama_provinsi;
+        $validateddata['kota']=$kota->nama_kota;
+        $validateddata['kecamatan']=$kecamatan->nama_kecamatan;
+        $namalokasi = $request->input('nama_lokasi').''. '/'.''. $provinsi->nama_provinsi.''.'/'.''. $kota->nama_kota;
+        $validateddata['nama_lokasi']=$namalokasi;
+
         if($request->has('gambar_event')){
             $gambar = $request->file('gambar_event')->getClientOriginalName();
             $request->file('gambar_event')->move(public_path('gambarEvent'),$gambar);
             $validateddata['gambar_event']=$gambar;
-            $dataFoto = Event::where('id_event',$id)->first();
+            $dataFoto = Event::where('slug',$slug)->first();
             File::delete(public_path('gambarEvent').'/'.$dataFoto->gambar_event);
         }
-        DB::table('events')
-        ->select('id_lokasis')
-        ->where('id_event',$events->id_event)
-        ->update(['id_lokasi'=>$request->input('id_lokasi')]);
+
+
         $update = $events->update($validateddata);
 
         if($update){
@@ -130,11 +183,11 @@ class EventController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        $datafoto = Event::where('id_event',$id)->first();
+        $datafoto = Event::where('slug',$slug)->first();
         File::delete(public_path('gambarEvent'),$datafoto->gambar_event);
-        $event = Event::findOrfail($id);
+        $event = Event::where('slug',$slug);
         $event->delete();
         return redirect()->route('event.index')->with('success','Berhasil !');
 

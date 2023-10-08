@@ -68,7 +68,9 @@
 
                     </div>
 
-                    <div class="links"> <a href="#">Forgot Password</a> <a href="/register">Signup</a>
+                    <div class="links">
+                        <a href="#">Forgot Password</a>
+                        <a href="{{ route('register') }}">Signup</a>
 
                     </div>
 

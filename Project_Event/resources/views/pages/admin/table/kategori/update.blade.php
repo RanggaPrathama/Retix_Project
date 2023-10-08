@@ -38,7 +38,7 @@
               <!-- /.card-header -->
               <div class="card-body">
 
-                <form action="{{ route('kategori.update',$kategoris->id_kategori) }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('kategori.update',$kategoris->slug) }}" method="post" enctype="multipart/form-data">
 
                     @csrf
                     @method('PUT')

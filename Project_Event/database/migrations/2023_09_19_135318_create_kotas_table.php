@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lokasis', function (Blueprint $table) {
-            $table->id('id_lokasi');
-            $table->unsignedBigInteger('id_kecamatan');
-            $table->foreign('id_kecamatan')
-                    ->references('id_kecamatan')
-                    ->on('kecamatans')
+        Schema::create('kotas', function (Blueprint $table) {
+            $table->id('id_kota');
+            $table->unsignedBigInteger('id_provinsi');
+            $table->foreign('id_provinsi')
+                    ->references('id_provinsi')
+                    ->on('provinsis')
                     ->onDelete('cascade');
-            $table->string('nama_lokasi');
-            $table->timestamps();
+            $table->string('nama_kota');
+           
         });
     }
 

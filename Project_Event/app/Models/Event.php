@@ -11,13 +11,18 @@ class Event extends Model
     protected $table = 'events';
     protected $primaryKey = 'id_event';
     protected $fillable = [
-        'id_lokasi',
+        'nama_lokasi',
         'nama_event',
         'deskripsi_event',
         'gambar_event',
         'tgl_event',
+        'provinsi',
+        'kota',
+        'kecamatan',
+        'slug',
+        'id_kecamatan'
 
     ];
 
- 
+
 }

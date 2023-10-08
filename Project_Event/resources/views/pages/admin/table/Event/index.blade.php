@@ -55,8 +55,10 @@
                     <thead>
                         <tr>
                           <th>Id Event</th>
-                          <th>Id lokasi</th>
                           <th>Nama Lokasi </th>
+                          <th>Provinsi</th>
+                          <th>Kota</th>
+                          <th>Kecamatan</th>
                           <th>Nama Event</th>
                           <th>Gambar Event </th>
                           <th>Tanggal Event </th>
@@ -68,14 +70,16 @@
                             @foreach ($events as $event )
                         <tr>
                           <td>{{ $event->id_event  }}</td>
-                          <td>{{ $event->id_lokasi }}</td>
-                          <td>{{ $event->nama_lokasi  }}</td>
+                          <td>{{ $event->nama_lokasi }}</td>
+                          <td>{{ $event->provinsi }}</td>
+                          <td>{{ $event->kota }}</td>
+                          <td>{{ $event->kecamatan }}</td>
                           <td>{{ $event->nama_event }}</td>
                           <td><img src="{{ asset('gambarEvent/'.$event->gambar_event) }}" style="width: 55px"></td>
                           <td>{{ $event->tgl_event }}</td>
                           <td>
-                            <a href="{{ route('event.edit',$event->id_event) }}"><button type='submit'class="btn btn-success"><i class="bi bi-pencil-square"></i></button></a>
-                            <form action="{{ route('event.destroy', $event->id_event) }}"
+                            <a href="{{ route('event.edit',$event->slug) }}"><button type='submit'class="btn btn-success"><i class="bi bi-pencil-square"></i></button></a>
+                            <form action="{{ route('event.destroy', $event->slug) }}"
                                 method="POST" style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')
@@ -95,8 +99,10 @@
                         <tfoot>
                         <tr>
                             <th>Id Event</th>
-                            <th>Id lokasi</th>
                             <th>Nama Lokasi </th>
+                            <th>Provinsi</th>
+                            <th>Kota</th>
+                            <th>Kecamatan</th>
                             <th>Nama Event</th>
                             <th>Gambar Event </th>
                             <th>Tanggal Event </th>

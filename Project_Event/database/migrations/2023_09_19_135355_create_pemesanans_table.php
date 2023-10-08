@@ -25,6 +25,7 @@ return new class extends Migration
                     ->onDelete('cascade');
             $table->date('tgl_pemesanan');
             $table->boolean('status_pemesanan')->default('0');
+            $table->string('slug',100)->unique();
             $table->bigInteger('total_tagihan');
             $table->timestamps();
         });

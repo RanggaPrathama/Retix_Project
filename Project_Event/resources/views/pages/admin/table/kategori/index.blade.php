@@ -66,8 +66,8 @@
                           <td>{{ $kategori->id_kategori  }}</td>
                           <td>{{ $kategori->nama_kategori }}</td>
                           <td>
-                            <a href="{{ route('kategori.edit',$kategori->id_kategori) }}"><button type='submit'class="btn btn-success"><i class="bi bi-pencil-square"></i></button></a>
-                            <form action="{{ route('kategori.destroy', $kategori->id_kategori) }}"
+                            <a href="{{ route('kategori.edit',$kategori->slug) }}"><button type='submit'class="btn btn-success"><i class="bi bi-pencil-square"></i></button></a>
+                            <form action="{{ route('kategori.destroy', $kategori->slug) }}"
                                 method="POST" style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')

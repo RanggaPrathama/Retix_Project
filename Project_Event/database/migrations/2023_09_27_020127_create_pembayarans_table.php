@@ -25,6 +25,7 @@ return new class extends Migration
             $table->date('tgl_pembayaran');
             $table->boolean('status_pembayaran');
             $table->bigInteger('total_pembayaran');
+            $table->string('slug',100)->unique();
             $table->timestamps();
         });
     }

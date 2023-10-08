@@ -16,10 +16,12 @@ return new class extends Migration
             $table->string('name',100);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->boolean('is_actived')->default('0');
+            $table->integer('token')->nullable();
             $table->string('password');
             $table->boolean('role')->default('0');
-            $table->string('profile_user');
-            $table->string('no_ktp');
+            $table->string('profile_user')->nullable();
+            $table->string('no_ktp')->nullable();
             $table->string('no_telp');
             $table->rememberToken();
             $table->timestamps();

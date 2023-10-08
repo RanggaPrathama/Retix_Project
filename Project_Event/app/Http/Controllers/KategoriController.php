@@ -7,6 +7,7 @@ use App\Http\Requests\StoreKategoriRequest;
 use App\Http\Requests\UpdateKategoriRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
 
 class KategoriController extends Controller
@@ -17,7 +18,7 @@ class KategoriController extends Controller
     public function index()
     {
         $kategoris = DB::table('kategoris')
-            ->select('id_kategori','nama_kategori')
+            ->select('id_kategori','nama_kategori','slug')
             ->get();
         return view('pages.admin.table.kategori.index',['kategoris'=>$kategoris]);
     }
@@ -39,6 +40,7 @@ class KategoriController extends Controller
         $validateddata = $request->validate([
             'nama_kategori'=>'required|min:5|unique:kategoris'
         ]);
+        $validateddata['slug']=Str::random(40);
         $kategori =Kategori::create($validateddata);
 
         if($kategori){
@@ -59,11 +61,11 @@ class KategoriController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit($slug)
     {
         $kategoris=DB::table('kategoris')
-        ->select('id_kategori','nama_kategori')
-        ->where('id_kategori',$id)
+        ->select('id_kategori','nama_kategori','slug')
+        ->where('slug',$slug)
         ->first();
 
         return view('pages.admin.table.kategori.update',['kategoris'=> $kategoris]);
@@ -72,12 +74,12 @@ class KategoriController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$slug)
     {
         $validateddata= $request->validate([
             'nama_kategori'=>'required'
         ]);
-        $kategori= Kategori::findorFail($id);
+        $kategori= Kategori::where('slug',$slug);
        $validasi= $kategori->update($validateddata);
        if($validasi){
         return redirect()->route('kategori.index')->with('success','Berhasil');
@@ -88,9 +90,9 @@ class KategoriController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        $kategori=Kategori::findorFail($id);
+        $kategori=Kategori::where('slug',$slug);
         $kategori->delete();
         return redirect()->route('kategori.index')->with('success','Berhasil !');
     }

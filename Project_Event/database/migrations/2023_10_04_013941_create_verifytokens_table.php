@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kategoris', function (Blueprint $table) {
-            $table->id('id_kategori');
-            $table->string('nama_kategori');
-            $table->string('slug',100)->unique();
+        Schema::create('verifytokens', function (Blueprint $table) {
+            $table->id();
+            $table->string('token');
+            $table->string('email')->nullable();
+            $table->boolean('is_actived')->default('0');
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kategoris');
+        Schema::dropIfExists('verifytokens');
     }
 };

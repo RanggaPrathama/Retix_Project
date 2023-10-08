@@ -25,6 +25,7 @@ return new class extends Migration
                     ->onDelete('cascade');
             $table->integer('kuota_event');
             $table->bigInteger('harga_event');
+            $table->string('slug',100)->unique();
             $table->timestamps();
         });
     }

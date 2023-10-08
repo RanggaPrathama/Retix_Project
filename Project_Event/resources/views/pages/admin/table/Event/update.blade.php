@@ -39,55 +39,84 @@
                                     <!-- /.card-header -->
                                     <div class="card-body">
 
-                                        <form action="{{ route('event.update',$events->id_event) }}" method="post" enctype="multipart/form-data">
+                                        <form action="{{ route('event.update',$events->slug) }}" method="post"
+                                            enctype="multipart/form-data">
                                             @csrf
                                             @method('PUT')
                                             <label>Name Event</label></br>
                                             <input type="text" name="nama_event" id="name"
-                                                class="form-control @error('nama_event') is-invalid  @enderror"
-                                                value="{{ old('nama_event', $events->nama_event) }}">
+                                                class="form-control @error('nama_event') is-invalid  @enderror" value="{{ old('nama_event',$events->nama_event) }}"/>
                                             @error('nama_event')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                             <br>
-                                           @php
-                                               $id = old('id_lokasi',$events->id_lokasi)
-                                           @endphp
-                                            <label>Pilih Lokasi</label></br>
-                                            <select class="form-control @error('id_lokasi') is-invalid @enderror" name="id_lokasi" aria-label="Default">
-                                                <option value="">Silahkan Memilih</option>
-                                                @foreach ($lokasis as $lokasi)
-                                                <option value="{{ $lokasi->id_lokasi }}" {{$id == $lokasi->id_lokasi ? 'selected' : '' }}>
-                                                        {{ $lokasi->nama_lokasi }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
 
-
-                                            @error('id_lokasi')
+                                            <label>Nama Lokasi </label></br>
+                                            <input class='form-control'type="text" name="nama_lokasi" value="{{ old('nama_lokasi',$events->nama_lokasi) }}"/>
+                                            @error('nama_lokasi')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror <br>
+
+
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <div class="form-group mb-3">
+                                                        <label for="inputProvinsi">Provinsi</label>
+                                                        <select class="form-control" id="inputProvinsi"
+                                                            aria-label="Pilih Provinsi" name="provinsi" style="width: 100%;"
+                                                            required>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-lg-4">
+                                                    <div class="form-group mb-3">
+                                                        <label for="inputKota">Kota/Kabupaten</label>
+                                                        <select class="form-control" id="inputKota" name="kota"
+                                                            aria-label="Pilih Kota/Kabupaten" style="width: 100%" required>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-lg-4">
+                                                    <div class="form-group mb-3">
+                                                        <label for="inputKecamatan">Kecamatan</label>
+                                                        <select class="form-control" id="inputKecamatan" name="kecamatan"
+                                                            aria-label="Pilih Kecamatan" style="width: 100%" required>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
                                             <label>Tanggal Event</label></br>
+
                                             <input type="date" name="tgl_event" id="name"
-                                                class="form-control @error('tgl_event') is-invalid  @enderror" value="{{ old('tgl_event',$events->tgl_event) }}">
+                                                class="form-control @error('tgl_event') is-invalid  @enderror" value="{{ old('tgl_event',$events->tgl_event) }}"/>
                                             @error('tgl_event')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                             <br>
                                             <label>Gambar Event</label></br>
                                             <input type="file" name="gambar_event" id="name"
-                                                class="form-control @error('gambar_event') is-invalid  @enderror" >
+                                                class="form-control @error('gambar_event') is-invalid  @enderror">
                                             @error('gambar_event')
                                                 <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror<br>
+                                            @enderror
                                             <label> Deskripsi Event </label></br>
                                             <textarea class="form-control @error('deskripsi_event') is-invalid @enderror" name="deskripsi_event" id=""
-                                                cols="40" rows="10"   >{{ old('deskripsi_event',$events->deskripsi_event) }}</textarea>
+                                                cols="40" rows="10">{{ old('deskripsi_event',$events->deskripsi_event) }}</textarea>
                                             @error('deskripsi_event')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                             <br>
-                                                 <input type="submit" value="Save" class="btn btn-success"></br>
+
+
+
+
+
+                                            <input type="submit" value="Save" class="btn btn-success"></br>
 
                                         </form>
 
@@ -113,8 +142,87 @@
             <!-- /.control-sidebar -->
         </div>
 
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+        <script>
+            $(document).ready(function() {
+                $('#inputProvinsi').empty();
+                $("#inputProvinsi").select2({
+                    placeholder: 'Pilih Provinsi',
+                    ajax: {
+                        url: "{{ route('pilihProvinsi') }}",
+                        processResults: function({
+                            data
+                        }) {
+                            return {
+                                results: $.map(data, function(item) {
+                                    return {
+                                        id: item.id_provinsi,
+                                        text: item.nama_provinsi
+                                    }
+                                })
+                            }
+                        }
+                    }
+                });
+                $('#inputProvinsi').change(function() {
+                    let id = $('#inputProvinsi').val();
+                    let url = "/event/kota/" + id;
+                    $('#inputKota').empty();
+                    $("#inputKota").select2({
+                        placeholder: 'Pilih Kota/Kabupaten',
+                        ajax: {
+                            url: url,
+                            processResults: function({
+                                data
+                            }) {
+                                return {
+                                    results: $.map(data, function(item) {
+                                        return {
+                                            id: item.id_kota,
+                                            text: item.nama_kota
+                                        }
+                                    })
+                                }
+                            }
+                        }
+                    });
+                });
+
+                $('#inputKota').change(function() {
+                    let id = $('#inputKota').val();
+                    let url = '/event/kecamatan/' + id;
+                     $('#inputKecamatan').empty();
+                    $('#inputKecamatan').select2({
+                        placeholder: 'Pilih Kecamatan',
+                        ajax: {
+                            url: url,
+                            processResults: function({
+                                data
+                            }) {
+                                return {
+                                    results: $.map(data, function(item) {
+                                        return {
+                                            id: item.id_kecamatan,
+                                            text: item.nama_kecamatan
+                                        }
+                                    })
+                                }
+                            }
+                        }
+                    })
+                })
+
+
+            });
+        </script>
+
         <!-- AdminLTE App -->
         <script src="{{ asset('js/adminlte.min.js') }}"></script>
+
+
 
     </body>
 @endsection

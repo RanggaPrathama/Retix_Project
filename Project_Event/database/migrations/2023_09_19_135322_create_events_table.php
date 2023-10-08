@@ -13,11 +13,16 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id('id_event');
-            $table->unsignedBigInteger('id_lokasi');
-            $table->foreign('id_lokasi')
-                    ->references('id_lokasi')
-                    ->on('lokasis')
+            $table->unsignedBigInteger('id_kecamatan');
+            $table->foreign('id_kecamatan')
+                    ->references('id_kecamatan')
+                    ->on('kecamatans')
                     ->onDelete('cascade');
+            $table->string('slug',100)->unique();
+            $table->string('provinsi')->nullable();
+            $table->string('kota')->nullable();
+            $table->string('kecamatan')->nullable();
+            $table->string('nama_lokasi');
             $table->string('nama_event');
             $table->string('gambar_event');
             $table->date('tgl_event');
