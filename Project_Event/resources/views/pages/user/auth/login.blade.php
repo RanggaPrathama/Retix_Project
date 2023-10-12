@@ -53,18 +53,26 @@
             <div class="content">
 
                 <h2>Sign In</h2>
+                @if (session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show col-md-12" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                        aria-label="Close"></button>
+                </div>
+            @endif
 
                 <div class="form">
 
                     <div class="inputBox">
-
-                        <input type="text" required> <i>Username</i>
+                        <form action="" method="POST" enctype='multipart/form-data'>
+                            @csrf
+                        <input type="text" name='email' required> <i>Email</i>
 
                     </div>
 
                     <div class="inputBox">
 
-                        <input type="password" required> <i>Password</i>
+                        <input type="password" name='password' required> <i>Password</i>
 
                     </div>
 
@@ -79,7 +87,7 @@
                         <input type="submit" value="LOGIN">
 
                     </div>
-
+                </form>
                     <div class="gg">
 
                         <button> <img src="iconlogin/google.png" width="19" height="19"> SIGN IN WITH

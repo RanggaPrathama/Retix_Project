@@ -55,11 +55,11 @@
                     <thead>
                         <tr>
                           <th>Id Event</th>
+                          <th>Nama Event</th>
                           <th>Nama Lokasi </th>
                           <th>Provinsi</th>
                           <th>Kota</th>
                           <th>Kecamatan</th>
-                          <th>Nama Event</th>
                           <th>Gambar Event </th>
                           <th>Tanggal Event </th>
                           <th>Action</th>
@@ -70,11 +70,12 @@
                             @foreach ($events as $event )
                         <tr>
                           <td>{{ $event->id_event  }}</td>
+                          <td>{{ $event->nama_event }}</td>
                           <td>{{ $event->nama_lokasi }}</td>
                           <td>{{ $event->provinsi }}</td>
                           <td>{{ $event->kota }}</td>
                           <td>{{ $event->kecamatan }}</td>
-                          <td>{{ $event->nama_event }}</td>
+
                           <td><img src="{{ asset('gambarEvent/'.$event->gambar_event) }}" style="width: 55px"></td>
                           <td>{{ $event->tgl_event }}</td>
                           <td>
@@ -99,11 +100,11 @@
                         <tfoot>
                         <tr>
                             <th>Id Event</th>
+                            <th>Nama Event</th>
                             <th>Nama Lokasi </th>
                             <th>Provinsi</th>
                             <th>Kota</th>
                             <th>Kecamatan</th>
-                            <th>Nama Event</th>
                             <th>Gambar Event </th>
                             <th>Tanggal Event </th>
                             <th>Action</th>

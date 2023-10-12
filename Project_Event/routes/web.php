@@ -21,47 +21,39 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//COBA
-Route::get('/login', function () {
-    return view('pages.login');
-});
-
-Route::get('/register', function () {
-    return view('pages.register');
-});
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin',function(){
-    return view('pages.admin.home');
-})->name('admin.index');
 
-Route::get('/user',function(){
-    return view('pages.admin.table.user');
-})->name('user.index');
 
 
 //User LUR
 
 //Login && Register
+Route::get('/home',[HomeController::class,'index'])->name('home');
 Route::get('/login',[AuthController::class,'login'])->name('login');
+Route::post('/login',[AuthController::class,'login_post'])->name('autentifikasi');
 Route::get('/register',[AuthController::class,'register'])->name('register');
 Route::post('/register',[AuthController::class,'register_post']);
+Route::get('/verifikasiakun',[AuthController::class,'verifikasi'])->name('verifyaccount');
+Route::post('/verifikasiakun',[AuthController::class,'verifikasi_post'])->name('useractivation');
 // route::get('/email/verify',[VerificationController::class,'notice'])->middleware('auth')->name('verification.notice'); //ke p
 // Route::get('/email/verify/{id}/{hash}',[VerificationController::class,'verify'])->middleware('auth','signed')->name('verification.verify');
 // Route::get('/email/verify/resend-verification',[VerificationController::class,'send'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
-Route::get('/home',[HomeController::class,'index'])->name('home');
-Route::get('/verifyaccount',[HomeController::class,'verifotp'])->name('verifyaccount');
-Route::post('/verifotp',[HomeController::class,'useractivation'])->name('useractivation');
 
-// ADMIN LUR
+// Route::get('/verifyaccount',[HomeController::class,'verifotp'])->name('verifyaccount');
+// Route::post('/verifotp',[HomeController::class,'useractivation'])->name('useractivation');
 
+
+
+//////////////////////        PAGE ADMIN     //////////////////////////////////////////////////
+
+Route::get('/adminDashboard',[HomeController::class,'homeAdmin'])->name('admin.home');
 //TABLE
 
 //KATEGORI
-
 Route::get('/kategori',[KategoriController::class,'index'])->name('kategori.index');
 Route::get('/kategori/create',[KategoriController::class,'create'])->name('kategori.create');
 Route::post('/kategori/create',[KategoriController::class,'store'])->name('kategori.store');

@@ -66,7 +66,7 @@
         <div class='invalid-feedback'>{{ $errors->first('no_telp') }}</div>
        @endif
        </div>
-
+       <input type="hidden" value="{{ @rand(100000, 999999) }}" name="token">
       <div class="links"> <a href="#">Forgot Password</a> <a href="{{ route('login') }}">SignIn</a>
 
       </div>

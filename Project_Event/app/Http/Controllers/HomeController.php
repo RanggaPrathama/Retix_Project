@@ -8,22 +8,13 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+
+    public function homeAdmin(){
+        return view('pages.admin.home');
+    }
     public function index()
     {
-        $user = auth()->user();
-
-        if ($user) {
-            $get_user = User::where('email', $user->email)->first();
-
-            if ($get_user->is_actived == 1) {
-                return view('pages.user.index')->with('success', 'Berhasil Aktif!');
-            } else {
-                return redirect()->route('verifyaccount');
-            }
-        } else {
-            // Pengguna belum terotentikasi, lakukan sesuatu di sini
-            return redirect()->route('login'); // Misalnya, arahkan ke halaman login
-        }
+        return view('pages.user.home');
     }
 
 
