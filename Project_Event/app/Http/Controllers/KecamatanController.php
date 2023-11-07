@@ -16,7 +16,8 @@ class KecamatanController extends Controller
     public function index()
     {
         $kecamatans = DB::table('kecamatans')
-        ->select('id_kecamatan','nama_kecamatan')
+        ->select('*')
+        ->join('kotas','kotas.id_kota','=','kecamatans.id_kota')
         ->get();
     return view('pages.admin.table.kecamatan.index',['kecamatans'=>$kecamatans]);
     }

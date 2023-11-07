@@ -9,6 +9,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\JsonResponse;
 
 class AuthController extends Controller
 {
@@ -26,13 +28,19 @@ class AuthController extends Controller
             'token'=>'required|unique:users'
 
         ]);
-
+        $users = DB::table('users')->get();
         $name = $request->input('name');
         $email=$request->input('email');
         $password = bcrypt($request->input('password'));
         $token = $request->input('token');
         $no_telp = $request->input('no_telp');
-        $role='0';
+
+        if(count($users)<1){
+            $role = '1';
+        }
+        else{
+            $role = '0';
+        }
 
         $user = User::create([
             'name'=>$name,
@@ -84,25 +92,36 @@ class AuthController extends Controller
         return view('pages.user.auth.login');
     }
 
-    public function login_post(Request $request){
+    public function login_post(Request $request) {
         $validateddata = $request->validate([
-            'email'=>'required',
-            'password'=>'required',
+            'email' => 'required',
+            'password' => 'required',
         ]);
 
-        if(Auth::attempt($validateddata)){
+        if (Auth::attempt($validateddata)) {
             $request->session()->regenerate();
-            if(auth()->user()->is_actived==1){
-                if(auth()->user()->role==0){
-                    return redirect()->route('home')->with('success','Berhasil Login !');
+            if (auth()->user()->is_actived == 1) {
+                if (auth()->user()->role == 0) {
+                    return redirect()->route('home')->with('success', 'Berhasil Login !');
+                } else {
+                    return redirect()->route('admin.home')->with('success', 'Berhasil Login !');
                 }
-                else{
-                    return redirect()->route('admin.home')->with('success','Berhasil Login !');
-                }
+            } else {
+                return redirect()->back()->with('errors', 'Akun anda tidak aktif');
             }
-            else{
-                return back()->route('login')->with('errors','Akun anda tidak aktif');
-            }
+        } else {
+            return redirect()->back()->with('errors', 'Email atau password salah');
         }
+    }
+
+    public function logout(Request $request){
+        Auth::logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+        return redirect('/');
+    }
+    protected function loggedOut(Request $request)
+    {
+        //
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Provinsi;
 use App\Http\Requests\StoreProvinsiRequest;
 use App\Http\Requests\UpdateProvinsiRequest;
+use Illuminate\Support\Facades\DB;
 
 class ProvinsiController extends Controller
 {
@@ -13,7 +14,8 @@ class ProvinsiController extends Controller
      */
     public function index()
     {
-        //
+        $provinsis=DB::table('provinsis')->select('*')->get();
+        return view('pages.admin.table.provinsi.index',['provinsis'=>$provinsis]);
     }
 
     /**

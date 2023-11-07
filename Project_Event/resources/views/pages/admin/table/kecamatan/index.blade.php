@@ -55,7 +55,9 @@
                     <thead>
                         <tr>
                           <th>Id Kecamatan</th>
+                          <th>Id Kota</th>
                           <th>Nama Kecamatan</th>
+                          <th>Nama Kota</th>
                           <th>Action</th>
 
                         </tr>
@@ -64,10 +66,12 @@
                             @foreach ($kecamatans as $kecamatan )
                         <tr>
                           <td>{{ $kecamatan->id_kecamatan  }}</td>
+                          <td>{{ $kecamatan->id_kota }}</td>
                           <td>{{ $kecamatan->nama_kecamatan }}</td>
+                          <td>{{ $kecamatan->nama_kota }}</td>
                           <td>
                             <a href="{{ route('kecamatan.edit',$kecamatan->id_kecamatan) }}"><button type='submit'class="btn btn-success"><i class="bi bi-pencil-square"></i></button></a>
-                            <form action="{{ route('kecamatan.delete',$kecamatan->id_kecamatan )}}"
+                            <form action="{{ route('kecamatan.destroy',$kecamatan->id_kecamatan)}}"
                                 method="POST" style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')
@@ -86,9 +90,11 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                          <th>Id Kategori</th>
-                          <th>Nama Kategori</th>
-                          <th> Action</th>
+                            <th>Id Kecamatan</th>
+                            <th>Id Kota</th>
+                            <th>Nama Kecamatan</th>
+                            <th>Nama Kota</th>
+                            <th>Action</th>
                         </tr>
                         </tfoot>
                 </table>

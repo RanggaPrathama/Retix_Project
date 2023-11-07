@@ -6,8 +6,13 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KecamatanController;
+use App\Http\Controllers\KotaController;
 use App\Http\Controllers\LokasiController;
+use App\Http\Controllers\PemesananController;
+use App\Http\Controllers\ProvinsiController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VerificationController;
+use App\Models\Provinsi;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,9 +27,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 
@@ -32,26 +37,47 @@ Route::get('/', function () {
 //User LUR
 
 //Login && Register
-Route::get('/home',[HomeController::class,'index'])->name('home');
+Route::get('/',[HomeController::class,'index'])->name('home');
+
+
+Route::middleware('guest')->group(function(){
+
 Route::get('/login',[AuthController::class,'login'])->name('login');
 Route::post('/login',[AuthController::class,'login_post'])->name('autentifikasi');
 Route::get('/register',[AuthController::class,'register'])->name('register');
 Route::post('/register',[AuthController::class,'register_post']);
 Route::get('/verifikasiakun',[AuthController::class,'verifikasi'])->name('verifyaccount');
 Route::post('/verifikasiakun',[AuthController::class,'verifikasi_post'])->name('useractivation');
-// route::get('/email/verify',[VerificationController::class,'notice'])->middleware('auth')->name('verification.notice'); //ke p
-// Route::get('/email/verify/{id}/{hash}',[VerificationController::class,'verify'])->middleware('auth','signed')->name('verification.verify');
-// Route::get('/email/verify/resend-verification',[VerificationController::class,'send'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
-
-// Route::get('/verifyaccount',[HomeController::class,'verifotp'])->name('verifyaccount');
-// Route::post('/verifotp',[HomeController::class,'useractivation'])->name('useractivation');
+});
 
 
+
+Route::middleware('auth')->group(function(){
+    Route::get('/events',[EventController::class,'event'])->name('event');
+Route::get('/pesan',[PemesananController::class,'pemesanan'])->name('pemesanan');
+Route::get('/riwayatpemesanan',[PemesananController::class,'riwayatPemesanan'])->name('riwayatpesan');
+
+    Route::get('/profile',[UserController::class,'profile'])->name('profile');
+Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 
 //////////////////////        PAGE ADMIN     //////////////////////////////////////////////////
 
 Route::get('/adminDashboard',[HomeController::class,'homeAdmin'])->name('admin.home');
 //TABLE
+
+
+//USER
+Route::get('/user',[UserController::class,'index'])->name('user.index');
+Route::get('/user/create',[UserController::class,'create'])->name('user.create');
+Route::post('/user/create',[UserController::class,'store'])->name('user.store');
+Route::get('/user/edit/{slug}',[UserController::class,'edit'])->name('user.edit');
+Route::put('/user/edit/{slug}',[UserController::class,'update'])->name('user.update');
+Route::delete('/user/delete/{slug}',[UserController::class,'destroy'])->name('user.destroy');
+Route::put('user/upgrade/{id}',[UserController::class,'upgrade'])->name('user.upgrade');
+Route::put('user/down/{id}',[UserController::class,'down'])->name('user.down');
+
+
+
 
 //KATEGORI
 Route::get('/kategori',[KategoriController::class,'index'])->name('kategori.index');
@@ -68,16 +94,25 @@ Route::get('/kecamatan/create',[KecamatanController::class,'create'])->name('kec
 Route::post('/kecamatan/store',[KecamatanController::class,'store'])->name('kecamatan.store');
 Route::get('/kecamatan/edit/{id}',[KecamatanController::class,'edit'])->name('kecamatan.edit');
 Route::put('/kecamatan/edit/{id}',[KecamatanController::class,'update'])->name('kecamatan.update');
-Route::delete('/kecamatan/delete/{id}',[KecamatanController::class,'destroy'])->name('kecamatan.delete');
+Route::delete('/kecamatan/destroy/{id}',[KecamatanController::class,'destroy'])->name('kecamatan.destroy');
 
-//LOKASI
+//PROVINSI
 
-Route::get('/lokasi/index',[LokasiController::class,'index'])->name('lokasi.index');
-Route::get('/lokasi/create',[LokasiController::class,'create'])->name('lokasi.create');
-Route::post('/lokasi/store',[LokasiController::class,'store'])->name('lokasi.store');
-Route::get('/lokasi/edit/{id}',[LokasiController::class,'edit'])->name('lokasi.edit');
-Route::put('/lokasi/edit/{id}',[LokasiController::class,'update'])->name('lokasi.update');
-Route::delete('lokasi/destroy/{id}',[LokasiController::class,'destroy'])->name('lokasi.destroy');
+Route::get('/provinsi/index',[ProvinsiController::class,'index'])->name('provinsi.index');
+Route::get('/provinsi/create',[ProvinsiController::class,'create'])->name('provinsi.create');
+Route::post('/provinsi/store',[ProvinsiController::class,'store'])->name('provinsi.store');
+Route::get('/provinsi/edit/{id}',[ProvinsiController::class,'edit'])->name('provinsi.edit');
+Route::put('/provinsi/edit/{id}',[ProvinsiController::class,'update'])->name('provinsi.update');
+Route::delete('provinsi/destroy/{id}',[ProvinsiController::class,'destroy'])->name('provinsi.destroy');
+
+//KOTA
+Route::get('/kota/index',[KotaController::class,'index'])->name('kota.index');
+Route::get('/kota/create',[KotaController::class,'create'])->name('kota.create');
+Route::post('/kota/store',[KotaController::class,'store'])->name('kota.store');
+Route::get('/kota/edit/{id}',[KotaController::class,'edit'])->name('kota.edit');
+Route::put('/kota/edit/{id}',[KotaController::class,'update'])->name('kota.update');
+Route::delete('kota/destroy/{id}',[KotaController::class,'destroy'])->name('kota.destroy');
+
 
 //EVENT
 Route::get('/event/index',[EventController::class,'index'])->name('event.index');
@@ -99,3 +134,4 @@ Route::post('/detilEvent/store',[DetilEventController::class,'store'])->name('de
 Route::get('/detilEvent/edit/{id}',[DetilEventController::class,'edit'])->name('detilevent.edit');
 Route::put('/detilEvent/update/{id}',[DetilEventController::class,'update'])->name('detilevent.update');
 Route::delete('/detilEvent/destroy/{id}',[DetilEventController::class,'destroy'])->name('detilevent.destroy');
+});

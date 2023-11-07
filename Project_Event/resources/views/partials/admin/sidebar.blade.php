@@ -57,7 +57,7 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="pages/tables/data.html" class="nav-link">
+                    <a href="{{ route('user.index') }}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>User Tables</p>
                     </a>
@@ -75,17 +75,28 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="{{ route('provinsi.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Provinsi Tables</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ route('kota.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Kota Tables</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
                 <a href="{{ route('kecamatan.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kecamatan Tables</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="{{ route('lokasi.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Lokasi Tables</p>
-                </a>
-              </li>
+
+
+
               <li class="nav-item">
                 <a href="{{ route('detilevent.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>

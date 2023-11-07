@@ -11,6 +11,13 @@ class PemesananController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function riwayatPemesanan(){
+        return view('pages.user.riwayatpesan.index');
+    }
+
+    public function pemesanan(){
+        return view('pages.user.pemesanan.index');
+    }
     public function index()
     {
         //

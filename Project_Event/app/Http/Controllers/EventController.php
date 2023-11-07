@@ -192,4 +192,8 @@ class EventController extends Controller
         return redirect()->route('event.index')->with('success','Berhasil !');
 
     }
+
+    public function event(){
+        return view('pages.user.event.index');
+    }
 }
