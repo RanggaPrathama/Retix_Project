@@ -20,7 +20,7 @@
 
     <link href="{{ asset('css/templatemo-festava-live.css') }}" rel="stylesheet">
 
-   
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 
 
@@ -47,6 +47,10 @@
     <script src="{{ asset('js/click-scroll.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+      </script>
     {{-- <!--  home -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script> --}}
     <!-- Core theme JS-->

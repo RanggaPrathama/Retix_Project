@@ -56,6 +56,7 @@
                         <tr>
                           <th>Id Kategori</th>
                           <th>Nama Kategori</th>
+                          <th>Status</th>
                           <th>Action</th>
 
                         </tr>
@@ -65,6 +66,16 @@
                         <tr>
                           <td>{{ $kategori->id_kategori  }}</td>
                           <td>{{ $kategori->nama_kategori }}</td>
+                          <td>
+                            @if($kategori->status == 0)
+                            <p> Non Aktif</p>
+                            @elseif($kategori->status == 1)
+                            <p> Aktif</p>
+                            @elseif($kategori->status == 2)
+                            <p>Coming Soon</p>
+                            @endif
+
+                        </td>
                           <td>
                             <a href="{{ route('kategori.edit',$kategori->slug) }}"><button type='submit'class="btn btn-success"><i class="bi bi-pencil-square"></i></button></a>
                             <form action="{{ route('kategori.destroy', $kategori->slug) }}"
@@ -88,6 +99,7 @@
                         <tr>
                           <th>Id Kategori</th>
                           <th>Nama Kategori</th>
+                          <th>Status</th>
                           <th> Action</th>
                         </tr>
                         </tfoot>

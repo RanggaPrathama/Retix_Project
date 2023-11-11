@@ -15,7 +15,7 @@ class DetilEventController extends Controller
     public function index()
     {
         $detilEvents = DB::table('detil_events')
-            ->select('id_detilEvent','events.id_event','events.nama_event','kategoris.id_kategori','kategoris.nama_kategori','kuota_event','harga_event')
+            ->select('id_detilEvent','events.id_event','events.nama_event','kategoris.id_kategori','kategoris.nama_kategori','kuota_event','harga_event', 'detil_events.status')
             ->join('events','detil_events.id_event','=','events.id_event')
             ->join('kategoris','detil_events.id_kategori','=','kategoris.id_kategori')
             ->get();
@@ -35,6 +35,7 @@ class DetilEventController extends Controller
         $kategoris = DB::table('kategoris')
                     ->select('*')
                     ->get();
+
         return view('pages.admin.table.detilEvent.create',['events'=>$events,'kategoris'=>$kategoris]);
     }
 
@@ -49,6 +50,8 @@ class DetilEventController extends Controller
             'kuota_event'=>'required|numeric',
             'harga_event'=>'required|numeric',
         ]);
+
+
 
        $create = DetilEvent::create($validateddata);
        if($create){

@@ -7,7 +7,7 @@
         <div class="container d-flex justify-content-center align-items-center">
             <div class="row">
 
-                <div class="col-12 mt-auto mb-5 text-center">
+                <div data-aos="zoom-in" data-aos-duration="1000" id='judul' class="col-12 mt-auto mb-5 text-center">
 
                     <h1 class="text-white mb-5">RETIX</h1>
 
@@ -17,7 +17,7 @@
 
             </div>
         </div>
-        </div>
+
 
         <div class="video-wrap">
             <video autoplay="" loop="" muted="" class="custom-video" poster="">
@@ -34,7 +34,7 @@
             <div class="row">
 
 
-                <div id="band" class="container text-center">
+                <div data-aos="fade-up" data-aos-duration="1000" id="band" class="container text-center">
                     <h3>RETIX</h3>
                     <h6><em>We love music!</em></h6>
                     <h6>"Retix" adalah aplikasi tiket yang inovatif dan praktis, dirancang untuk memberikan pengguna
@@ -49,20 +49,22 @@
     </section>
 
 
-    <section class="artists-section section-padding" id="section_3">
-        <div class="dropdown1">
-            <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Kategori
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Silver</a></li>
-                <li><a class="dropdown-item" href="#">Gold</a></li>
-                <li><a class="dropdown-item" href="#">Platinum</a></li>
-            </ul>
-        </div>
-        <section id="tiket">
-            <div class="row">
+     <section class="artists-section section-padding" id="section_3">
+
+        <div class="container">
+
+                <div class="row">
+                    <div data-aos="flip-left"
+                    data-aos-anchor-placement="top-bottom"  data-aos-duration="2000"  class="d-flex justify-content-lg-center ">
+
+
+                        <h2 class="mb-5 " style=" border-bottom: 8px dotted  #000000;; display: inline-block; padding-bottom : 5px">
+                            Popular events </h2>
+                        </div>
+                </div>
+
+            <div data-aos="fade-up" data-aos-duration="2000" class="row">
+
                 <div class="col-md-4 mb-3">
                     <div class="card">
                         <img src="{{ asset('images/card2.png') }}" class="card-img-top" alt="Project 1" />
@@ -126,9 +128,24 @@
                 </div>
             </div>
             </div>
-        </section>
+    </section>
+        {{-- <div class="dropdown1">
+            <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Kategori
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Silver</a></li>
+                <li><a class="dropdown-item" href="#">Gold</a></li>
+                <li><a class="dropdown-item" href="#">Platinum</a></li>
+            </ul>
+            </div> --}}
+        {{-- <section data-aos="fade-up" data-aos-duration="2000" id="tiket">
 
-        <section class="contact-section section-padding" id="section_4">
+
+        </section> --}}
+
+        <section  data-aos="fade-up" data-aos-duration="3000"  class="contact-section section-padding" id="section_4">
             <div class="container">
                 <div class="row">
 
@@ -192,4 +209,6 @@
                 </div>
             </div>
         </section>
+
+
     @endsection

@@ -59,6 +59,7 @@
                           <th>Nama Kategori</th>
                           <th>Kuota Event </th>
                           <th>Harga Event </th>
+                          <th> Status  </th>
                         <th>Action</th>
 
                         </tr>
@@ -71,6 +72,7 @@
                           <td>{{ $detilEvent->nama_kategori  }}</td>
                           <td>{{ $detilEvent->kuota_event }}</td>
                           <td>{{ $detilEvent->harga_event }}</td>
+                          <td>{{ $detilEvent->status }}</td>
 
                           <td>
                             <a href="{{ route('detilevent.edit',$detilEvent->id_detilEvent) }}"><button type='submit'class="btn btn-success"><i class="bi bi-pencil-square"></i></button></a>
@@ -98,6 +100,7 @@
                             <th>Id Kategori</th>
                             <th>Kuota Event </th>
                             <th>Harga Event </th>
+                            <th> Status  </th>
                           <th>Action</th>
                         </tr>
                         </tfoot>

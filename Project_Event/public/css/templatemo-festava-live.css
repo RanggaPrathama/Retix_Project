@@ -8,7 +8,7 @@ https://templatemo.com/tm-583-festava-live
 
 
 /*---------------------------------------
-  CUSTOM PROPERTIES ( VARIABLES )             
+  CUSTOM PROPERTIES ( VARIABLES )
 -----------------------------------------*/
 :root {
   --white-color:                  #ffffff;
@@ -45,12 +45,12 @@ https://templatemo.com/tm-583-festava-live
 
 body {
   background-color: var(--white-color);
-  font-family: var(--body-font-family); 
+  font-family: var(--body-font-family);
 }
 
 
 /*---------------------------------------
-  TYPOGRAPHY               
+  TYPOGRAPHY
 -----------------------------------------*/
 
 h2,
@@ -106,7 +106,7 @@ ul li {
   font-weight: var(--font-weight-light);
 }
 
-a, 
+a,
 button {
   touch-action: manipulation;
   transition: all 0.3s;
@@ -208,9 +208,12 @@ strong {
   transform-origin: 19px 15px;
 }
 
+.page-header {
+    background-color: #3586ff ;
+}
 
 /*---------------------------------------
-  SECTION               
+  SECTION
 -----------------------------------------*/
 #login {
   margin-right: 10px;
@@ -264,9 +267,9 @@ strong {
   margin-right: 15px;
 }
 
-.nav-tabs .nav-item.show .nav-link, 
+.nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active,
-.nav-tabs .nav-link:focus, 
+.nav-tabs .nav-link:focus,
 .nav-tabs .nav-link:hover {
   background: var(--white-color);
   box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
@@ -274,19 +277,19 @@ strong {
 }
 
 .nav-tabs h5 {
-  color: var(--p-color); 
+  color: var(--p-color);
   margin-bottom: 0;
 }
 
 .nav-tabs .nav-link.active h5,
-.nav-tabs .nav-link:focus h5, 
+.nav-tabs .nav-link:focus h5,
 .nav-tabs .nav-link:hover h5 {
   color: var(--primary-color);
 }
 
 
 /*---------------------------------------
-  CUSTOM ICON COLOR               
+  CUSTOM ICON COLOR
 -----------------------------------------*/
 .custom-icon {
   color: var(--secondary-color);
@@ -294,18 +297,18 @@ strong {
 
 
 /*---------------------------------------
-  CUSTOM BUTTON               
+  CUSTOM BUTTON
 -----------------------------------------*/
 .custom-btn {
   background: var(--custom-btn-bg-color);
   border: 2px solid transparent;
   border-radius: var(--border-radius-large);
   color: var(--white-color);
-  font-size: var(--btn-font-size);
+  font-size:var(--btn-font-size);
   font-weight: var(--font-weight-bold);
   line-height: normal;
   transition: all 0.3s;
-  padding: 10px 20px;
+  padding: 10px 15px;
 }
 
 .custom-btn:hover {
@@ -332,8 +335,98 @@ strong {
 }
 
 
+/*CAROUSEL */
+
+
+
+.carousel-caption {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, .1);
+    z-index: 1;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 15%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 3rem;
+    background-color: var(--custom-btn-bg-color);
+    border: 10px solid  var(--custom-btn-bg-color);
+}
+
+@media (max-width: 768px) {
+    #header-carousel .carousel-item {
+        position: relative;
+        min-height: 450px;
+    }
+
+    #header-carousel .carousel-item img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+------------
 /*---------------------------------------
-  VIDEO              
+ Header Events
+-----------------------------------------*/
+
+.header-section {
+    position: relative;
+    overflow: hidden;
+    padding-top: 100px;
+    height: calc(100vh - -50px);
+  }
+
+  .header-section .section-overlay {
+    z-index: 2;
+    opacity: 0.45;
+  }
+
+  .header-section .container {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    padding-bottom: 150px;
+  }
+
+  .header-section .container .row {
+    height: 100%;
+  }
+
+  .header-section {
+    padding-top: 350px;
+  }
+
+.header-wrap {
+    z-index: -100;
+  }
+
+.custom-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    width: 100%;
+    height: 400px;
+  }
+
+  /* -----------------------------  */
+
+/*---------------------------------------
+  VIDEO
 -----------------------------------------*/
 .video-wrap {
   z-index: -100;
@@ -349,15 +442,17 @@ strong {
 }
 
 
+
+
 /*---------------------------------------
-  NAVIGATION              
+  NAVIGATION
 -----------------------------------------*/
 .sticky-wrapper {
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
-  margin-top: 51px;
+  margin-top: 40px;
 }
 
 .sticky-wrapper.is-sticky .navbar {
@@ -365,7 +460,7 @@ strong {
 }
 
 .navbar {
-  margin-top: -10px;
+  margin-top: 0px;
   background: transparent;
   z-index: 9;
 }
@@ -393,7 +488,7 @@ strong {
   padding-bottom: 15px;
 }
 
-.navbar-nav .nav-link.active, 
+.navbar-nav .nav-link.active,
 .navbar-nav .nav-link:hover {
   color: var(--secondary-color);
 }
@@ -458,13 +553,13 @@ strong {
 
 
 /*---------------------------------------
-  HERO        
+  HERO
 -----------------------------------------*/
 .hero-section {
   position: relative;
   overflow: hidden;
   padding-top: 100px;
-  height: calc(100vh - 51px);
+  height: calc(100vh - -50px);
 }
 
 
@@ -487,13 +582,14 @@ strong {
 
 
 /*---------------------------------------
-  ABOUT              
+  ABOUT
 -----------------------------------------*/
 .about-section {
   background-image: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  /* margin-top: 50px; */
 }
 
 .about-section h3, h6{
@@ -530,7 +626,7 @@ strong {
 
 
 /*---------------------------------------
-  TICKET               
+  TICKET
 -----------------------------------------*/
 pre{
   font-family: 'Lucida Sans', sans-serif;
@@ -545,11 +641,13 @@ pre strong{
 }
 
 #satutiket{
-  padding-right: 50px;
+  padding-right: 0px;
+
 }
 
 .card{
-  margin: 35px;
+  margin: 10px 10px;
+
 }
 
 .dropdown1{
@@ -587,7 +685,7 @@ pre strong{
 
 
 /*---------------------------------------
-  CONTACT               
+  CONTACT
 -----------------------------------------*/
 .google-map {
   border-radius: var(--border-radius-medium);
@@ -595,7 +693,7 @@ pre strong{
 
 
 /*---------------------------------------
-  CUSTOM FORM               
+  CUSTOM FORM
 -----------------------------------------*/
 .custom-form .form-control {
   color: var(--p-color);
@@ -624,13 +722,20 @@ pre strong{
 
 
 /*---------------------------------------
-  FOOTER              
+  FOOTER
 -----------------------------------------*/
 .site-footer {
   background-color: #0099ff;
-  position: relative;
+  /* position: relative;
   overflow: hidden;
-  margin-bottom: -30px;
+  margin-bottom: -30px; */
+
+
+    position: relative;
+    overflow: hidden;
+
+
+
 }
 
 .site-footer-bottom {
@@ -639,7 +744,7 @@ pre strong{
 }
 
 .site-footer-title {
-  color: var(--primary-color); 
+  color: var(--primary-color);
 }
 
 .site-footer-link,
@@ -781,7 +886,7 @@ pre strong{
 
 
 /*---------------------------------------
-  SOCIAL ICON               
+  SOCIAL ICON
 -----------------------------------------*/
 .social-icon {
   margin: 0;
@@ -832,7 +937,7 @@ pre strong{
 
 
 /*---------------------------------------
-  RESPONSIVE STYLES               
+  RESPONSIVE STYLES
 -----------------------------------------*/
 @media screen and (max-width: 991px) {
   h1 {
@@ -863,7 +968,7 @@ pre strong{
     padding-top: 50px;
     padding-bottom: 50px;
   }
-  
+
   .navbar {
     background-color: var(--dark-color);
   }
@@ -892,7 +997,7 @@ pre strong{
     padding: 20px;
   }
 
-  .schedule-table tr, 
+  .schedule-table tr,
   .schedule-table td {
     padding: 25px;
   }

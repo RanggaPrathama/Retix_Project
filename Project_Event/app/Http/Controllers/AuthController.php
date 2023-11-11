@@ -15,84 +15,87 @@ use Illuminate\Http\JsonResponse;
 class AuthController extends Controller
 {
 
-    public function register(){
+    public function register()
+    {
         return view('pages.user.auth.register');
     }
 
-    public function register_post(Request $request){
+    public function register_post(Request $request)
+    {
         $validateddata = $request->validate([
-            'name'=>'required',
-            'email'=>'required||unique:users|email',
-            'password'=>'required|unique:users|confirmed|min:8',
-            'no_telp'=>'required',
-            'token'=>'required|unique:users'
+            'name' => 'required',
+            'email' => 'required||unique:users|email',
+            'password' => 'required|unique:users|confirmed|min:8',
+            'no_telp' => 'required',
+            'token' => 'required|unique:users'
 
         ]);
         $users = DB::table('users')->get();
         $name = $request->input('name');
-        $email=$request->input('email');
+        $email = $request->input('email');
         $password = bcrypt($request->input('password'));
         $token = $request->input('token');
         $no_telp = $request->input('no_telp');
 
-        if(count($users)<1){
+        if (count($users) < 1) {
             $role = '1';
-        }
-        else{
+        } else {
             $role = '0';
         }
 
         $user = User::create([
-            'name'=>$name,
-            'email'=>$email,
-            'password'=>$password,
-            'no_telp'=>$no_telp,
-            'role'=>$role,
-            'token'=>$token,
+            'name' => $name,
+            'email' => $email,
+            'password' => $password,
+            'no_telp' => $no_telp,
+            'role' => $role,
+            'token' => $token,
 
         ]);
 
-       Mail::send('emails.verifikasiemail',['token'=>$request->token,'user'=>$user],function($message) use($request){
-        $message->to($request->email);
-        $message->subject('Verifikasi Email Retix');
-       });
-        return redirect()->route('verifyaccount')->with('success','Silahkan Verifikasi Akun, Sistem telah mengirim kode otp ke email ');
-}
+        Mail::send('emails.verifikasiemail', ['token' => $request->token, 'user' => $user], function ($message) use ($request) {
+            $message->to($request->email);
+            $message->subject('Verifikasi Email Retix');
+        });
+        return redirect()->route('verifyaccount')->with('success', 'Silahkan Verifikasi Akun, Sistem telah mengirim kode otp ke email ');
+    }
 
-    public function verifikasi(){
+    public function verifikasi()
+    {
         return view('pages.user.auth.verifyaccount');
     }
 
-    public  function verifikasi_post(Request $request){
-        $user = User::where('token',$request->token)->first();
+    public  function verifikasi_post(Request $request)
+    {
+        $user = User::where('token', $request->token)->first();
 
-        if($user){
-            if($user->token == $request->token){
-                $rules=[
-                    'token'=>'required'
+        if ($user) {
+            if ($user->token == $request->token) {
+                $rules = [
+                    'token' => 'required'
                 ];
             }
-            $validateddata= $request->validate($rules);
-            $validateddata['is_actived']=1;
+            $validateddata = $request->validate($rules);
+            $validateddata['is_actived'] = 1;
             $validateddata['email_verified_at'] = date("Y-m-d H:i:s");
-           $user->update($validateddata);
-          $user->update($validateddata);
-           $data['token']=null;
-       $user->update($data);
+            $user->update($validateddata);
+            $user->update($validateddata);
+            $data['token'] = null;
+            $user->update($data);
 
-           return redirect()->route('login')->with('success','Akun anda terverifikasi');
-
-        }
-        else{
-            return back()->with('error','Kode otp salah, silahkan coba lagi');
+            return redirect()->route('login')->with('success', 'Akun anda terverifikasi');
+        } else {
+            return back()->with('error', 'Kode otp salah, silahkan coba lagi');
         }
     }
 
-    public function login(){
+    public function login()
+    {
         return view('pages.user.auth.login');
     }
 
-    public function login_post(Request $request) {
+    public function login_post(Request $request)
+    {
         $validateddata = $request->validate([
             'email' => 'required',
             'password' => 'required',
@@ -114,7 +117,8 @@ class AuthController extends Controller
         }
     }
 
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
         Auth::logout();
         request()->session()->invalidate();
         request()->session()->regenerateToken();

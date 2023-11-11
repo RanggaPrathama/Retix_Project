@@ -18,7 +18,7 @@ class KategoriController extends Controller
     public function index()
     {
         $kategoris = DB::table('kategoris')
-            ->select('id_kategori','nama_kategori','slug')
+            ->select('id_kategori','nama_kategori','slug','status')
             ->get();
         return view('pages.admin.table.kategori.index',['kategoris'=>$kategoris]);
     }
@@ -28,7 +28,12 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.table.kategori.create');
+        $status = [
+            0 =>'Non Aktif',
+            1 => 'Aktif',
+            2 => 'Coming Soon'
+        ];
+        return view('pages.admin.table.kategori.create',['status'=>$status]);
     }
 
     /**
@@ -38,9 +43,11 @@ class KategoriController extends Controller
     {
         Session::flash('nama_kategori',$request->nama_kategori);
         $validateddata = $request->validate([
-            'nama_kategori'=>'required|min:5|unique:kategoris'
+            'nama_kategori'=>'required|min:3|unique:kategoris',
+            'status'=>'required'
         ]);
         $validateddata['slug']=Str::random(40);
+
         $kategori =Kategori::create($validateddata);
 
         if($kategori){
@@ -64,11 +71,16 @@ class KategoriController extends Controller
     public function edit($slug)
     {
         $kategoris=DB::table('kategoris')
-        ->select('id_kategori','nama_kategori','slug')
+        ->select('id_kategori','nama_kategori','slug','status')
         ->where('slug',$slug)
         ->first();
+        $status = [
+            0 =>'Non Aktif',
+            1 => 'Aktif',
+            2 => 'Coming Soon'
+        ];
 
-        return view('pages.admin.table.kategori.update',['kategoris'=> $kategoris]);
+        return view('pages.admin.table.kategori.update',['kategoris'=> $kategoris,'status'=>$status]);
     }
 
     /**
@@ -77,7 +89,8 @@ class KategoriController extends Controller
     public function update(Request $request,$slug)
     {
         $validateddata= $request->validate([
-            'nama_kategori'=>'required'
+            'nama_kategori'=>'required',
+            'status'=>'required'
         ]);
         $kategori= Kategori::where('slug',$slug);
        $validasi= $kategori->update($validateddata);

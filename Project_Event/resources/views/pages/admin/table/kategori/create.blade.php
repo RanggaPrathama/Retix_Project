@@ -46,7 +46,19 @@
                     <div class="invalid-feedback">{{$message}}</div>
                     @enderror
                     <br>
-                    <input type="submit" value="Save" class="btn btn-success"></br>
+
+                    <select class="form-control" name="status" id="">
+                        <option selected> Pilihlah Status !</option>
+                        @foreach($status as $status1 => $deskripsi)
+
+                        <option value="{{ $status1 }}">
+                          {{ $deskripsi }}
+                        </option>
+                        @endforeach
+                    </select>
+                    <br>
+
+                    <input type="submit" value="Save" class="btn btn-success" style="padding: 10px 30px"></br>
 
                 </form>
 

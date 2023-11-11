@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('id_kategori');
             $table->string('nama_kategori');
             $table->string('slug',100)->unique();
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

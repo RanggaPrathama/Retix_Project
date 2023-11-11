@@ -5,6 +5,22 @@
 
 
         <div class="collapse navbar-collapse" id="navbarNav">
+
+            {{-- <div class="row justify-content-between">
+                <div class="col-auto d-none d-lg-block">
+
+                </div>
+            </div> --}}
+            <div class="d-flex ">
+                <form action="/catalog#listproduk">
+                    <div class="input-group d-flex flex-end-center" style="width: 8cm">
+                        <input class="form-control form-eduprixsearch-control rounded-pill"
+                            id="formGroupExampleInput" type="text" name="search" value="{{ request('search') }}"
+                            placeholder="Produk apa yang anda cari hari ini?" />
+                    </div>
+                </form>
+            </div>
+
             <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
                 <li class="nav-item">
                     <a class="nav-link click-scroll" href="{{ route('home') }}">Home</a>

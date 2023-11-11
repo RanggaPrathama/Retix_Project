@@ -44,6 +44,20 @@
                     @method('PUT')
                     <label>Name Kategori</label></br>
                     <input type="text" name="nama_kategori" id="name" class="form-control" value="{{ old('nama_kategori',$kategoris->nama_kategori) }}"></br>
+
+                    <select class="form-control" name="status" id="">
+                        @php
+                            $statusold = old('status',$kategoris->status);
+                        @endphp
+                        <option selected> Pilihlah Status !</option>
+                        @foreach($status as $status1 => $deskripsi)
+
+                        <option value="{{ $status1 }}" {{ $statusold == $status1 ? 'selected' : '' }} >
+                          {{ $deskripsi }}
+                        </option>
+                        @endforeach
+                    </select><br>
+
                     <input type="submit" value="Save" class="btn btn-success"></br>
 
                 </form>

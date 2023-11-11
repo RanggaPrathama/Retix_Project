@@ -26,6 +26,7 @@ return new class extends Migration
             $table->integer('kuota_event');
             $table->bigInteger('harga_event');
             $table->string('slug',100)->unique();
+            $table->tinyInteger('status')->default('1');
             $table->timestamps();
         });
     }

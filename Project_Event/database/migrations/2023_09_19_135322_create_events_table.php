@@ -27,7 +27,9 @@ return new class extends Migration
             $table->string('gambar_event');
             $table->date('tgl_event');
             $table->string('deskripsi_event');
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
+
         });
     }
 
