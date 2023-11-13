@@ -61,11 +61,7 @@
 
                             <div class="card mb-3">
                                 <div class="row g-0">
-                                    <div class="col-sm-3">
-                                        <img src="{{ asset('images/katplat.jpeg') }}" class="img-fluid rounded-start"
-                                            alt="...">
-                                    </div>
-                                    <div class="col-md-8">
+                                    <div class="col-sm-8">
                                         <div class="card-body">
                                             <h5 class="card-title">PLATINUM</h5>
                                             <p class="card-text">Rp. 300.000</p>
@@ -81,11 +77,7 @@
 
                             <div class="card mb-3">
                                 <div class="row g-0">
-                                    <div class="col-sm-3">
-                                        <img src="{{ asset('images/katgold.jpeg') }}" class="img-fluid rounded-start"
-                                            alt="...">
-                                    </div>
-                                    <div class="col-md-8">
+                                    <div class="col-sm-8">
                                         <div class="card-body">
                                             <h5 class="card-title">GOLD</h5>
                                             <p class="card-text">Rp. 200.000</p>
@@ -101,11 +93,7 @@
 
                             <div class="card mb-3">
                                 <div class="row g-0">
-                                    <div class="col-sm-3">
-                                        <img src="{{ asset('images/katsil.jpeg') }}" class="img-fluid rounded-start"
-                                            alt="...">
-                                    </div>
-                                    <div class="col-md-8">
+                                    <div class="col-sm-8">
                                         <div class="card-body">
                                             <h5 class="card-title">SILVER</h5>
                                             <p class="card-text">Rp. 100.000</p>

@@ -10,6 +10,7 @@
     <!-- Font Awesome icons (free version)-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png" sizes="16x16">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;400;700&display=swap" rel="stylesheet">
