@@ -57,59 +57,62 @@
                         <li class="list-group-item">
                             <h4>Kategori Tiket</h4>
                         </li>
+
                         <li class="list-group-item">
 
                             <div class="card mb-3">
-                                <div class="row g-0">
-                                    <div class="col-sm-8">
-                                        <div class="card-body">
-                                            <h5 class="card-title">PLATINUM</h5>
-                                            <p class="card-text">Rp. 300.000</p>
-                                            <div class="wrapper">
-                                                <span class="minus" data-key="platinum">-</span>
-                                                <span class="num" data-key="platinum">01</span>
-                                                <span class="plus" data-key="platinum">+</span>
-                                            </div>
-                                        </div>
+                                {{-- <div class="row">
+                                    <div class="col-sm-9"> --}}
+                                <div class="card-body ">
+                                    <h5 class="card-title">PLATINUM</h5>
+                                    <p class="card-text">Rp. 300.000</p>
+
+                                    <button  class="btn btn-primary submit-button">Submit</button>
+                                    <div class="wrapper d-none">
+                                        <button class="btn btn-sm btn-primary minus" data-key="silver">-</button>
+                                        <span style="font-size: 20px" class="num" data-key="silver">01</span>
+                                        <button class="btn btn-sm btn-primary plus" data-key="silver">+</button>
+                                    </div>
+                                       </div>
+                           {{--      </div>
+                                </div>--}}
+                            </div>
+
+
+
+                            <div class="card mb-3">
+
+                                <div class="card-body">
+                                    <h5 class="card-title">GOLD</h5>
+                                    <p class="card-text">Rp. 200.000</p>
+                                    <button class="btn btn-primary submit-button">Submit</button>
+                                    <div class="wrapper d-none">
+                                        <button class="btn btn-sm btn-primary minus" data-key="silver">-</button>
+                                        <span style="font-size: 20px" class="num" data-key="silver">01</span>
+                                        <button class="btn btn-sm btn-primary plus" data-key="silver">+</button>
                                     </div>
                                 </div>
+
                             </div>
 
                             <div class="card mb-3">
-                                <div class="row g-0">
-                                    <div class="col-sm-8">
-                                        <div class="card-body">
-                                            <h5 class="card-title">GOLD</h5>
-                                            <p class="card-text">Rp. 200.000</p>
-                                            <div class="wrapper">
-                                                <span class="minus" data-key="gold">-</span>
-                                                <span class="num" data-key="gold">01</span>
-                                                <span class="plus" data-key="gold">+</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="card mb-3">
-                                <div class="row g-0">
-                                    <div class="col-sm-8">
-                                        <div class="card-body">
-                                            <h5 class="card-title">SILVER</h5>
-                                            <p class="card-text">Rp. 100.000</p>
+                                <div class="card-body">
+                                    <h5 class="card-title">SILVER</h5>
+                                    <p class="card-text">Rp. 100.000</p>
 
-                                            <div class="wrapper">
-                                                <span class="minus" data-key="silver">-</span>
-                                                <span class="num" data-key="silver">01</span>
-                                                <span class="plus" data-key="silver">+</span>
-                                            </div>
-                                        </div>
+                                    <button  class="btn btn-primary submit-button">Submit</button>
+                                    <div class="wrapper d-none">
+                                        <button class="btn btn-sm btn-primary minus" data-key="silver">-</button>
+                                        <span style="font-size: 20px" class="num" data-key="silver">01</span>
+                                        <button class="btn btn-sm btn-primary plus" data-key="silver">+</button>
                                     </div>
+
                                 </div>
                             </div>
                         </li>
                         <li class="list-group-item d-flex justify-content-between">
-                            <span class="float-left">
+                            <span class="float-left ">
                                 <h4>Subtotal</h4>
                                 <p>Rp. 500.000</p>
                             </span>
@@ -161,6 +164,34 @@
                 }
             });
         });
+
+
+//   document.getElementById('submitButton').addEventListener('click', function() {
+//       this.style.display = 'none';
+//       document.querySelector('.wrapper').classList.remove('d-none');
+//   });
+//   document.querySelector('.minus').addEventListener('click', function() {
+//     document.querySelector('.wrapper').classList.add('d-none');
+//     document.getElementById('submitButton').style.display = 'block';
+//   });
+
+const submitButtons = document.querySelectorAll('.submit-button');
+
+// Iterasi melalui setiap tombol "Submit"
+submitButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+        // Temukan elemen wrapper yang terkait dengan tombol ini
+        const wrapper = this.nextElementSibling;
+
+        // Sembunyikan tombol "Submit"
+        this.style.display = 'none';
+
+        // Tampilkan elemen wrapper
+        wrapper.classList.remove('d-none');
+    });
+});
+
+
     </script>
 
 
