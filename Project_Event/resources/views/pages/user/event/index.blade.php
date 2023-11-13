@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="header-section" id="section_1">
-        <div class="container-fluid page-header py-5 mb-5 wow fadeIn custom-header " data-wow-delay="0.1s" style="height: ">
+        <div class="container-fluid page-header py-5 mb-5 wow fadeIn custom-header " data-wow-delay="0.1s">
             <div class="container  py-5 mt-5">
                 <h2 class=" text-white py-5 px-4 mb-4 animated slideInDown" style="margin-top: 50px">SCIENSOMNIA 2023</h2>
 
