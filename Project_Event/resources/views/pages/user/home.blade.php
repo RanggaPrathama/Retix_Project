@@ -68,7 +68,7 @@
             <div data-aos="fade-up" data-aos-duration="2000" class="row" >
 
                 @include('pages.user.data')
-                <div class="col-md-4 mb-3">
+                {{-- <div class="col-md-4 mb-3">
                     <div class="card">
                         <img src="{{ asset('images/card3.png') }}" class="card-img-top" alt="Project 1" />
                         <div class="card-body text-center">
@@ -86,8 +86,8 @@
                             <span class="date-day">28</span>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 mb-3">
+                </div> --}}
+                {{-- <div class="col-md-4 mb-3">
                     <div class="card">
                         <img src="{{ asset('images/card4.png') }}" class="card-img-top" alt="Project 1" />
                         <div class="card-body text-center">
@@ -105,20 +105,28 @@
                             <span class="date-day">28</span>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
-            <div class="row text-center" style="padding:200px; margin-top:-50px">
-                <button class="btn btn-success load-more-data">Load More Data...</button>
-            </div>
+            <div class="row text-center  " style="padding:200px; margin-top:-180px">
+                <div class="col-12">
+                <button class="btn btn-primary load-more-data">Load More Data...
 
-            <div class="auto-load text-center">
-                <div class="d-flex justify-content-center">
-                    <div class="spinner-border text-primary" role="status" style="display: none">
-                        {{-- <span class="sr-only">Loading...</span> --}}
+                    <div class=" auto-load text-center">
+                        <div class="d-flex justify-content-center">
+                            <div class="spinner-border text-primary" role="status" style="display: none">
+                                {{-- <span class="sr-only">Loading...</span> --}}
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                </button>
+
+
             </div>
+
+
         </div>
     </section>
     {{-- <div class="dropdown1">

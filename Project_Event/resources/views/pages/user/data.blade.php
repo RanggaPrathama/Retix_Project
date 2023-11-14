@@ -11,7 +11,8 @@
                             <ul class="list-group list-group-flush d-flex justify-content-between">
                                 <li class="list-group-item d-flex justify-content-between">
                                     <span>Start From</span>
-                                    <p class="text-right">{{ $event->min_harga }}</p>
+
+                                    <p class="text-right">{{ $event->min_harga = 'Rp '. number_format($event->min_harga,0,',','.') }}</p>
                                 </li>
                             </ul>
                             <div class="date-container">

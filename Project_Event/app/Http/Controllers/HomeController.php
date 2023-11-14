@@ -42,13 +42,13 @@ class HomeController extends Controller
                 'e.nama_event',
                 'e.gambar_event',
                 DB::raw('DATE_FORMAT(e.tgl_event, "%e %b %y") AS Tanggal_Event'),
-                'e.nama_lokasi'
-            )
+                'e.nama_lokasi')
             ->join('events as e', 'e.id_event', '=', 'd.id_event')
             ->groupBy('e.id_event', 'e.nama_event', 'e.gambar_event', 'e.tgl_event', 'e.nama_lokasi')
-            ->paginate(2);
+            ->paginate(6);
 
             if ($request->ajax()) {
+
                 return response()->json(['html' => view('pages.user.data', compact('events'))->render()]);
 
             }
@@ -56,6 +56,9 @@ class HomeController extends Controller
 
         return view('pages.user.home', ['events' => $events]);
     }
+
+    
+
 
     // public function verifotp(){
     //     return view('pages.verifyaccount');

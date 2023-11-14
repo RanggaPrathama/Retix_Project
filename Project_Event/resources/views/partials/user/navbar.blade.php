@@ -4,7 +4,7 @@
                 height="50"></a>
 
                 <div class="d-flex ">
-                    <form action="/catalog#listproduk">
+                    <form action="/katalog#listproduk" method="GET" onsubmit="scrollToSection()">
                         <div class="input-group d-flex flex-end-center" style="width: 8cm">
                             <input class="form-control form-eduprixsearch-control rounded-pill"
                                 id="formGroupExampleInput" type="text" name="search" value="{{ request('search') }}"
@@ -12,6 +12,7 @@
                         </div>
                     </form>
                 </div>
+
         <div class="collapse navbar-collapse" id="navbarNav">
 
             {{-- <div class="row justify-content-between">
