@@ -90,13 +90,38 @@
                                                 </div>
                                             </div>
                                             <br>
-                                            <label>Tanggal Event</label></br>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-grup mb-3"></div>
+                                                    <label>Tanggal Event</label></br>
 
-                                            <input type="date" name="tgl_event" id="name"
-                                                class="form-control @error('tgl_event') is-invalid  @enderror" value="{{ old('tgl_event',$events->tgl_event) }}"/>
-                                            @error('tgl_event')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
+                                                    <input type="date" name="tgl_event" id="name"
+                                                        class="form-control @error('tgl_event') is-invalid  @enderror">
+                                                    @error('tgl_event')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-grup mb-3"></div>
+                                                    <label>Pilih Status</label></br>
+
+                                                    <select name="status" id="" class="form-control @error('status') is-invalid @enderror">
+                                                        @php
+                                                            $statusOld = old('status',$events->status)
+                                                        @endphp
+                                                        @foreach ( $status as $status1 => $deskripsi )
+
+                                                        <option value="{{ $status1 }}" {{ $statusOld == $status1 ? 'selected' : '' }}>
+                                                            {{ $deskripsi }}
+                                                        </option>
+                                                        @endforeach
+                                                    </select>
+
+                                                    @error('status')
+                                                        <div class="invalid-feedback"> {{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
                                             <br>
                                             <label>Gambar Event</label></br>
                                             <input type="file" name="gambar_event" id="name"

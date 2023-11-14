@@ -65,27 +65,31 @@
 
             <div data-aos="fade-up" data-aos-duration="2000" class="row">
 
+                @foreach ($events as $event )
+
+
                 <div class="col-md-4 mb-3">
                     <div class="card">
-                        <img src="{{ asset('images/card2.png') }}" class="card-img-top" alt="Project 1" />
+                        <img src="{{ asset('gambarEvent/'.$event->gambar_event ) }}" class="card-img-top" alt="Project 1" />
                         <div class="card-body text-center">
-                            <h5 class="card-title">Sciencesomnia 2023</h5>
-                            <p class="card-text">Parkir Timur Plaza Surabaya | Parkir Timur Plaza Surabaya</p>
+                            <h5 class="card-title">{{ $event->nama_event }}</h5>
+                            <p class="card-text">{{ $event->nama_lokasi }}</p>
                             <a href="{{ route('event') }}" class="btn btn-primary">Pesan Tiket</a>
                         </div>
                         <ul class="list-group list-group-flush d-flex justify-content-between">
                             <li class="list-group-item d-flex justify-content-between">
                                 <span>Start From</span>
-                                <p class="text-right">100.000</p>
+                                <p class="text-right">{{ $event->min_harga }}</p>
                             </li>
                         </ul>
                         <div class="date-container">
-                            <span class="date-day">26</span> <br>
-                            <span class="date-month">NOV</span>
+                            <span class="date-day">{{ $event->Tanggal_Event }}</span>
                         </div>
 
                     </div>
+
                 </div>
+                @endforeach
                 <div class="col-md-4 mb-3">
                     <div class="card">
                         <img src="{{ asset('images/card3.png') }}" class="card-img-top" alt="Project 1" />
@@ -101,8 +105,7 @@
                             </li>
                         </ul>
                         <div class="date-container">
-                            <span class="date-day">28</span> <br>
-                            <span class="date-month">OKT</span>
+                            <span class="date-day">28</span>
                         </div>
                     </div>
                 </div>
@@ -121,8 +124,7 @@
                             </li>
                         </ul>
                         <div class="date-container">
-                            <span class="date-day">28</span> <br>
-                            <span class="date-month">OKT</span>
+                            <span class="date-day">28</span>
                         </div>
                     </div>
                 </div>
