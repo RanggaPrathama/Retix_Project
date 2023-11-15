@@ -3,6 +3,15 @@
         <a class="navbar-brand" href="#page-top"><img src="{{ asset('images/logo.png') }}" alt="" width="100"
                 height="50"></a>
 
+                <div class="d-flex ">
+                    <form action="/katalog#listproduk" method="GET" onsubmit="scrollToSection()">
+                        <div class="input-group d-flex flex-end-center" style="width: 8cm">
+                            <input class="form-control form-eduprixsearch-control rounded-pill"
+                                id="formGroupExampleInput" type="text" name="search" value="{{ request('search') }}"
+                                placeholder="Produk apa yang anda cari hari ini?" />
+                        </div>
+                    </form>
+                </div>
 
         <div class="collapse navbar-collapse" id="navbarNav">
 
@@ -11,15 +20,7 @@
 
                 </div>
             </div> --}}
-            <div class="d-flex ">
-                <form action="/catalog#listproduk">
-                    <div class="input-group d-flex flex-end-center" style="width: 8cm">
-                        <input class="form-control form-eduprixsearch-control rounded-pill"
-                            id="formGroupExampleInput" type="text" name="search" value="{{ request('search') }}"
-                            placeholder="Produk apa yang anda cari hari ini?" />
-                    </div>
-                </form>
-            </div>
+
 
             <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
                 <li class="nav-item">

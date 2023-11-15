@@ -38,7 +38,7 @@ use Illuminate\Support\Facades\Route;
 ////////////////////////////////////////////////////// PAGE USER /////////////////////////////////////////////////////////////
 
 //Login && Register
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'homepage'])->name('home');
 
 
 Route::middleware('guest')->group(function () {
@@ -141,7 +141,7 @@ Route::get('/event/kecamatan/{id}', [EventController::class, 'kecamatan'])->name
 Route::get('/detilEvent/index', [DetilEventController::class, 'index'])->name('detilevent.index');
 Route::get('/detilEvent/create', [DetilEventController::class, 'create'])->name('detilevent.create');
 Route::post('/detilEvent/store', [DetilEventController::class, 'store'])->name('detilevent.store');
-Route::get('/detilEvent/edit/{id}', [DetilEventController::class, 'edit'])->name('detilevent.edit');
-Route::put('/detilEvent/update/{id}', [DetilEventController::class, 'update'])->name('detilevent.update');
-Route::delete('/detilEvent/destroy/{id}', [DetilEventController::class, 'destroy'])->name('detilevent.destroy');
+Route::get('/detilEvent/edit/{slug}', [DetilEventController::class, 'edit'])->name('detilevent.edit');
+Route::put('/detilEvent/update/{slug}', [DetilEventController::class, 'update'])->name('detilevent.update');
+Route::delete('/detilEvent/destroy/{slug}', [DetilEventController::class, 'destroy'])->name('detilevent.destroy');
 // });

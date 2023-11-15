@@ -7,6 +7,7 @@ use App\Http\Requests\StoreDetilEventRequest;
 use App\Http\Requests\UpdateDetilEventRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 class DetilEventController extends Controller
 {
     /**
@@ -49,11 +50,14 @@ class DetilEventController extends Controller
             'id_kategori'=>'required|exists:kategoris,id_kategori',
             'kuota_event'=>'required|numeric',
             'harga_event'=>'required|numeric',
+            
         ]);
 
+        $validateddata['slug'] = Str::random(100);
 
 
-       $create = DetilEvent::create($validateddata);
+
+       $create = DB::table('detil_events')->insert($validateddata);
        if($create){
         return redirect()->route('detilevent.index')->with('success','Behasil !');
        }
@@ -74,11 +78,11 @@ class DetilEventController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit($slug)
     {
         $detilEvents=DB::table('detil_events')
                     ->select('id_detilEvent','id_event','id_kategori','harga_event','kuota_event')
-                    ->where('id_detilEvent',$id)
+                    ->where('slug',$slug)
                     ->first();
 
         $kategoris = DB::table('kategoris')
@@ -95,7 +99,7 @@ class DetilEventController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
         $validateddata = $request->validate(
             [
@@ -106,7 +110,7 @@ class DetilEventController extends Controller
             ]
             );
 
-        $detilEvent = DetilEvent::findOrFail($id);
+        $detilEvent = DB::table('detil_events')->where('slug',$slug);
         $update = $detilEvent->update($validateddata);
         if($update){
             return redirect()->route('detilevent.index')->with('success','Berhasil !');
@@ -119,9 +123,9 @@ class DetilEventController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        $detilEvent=DetilEvent::findOrFail($id);
+        $detilEvent=DB::table('detil_events')->where('slug',$slug);
         $detilEvent->delete();
         return redirect()->route('detilevent.index')->with('success','berhasil !');
     }

@@ -18,7 +18,7 @@ class EventController extends Controller
     public function index()
     {
         $events = DB::table('events')
-        ->select('id_event','nama_lokasi','nama_event','provinsi','kota','kecamatan',DB::raw("DATE_FORMAT(tgl_event, '%d %M %y') as tgl_event"),'gambar_event','deskripsi_event','slug')
+        ->select('id_event','nama_lokasi','nama_event',DB::raw("DATE_FORMAT(tgl_event, '%d %M %y') as tgl_event"),'gambar_event','status','deskripsi_event','slug')
         ->get();
         return view('pages.admin.table.Event.index',['events'=>$events]);
 
@@ -57,7 +57,12 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.table.Event.create');
+        $status = [
+             0 => 'Non Aktif',
+             1 => 'Aktif',
+             2 => 'Coming Soon',
+        ];
+        return view('pages.admin.table.Event.create',['status' => $status]);
     }
 
     /**
@@ -74,6 +79,7 @@ class EventController extends Controller
             'provinsi'=>'required',
             'kota'=>'required',
             'kecamatan'=>'required',
+            'status' => 'required',
 
 
         ],
@@ -90,16 +96,17 @@ class EventController extends Controller
         $validateddata['provinsi'] =$provinsi->nama_provinsi;
         $validateddata['kota']=$kota->nama_kota;
         $validateddata['kecamatan']=$kecamatan->nama_kecamatan;
-        $namalokasi = $request->input('nama_lokasi').''. '/'.''. $provinsi->nama_provinsi.''.'/'.''. $kota->nama_kota;
+        $namalokasi = $request->input('nama_lokasi'). ' ' . ' | '. ' ' . $provinsi->nama_provinsi. ' ' . ' | '. ' ' . $kota->nama_kota;
         $validateddata['nama_lokasi']=$namalokasi;
 
         if($request->hasFile('gambar_event')){
            $gambar = $request->file('gambar_event')->getClientOriginalName();
             $request->file('gambar_event')->move(public_path('gambarEvent'),$gambar);
             $validateddata['gambar_event']=$gambar;
+
         }
 
-        $create = Event::create($validateddata);
+        $create = db::table('events')->insert($validateddata);
 
        if($create){
 
@@ -128,8 +135,14 @@ class EventController extends Controller
                     ->select('*')
                     ->where('slug',$slug)
                     ->first();
+
+                    $status = [
+                        0 => 'Non Aktif',
+                        1 => 'Aktif',
+                        2 => 'Coming Soon',
+                   ];
                 // ->where('lokasis,id_lokasi',$id)
-        return view('pages.admin.table.Event.update',['events'=>$events]);
+        return view('pages.admin.table.Event.update',['events'=>$events,'status'=>$status]);
     }
 
     /**

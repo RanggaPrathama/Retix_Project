@@ -49,43 +49,25 @@
     </section>
 
 
-     <section class="artists-section section-padding" id="section_3">
+    <section class="artists-section section-padding" id="section_3">
 
         <div class="container">
 
-                <div class="row">
-                    <div data-aos="flip-left"
-                    data-aos-anchor-placement="top-bottom"  data-aos-duration="2000"  class="d-flex justify-content-lg-center ">
+            <div class="row">
+                <div data-aos="flip-left" data-aos-anchor-placement="top-bottom" data-aos-duration="2000"
+                    class="d-flex justify-content-lg-center ">
 
 
-                        <h2 class="mb-5 " style=" border-bottom: 8px dotted  #000000;; display: inline-block; padding-bottom : 5px">
-                            Popular events </h2>
-                        </div>
+                    <h2 class="mb-5 "
+                        style=" border-bottom: 8px dotted  #000000;; display: inline-block; padding-bottom : 5px">
+                        Popular events </h2>
                 </div>
+            </div>
 
-            <div data-aos="fade-up" data-aos-duration="2000" class="row">
+            <div id="data-wrapper">
+            <div data-aos="fade-up" data-aos-duration="2000" class="row" >
 
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <img src="{{ asset('images/card2.png') }}" class="card-img-top" alt="Project 1" />
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Sciencesomnia 2023</h5>
-                            <p class="card-text">Parkir Timur Plaza Surabaya | Parkir Timur Plaza Surabaya</p>
-                            <a href="{{ route('event') }}" class="btn btn-primary">Pesan Tiket</a>
-                        </div>
-                        <ul class="list-group list-group-flush d-flex justify-content-between">
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span>Start From</span>
-                                <p class="text-right">100.000</p>
-                            </li>
-                        </ul>
-                        <div class="date-container">
-                            <span class="date-day">26</span> <br>
-                            <span class="date-month">NOV</span>
-                        </div>
-
-                    </div>
-                </div>
+                @include('pages.user.data')
                 <div class="col-md-4 mb-3">
                     <div class="card">
                         <img src="{{ asset('images/card3.png') }}" class="card-img-top" alt="Project 1" />
@@ -101,12 +83,11 @@
                             </li>
                         </ul>
                         <div class="date-container">
-                            <span class="date-day">28</span> <br>
-                            <span class="date-month">OKT</span>
+                            <span class="date-day">28</span>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-3">
+                {{-- <div class="col-md-4 mb-3">
                     <div class="card">
                         <img src="{{ asset('images/card4.png') }}" class="card-img-top" alt="Project 1" />
                         <div class="card-body text-center">
@@ -121,15 +102,34 @@
                             </li>
                         </ul>
                         <div class="date-container">
-                            <span class="date-day">28</span> <br>
-                            <span class="date-month">OKT</span>
+                            <span class="date-day">28</span>
+                        </div>
+                    </div>
+                </div> --}}
+            </div>
+        </div>
+            <div class="row text-center  " style="padding:200px; margin-top:-180px">
+                <div class="col-12">
+                <button class="btn btn-primary load-more-data">Load More Data...
+
+                    <div class=" auto-load text-center">
+                        <div class="d-flex justify-content-center">
+                            <div class="spinner-border text-primary" role="status" style="display: none">
+                                {{-- <span class="sr-only">Loading...</span> --}}
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                </button>
+
+
             </div>
-            </div>
+
+
+        </div>
     </section>
-        {{-- <div class="dropdown1">
+    {{-- <div class="dropdown1">
             <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 Kategori
@@ -140,75 +140,107 @@
                 <li><a class="dropdown-item" href="#">Platinum</a></li>
             </ul>
             </div> --}}
-        {{-- <section data-aos="fade-up" data-aos-duration="2000" id="tiket">
+    {{-- <section data-aos="fade-up" data-aos-duration="2000" id="tiket">
 
 
         </section> --}}
 
-        <section  data-aos="fade-up" data-aos-duration="3000"  class="contact-section section-padding" id="section_4">
-            <div class="container">
-                <div class="row">
+    <section data-aos="fade-up" data-aos-duration="3000" class="contact-section section-padding" id="section_4">
+        <div class="container">
+            <div class="row">
 
-                    <div class="col-lg-8 col-12 mx-auto">
-                        <h2 class="text-center mb-4">Interested? Let's talk</h2>
+                <div class="col-lg-8 col-12 mx-auto">
+                    <h2 class="text-center mb-4">Interested? Let's talk</h2>
 
-                        <nav class="d-flex justify-content-center">
-                            <div class="nav nav-tabs align-items-baseline justify-content-center" id="nav-tab"
-                                role="tablist">
-                                <button class="nav-link active" id="nav-ContactForm-tab" data-bs-toggle="tab"
-                                    data-bs-target="#nav-ContactForm" type="button" role="tab"
-                                    aria-controls="nav-ContactForm" aria-selected="false">
-                                    <h5>Contact Form</h5>
-                                </button>
+                    <nav class="d-flex justify-content-center">
+                        <div class="nav nav-tabs align-items-baseline justify-content-center" id="nav-tab"
+                            role="tablist">
+                            <button class="nav-link active" id="nav-ContactForm-tab" data-bs-toggle="tab"
+                                data-bs-target="#nav-ContactForm" type="button" role="tab"
+                                aria-controls="nav-ContactForm" aria-selected="false">
+                                <h5>Contact Form</h5>
+                            </button>
 
-                            </div>
-                        </nav>
+                        </div>
+                    </nav>
 
-                        <div class="tab-content shadow-lg mt-5" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="nav-ContactForm" role="tabpanel"
-                                aria-labelledby="nav-ContactForm-tab">
-                                <form class="custom-form contact-form mb-5 mb-lg-0" action="#" method="post"
-                                    role="form">
-                                    <div class="contact-form-body">
-                                        <div class="row">
-                                            <div class="col-lg-6 col-md-6 col-12">
-                                                <input type="text" name="contact-name" id="contact-name"
-                                                    class="form-control" placeholder="Full name" required>
-                                            </div>
-
-                                            <div class="col-lg-6 col-md-6 col-12">
-                                                <input type="email" name="contact-email" id="contact-email"
-                                                    pattern="[^ @]*@[^ @]*" class="form-control"
-                                                    placeholder="Email address" required>
-                                            </div>
+                    <div class="tab-content shadow-lg mt-5" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-ContactForm" role="tabpanel"
+                            aria-labelledby="nav-ContactForm-tab">
+                            <form class="custom-form contact-form mb-5 mb-lg-0" action="#" method="post"
+                                role="form">
+                                <div class="contact-form-body">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-12">
+                                            <input type="text" name="contact-name" id="contact-name"
+                                                class="form-control" placeholder="Full name" required>
                                         </div>
 
-                                        <input type="text" name="contact-company" id="contact-company"
-                                            class="form-control" placeholder="Company" required>
-
-                                        <textarea name="contact-message" rows="3" class="form-control" id="contact-message" placeholder="Message"></textarea>
-
-                                        <div class="col-lg-4 col-md-10 col-8 mx-auto">
-                                            <button type="submit" class="form-control">Send message</button>
+                                        <div class="col-lg-6 col-md-6 col-12">
+                                            <input type="email" name="contact-email" id="contact-email"
+                                                pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email address"
+                                                required>
                                         </div>
                                     </div>
-                                </form>
-                            </div>
 
-                            <div class="tab-pane fade" id="nav-ContactMap" role="tabpanel"
-                                aria-labelledby="nav-ContactMap-tab">
-                                <iframe class="google-map"
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29974.469402870927!2d120.94861466021855!3d14.106066818082482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd777b1ab54c8f%3A0x6ecc514451ce2be8!2sTagaytay%2C%20Cavite%2C%20Philippines!5e1!3m2!1sen!2smy!4v1670344209509!5m2!1sen!2smy"
-                                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                <!-- You can easily copy the embed code from Google Maps -> Share -> Embed a map // -->
-                            </div>
+                                    <input type="text" name="contact-company" id="contact-company"
+                                        class="form-control" placeholder="Company" required>
+
+                                    <textarea name="contact-message" rows="3" class="form-control" id="contact-message" placeholder="Message"></textarea>
+
+                                    <div class="col-lg-4 col-md-10 col-8 mx-auto">
+                                        <button type="submit" class="form-control">Send message</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="tab-pane fade" id="nav-ContactMap" role="tabpanel"
+                            aria-labelledby="nav-ContactMap-tab">
+                            <iframe class="google-map"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29974.469402870927!2d120.94861466021855!3d14.106066818082482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd777b1ab54c8f%3A0x6ecc514451ce2be8!2sTagaytay%2C%20Cavite%2C%20Philippines!5e1!3m2!1sen!2smy!4v1670344209509!5m2!1sen!2smy"
+                                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <!-- You can easily copy the embed code from Google Maps -> Share -> Embed a map // -->
                         </div>
                     </div>
-
                 </div>
+
             </div>
-        </section>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script>
+        var ENDPOINT = "{{ route('home') }}";
+        var page = 1;
 
+        $(".load-more-data").click(function() {
+            page++;
+            LoadMore(page);
+        });
 
-    @endsection
+        function LoadMore(page) {
+            $.ajax({
+                    url: ENDPOINT + "?page=" + page,
+                    datatype: "html",
+                    type: "get",
+                    beforeSend: function() {
+                        $('.auto-load').show();
+                    }
+                })
+                .done(function(response) {
+                    console.log(response);
+                    if (response.html == '') {
+                        $('.auto-load').html("End :(");
+                        return;
+                    }
+                    $('.auto-load').hide();
+                    $("#data-wrapper").append("<div class='row'>" + response.html + "</div>");
+
+                })
+                .fail(function(jqXHR, ajaxOptions, thrownError) {
+                    console.log('Server error occured');
+                });
+        }
+    </script>
+@endsection

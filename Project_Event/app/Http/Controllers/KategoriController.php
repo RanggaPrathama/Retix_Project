@@ -48,7 +48,9 @@ class KategoriController extends Controller
         ]);
         $validateddata['slug']=Str::random(40);
 
-        $kategori =Kategori::create($validateddata);
+        // $kategori =Kategori::create($validateddata);
+
+       $kategori =  DB::table('kategoris')->insert($validateddata);
 
         if($kategori){
             session()->flash('success', 'Data kategori berhasil disimpan.');
@@ -92,7 +94,7 @@ class KategoriController extends Controller
             'nama_kategori'=>'required',
             'status'=>'required'
         ]);
-        $kategori= Kategori::where('slug',$slug);
+        $kategori= DB::table('kategoris')->where('slug',$slug);
        $validasi= $kategori->update($validateddata);
        if($validasi){
         return redirect()->route('kategori.index')->with('success','Berhasil');

@@ -88,14 +88,39 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <br>
-                                            <label>Tanggal Event</label></br>
 
-                                            <input type="date" name="tgl_event" id="name"
-                                                class="form-control @error('tgl_event') is-invalid  @enderror">
-                                            @error('tgl_event')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
+
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-grup mb-3"></div>
+                                                    <label>Tanggal Event</label></br>
+
+                                                    <input type="date" name="tgl_event" id="name"
+                                                        class="form-control @error('tgl_event') is-invalid  @enderror">
+                                                    @error('tgl_event')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-grup mb-3"></div>
+                                                    <label>Pilih Status</label></br>
+
+                                                    <select name="status" id="" class="form-control @error('status') is-invalid @enderror">
+                                                        @foreach ( $status as $status1 => $deskripsi )
+
+                                                        <option value="{{ $status1 }}">
+                                                            {{ $deskripsi }}
+                                                        </option>
+                                                        @endforeach
+                                                    </select>
+
+                                                    @error('status')
+                                                        <div class="invalid-feedback"> {{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+
+
                                             <br>
                                             <label>Gambar Event</label></br>
                                             <input type="file" name="gambar_event" id="name"
@@ -143,7 +168,7 @@
 
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-     
+
 
         <script>
             $(document).ready(function() {
