@@ -93,6 +93,9 @@
 
             <div data-aos="fade-up" data-aos-duration="2000" class="row">
 
+                @if (count($events)>0)
+
+
                 @foreach ($events as $event)
                     <div class="col-md-4 mb-3">
                         <div class="card">
@@ -118,6 +121,10 @@
 
                     </div>
                 @endforeach
+
+                    @else
+                    <p>Tidak ada </p>
+                @endif
 
                 <div class="col-md-4 mb-3">
                     <div class="card">

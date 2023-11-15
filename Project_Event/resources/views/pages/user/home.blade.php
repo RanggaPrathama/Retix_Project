@@ -68,7 +68,7 @@
             <div data-aos="fade-up" data-aos-duration="2000" class="row" >
 
                 @include('pages.user.data')
-                {{-- <div class="col-md-4 mb-3">
+                <div class="col-md-4 mb-3">
                     <div class="card">
                         <img src="{{ asset('images/card3.png') }}" class="card-img-top" alt="Project 1" />
                         <div class="card-body text-center">
@@ -86,7 +86,7 @@
                             <span class="date-day">28</span>
                         </div>
                     </div>
-                </div> --}}
+                </div>
                 {{-- <div class="col-md-4 mb-3">
                     <div class="card">
                         <img src="{{ asset('images/card4.png') }}" class="card-img-top" alt="Project 1" />
