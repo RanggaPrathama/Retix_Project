@@ -62,9 +62,9 @@ Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
-
-
-
+Route::get('/bayar', function() {
+    return view('pages.user.pembayaran.index');
+});
 
 
 

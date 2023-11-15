@@ -42,6 +42,8 @@
   box-sizing: border-box;
 }
 
+
+
 html {
   font-family: sans-serif;
   line-height: 1.15;
@@ -59,7 +61,7 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #6F6F6F;
+  color: #065854;
   text-align: left;
   background-color: #fff;
 }
@@ -208,7 +210,7 @@ table {
 caption {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-  color: #6c757d;
+  color: #ecec7b;
   text-align: left;
   caption-side: bottom;
 }
@@ -518,7 +520,7 @@ mark,
 .blockquote-footer {
   display: block;
   font-size: 80%;
-  color: #6c757d;
+  color: #ecec7b;
 }
 
 .blockquote-footer::before {
@@ -549,7 +551,7 @@ mark,
 
 .figure-caption {
   font-size: 90%;
-  color: #6c757d;
+  color: #ecec7b;
 }
 
 code {
@@ -1532,7 +1534,7 @@ pre code {
 .table {
   width: 100%;
   margin-bottom: 1rem;
-  color: #6F6F6F;
+  color: #ecec7b;
 }
 
 .table th,
@@ -1880,7 +1882,7 @@ pre code {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #495057;
+  color: #ecec7b;
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #EDF1FF;
@@ -1905,7 +1907,7 @@ pre code {
 }
 
 .form-control:focus {
-  color: #495057;
+  color: #ecec7b;
   background-color: #fff;
   border-color: #f8f0ef;
   outline: 0;
@@ -1913,7 +1915,7 @@ pre code {
 }
 
 .form-control::placeholder {
-  color: #999999;
+  color: #ecec7b;
   opacity: 1;
 }
 
@@ -1930,7 +1932,7 @@ input[type="month"].form-control {
 }
 
 select.form-control:focus::-ms-value {
-  color: #495057;
+  color: #ecec7b;
   background-color: #fff;
 }
 
@@ -1969,7 +1971,7 @@ select.form-control:focus::-ms-value {
   margin-bottom: 0;
   font-size: 1rem;
   line-height: 1.5;
-  color: #6F6F6F;
+  color: #ecec7b;
   background-color: transparent;
   border: solid transparent;
   border-width: 1px 0;
@@ -6095,6 +6097,10 @@ a.close.disabled {
 
 .bg-primary {
   background-color: #D19C97 !important;
+}
+
+.bg-customPemesanan {
+  background-color: #0B2D40;
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
