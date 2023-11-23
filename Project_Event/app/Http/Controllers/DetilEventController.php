@@ -50,10 +50,11 @@ class DetilEventController extends Controller
             'id_kategori'=>'required|exists:kategoris,id_kategori',
             'kuota_event'=>'required|numeric',
             'harga_event'=>'required|numeric',
-            
+
         ]);
 
-        $validateddata['slug'] = Str::random(100);
+        $validateddata['slug'] = Str::random(40);
+        $validateddata['sisa_kuota']= $validateddata['kuota_event'];
 
 
 
@@ -111,6 +112,7 @@ class DetilEventController extends Controller
             );
 
         $detilEvent = DB::table('detil_events')->where('slug',$slug);
+        $validateddata['sisa_kuota']=$validateddata['kuota_event'];
         $update = $detilEvent->update($validateddata);
         if($update){
             return redirect()->route('detilevent.index')->with('success','Berhasil !');

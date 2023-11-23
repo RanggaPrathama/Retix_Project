@@ -24,6 +24,7 @@ return new class extends Migration
                     ->on('kategoris')
                     ->onDelete('cascade');
             $table->integer('kuota_event');
+            $table->integer('sisa_kuota');
             $table->bigInteger('harga_event');
             $table->string('slug',100)->unique();
             $table->tinyInteger('status')->default('1');

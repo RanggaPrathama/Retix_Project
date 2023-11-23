@@ -16,10 +16,13 @@ class KatalogController extends Controller
                 'e.id_event',
                 'e.nama_event',
                 'e.gambar_event',
+                'e.status',
+                'e.slug',
                 DB::raw('DATE_FORMAT(e.tgl_event, "%e %b %y") AS Tanggal_Event'),
-                'e.nama_lokasi')
+                DB::raw('CONCAT(e.nama_lokasi," | ",e.provinsi," | ",e.kota," | ", e.kecamatan) AS "nama_lokasi"')
+                )
             ->join('events as e', 'e.id_event', '=', 'd.id_event')
-            ->groupBy('e.id_event', 'e.nama_event', 'e.gambar_event', 'e.tgl_event', 'e.nama_lokasi')
+            ->groupBy('e.id_event', 'e.nama_event', 'e.gambar_event', 'e.tgl_event', 'e.nama_lokasi','e.provinsi','e.kota','e.kecamatan','e.status','e.slug')
             ->where('e.nama_event','LIKE','%'.request('search').'%')
             ->get()
             ;
@@ -32,11 +35,13 @@ class KatalogController extends Controller
                 'e.id_event',
                 'e.nama_event',
                 'e.gambar_event',
+                'e.status',
+                'e.slug',
                 DB::raw('DATE_FORMAT(e.tgl_event, "%e %b %y") AS Tanggal_Event'),
-                'e.nama_lokasi')
+                DB::raw('CONCAT(events.nama_lokasi," | ",events.provinsi," | ",events.kota," | ", events.kecamatan) AS "nama_lokasi"'))
             ->join('events as e', 'e.id_event', '=', 'd.id_event')
-            ->groupBy('e.id_event', 'e.nama_event', 'e.gambar_event', 'e.tgl_event', 'e.nama_lokasi')
-            ->paginate(6);
+            ->groupBy('e.id_event', 'e.nama_event', 'e.gambar_event', 'e.tgl_event', 'e.nama_lokasi','e.provinsi','e.kota','e.kecamatan','e.status','e.slug')
+            ->get();
         }
 
 

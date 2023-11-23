@@ -13,20 +13,18 @@ return new class extends Migration
     {
         Schema::create('pemesanans', function (Blueprint $table) {
             $table->id('id_pemesanan');
-            $table->unsignedBigInteger('id_detilEvent');
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')
                     ->references('id_user')
                     ->on('users')
                     ->onDelete('cascade');
-            $table->foreign('id_detilEvent')
-                    ->references('id_detilEvent')
-                    ->on('detil_events')
-                    ->onDelete('cascade');
+            $table->unsignedBigInteger('id_payments')->nullable();
+            $table->foreign('id_payments')->references('id_payments')->on('payments')->onDelete('cascade');
             $table->date('tgl_pemesanan');
             $table->boolean('status_pemesanan')->default('0');
             $table->string('slug',100)->unique();
             $table->bigInteger('total_tagihan');
+
             $table->timestamps();
         });
     }

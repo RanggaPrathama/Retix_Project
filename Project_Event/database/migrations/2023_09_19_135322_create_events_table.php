@@ -25,8 +25,10 @@ return new class extends Migration
             $table->string('nama_lokasi');
             $table->string('nama_event');
             $table->string('gambar_event');
-            $table->date('tgl_event');
+            $table->datetime('tgl_event');
+            $table->datetime('tgl_akhir_event');
             $table->string('deskripsi_event');
+            $table->string('maps')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
 

@@ -24,7 +24,7 @@ return new class extends Migration
                     ->onDelete('cascade');
             $table->date('tgl_pembayaran');
             $table->boolean('status_pembayaran');
-            $table->bigInteger('total_pembayaran');
+            $table->string('gambar')->nullable();
             $table->string('slug',100)->unique();
             $table->timestamps();
         });

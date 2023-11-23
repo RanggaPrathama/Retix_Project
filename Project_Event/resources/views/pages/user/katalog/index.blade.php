@@ -97,75 +97,56 @@
 
 
                 @foreach ($events as $event)
-                    <div class="col-md-4 mb-3">
-                        <div class="card">
-                            <img src="{{ asset('gambarEvent/' . $event->gambar_event) }}" class="card-img-top"
-                                alt="Project 1" />
-                            <div class="card-body text-center">
-                                <h5 class="card-title">{{ $event->nama_event }}</h5>
-                                <p class="card-text">{{ $event->nama_lokasi }}</p>
-                                <a href="{{ route('event') }}" class="btn btn-primary">Pesan Tiket</a>
-                            </div>
-                            <ul class="list-group list-group-flush d-flex justify-content-between">
-                                <li class="list-group-item d-flex justify-content-between">
-                                    <span>Start From</span>
+                <div class="col-md-4 mb-3" data-event-id = {{ $event->id_event }} data-event-status = {{ $event->status }}>
+                    <div class="card " >
+                        <img src="{{ asset('gambarEvent/' . $event->gambar_event) }}" class="card-img-top {{ $event->status == 0 ? 'nonaktif' : ''  }}"
+                            alt="Project 1" />
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ $event->nama_event }}</h5>
+                            <p class="card-text">{{ $event->nama_lokasi }}</p>
+                            <a href="{{ route('event',$event->slug) }}" class="btn btn-primary {{ $event->status == 0  || $event->status == 2 ? 'disabled' : '' }}">Pesan Tiket</a>
+                        </div>
+                        <ul class="list-group list-group-flush d-flex justify-content-between">
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Start From</span>
 
-                                    <p class="text-right">{{ $event->min_harga = 'Rp '. number_format($event->min_harga,0,',','.') }}</p>
-                                </li>
-                            </ul>
-                            <div class="date-container">
-                                <span class="date-day">{{ $event->Tanggal_Event }}</span>
-                            </div>
-
+                                <p class="text-right">{{ $event->min_harga = 'Rp '. number_format($event->min_harga,0,',','.') }}</p>
+                            </li>
+                        </ul>
+                        <div class="date-container">
+                            <span class="date-day">{{ $event->Tanggal_Event }}</span>
                         </div>
 
+                        @if ( $event->status == 0 )
+                        <div class="status-danger">
+                            <span class="text-status text-white">Ended</span>
+                        </div>
+                        @endif
+
+                        @if($event->status == 2)
+                        <div class="status-blue">
+                            <span class="text-status text-white">Coming Soon</span>
+                        </div>
+                        @endif
                     </div>
+                </div>
+
                 @endforeach
 
                     @else
-                    <p>Tidak ada </p>
+                    <div class="d-flex align-items-center justify-content-center vh-100" style="margin-top: -80px">
+                        <div class="text-center">
+                            <h1 class="display-1 fw-bold">404</h1>
+                            <p class="fs-3"> <span class="text-danger">Opps!</span> Page not found.</p>
+                            <p class="lead">
+                                The page you’re looking for doesn’t exist.
+                              </p>
+                            <a href="{{ route('home') }}" class="btn btn-primary">Go Home</a>
+                        </div>
+                    </div>
                 @endif
 
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <img src="{{ asset('images/card3.png') }}" class="card-img-top" alt="Project 1" />
-                        <div class="card-body text-center">
-                            <h5 class="card-title">ARCOFEST 2023</h5>
-                            <p class="card-text">Lapangan Basket BMX Pulomas | BMX International Center Pulomas</p>
-                            <a href="#" class="btn btn-primary">Pesan Tiket</a>
-                        </div>
-                        <ul class="list-group list-group-flush d-flex justify-content-between">
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span>Start From</span>
-                                <p class="text-right">200.000</p>
-                            </li>
-                        </ul>
-                        <div class="date-container">
-                            <span class="date-day">28</span> <br>
-                            <span class="date-month">OKT</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <img src="{{ asset('images/card4.png') }}" class="card-img-top" alt="Project 1" />
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Progresif Festival</h5>
-                            <p class="card-text">Jalan Stadion Barat | <br> Stadion Diponegoro</p>
-                            <a href="#" class="btn btn-primary">Pesan Tiket</a>
-                        </div>
-                        <ul class="list-group list-group-flush d-flex justify-content-between">
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span>Start From</span>
-                                <p class="text-right">150.000</p>
-                            </li>
-                        </ul>
-                        <div class="date-container">
-                            <span class="date-day">28</span> <br>
-                            <span class="date-month">OKT</span>
-                        </div>
-                    </div>
-                </div>
+
             </div>
             </div>
     </section>

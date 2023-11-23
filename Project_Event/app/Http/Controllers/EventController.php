@@ -18,7 +18,7 @@ class EventController extends Controller
     public function index()
     {
         $events = DB::table('events')
-        ->select('id_event','nama_lokasi','nama_event',DB::raw("DATE_FORMAT(tgl_event, '%d %M %y') as tgl_event"),'gambar_event','status','deskripsi_event','slug')
+        ->select('id_event',DB::raw('CONCAT(events.nama_lokasi," | ",events.provinsi," | ",events.kota," | ", events.kecamatan) AS "nama_lokasi"'),'nama_event',DB::raw("DATE_FORMAT(tgl_event, '%d %M %y') as tgl_event"),'gambar_event','status','deskripsi_event','slug')
         ->get();
         return view('pages.admin.table.Event.index',['events'=>$events]);
 
@@ -74,6 +74,8 @@ class EventController extends Controller
             'nama_lokasi'=>'required',
             'nama_event'=>'required',
             'tgl_event'=>'required',
+            'tgl_akhir_event'=>'required',
+            'maps' => 'required',
             'gambar_event'=>'required|mimes:png,jpg,jpeg',
             'deskripsi_event'=>'required',
             'provinsi'=>'required',
@@ -88,7 +90,7 @@ class EventController extends Controller
     );
 
 
-        $validateddata['slug'] = Str::random(100);
+        $validateddata['slug'] = Str::random(40);
         $provinsi = DB::table('provinsis')->select('*')->where('id_provinsi',$request->provinsi)->first();
         $kota = DB::table('kotas')->select('*')->where('id_kota',$request->kota)->first();
         $kecamatan = DB::table('kecamatans')->select('*')->where('id_kecamatan',$request->kecamatan)->first();
@@ -96,8 +98,8 @@ class EventController extends Controller
         $validateddata['provinsi'] =$provinsi->nama_provinsi;
         $validateddata['kota']=$kota->nama_kota;
         $validateddata['kecamatan']=$kecamatan->nama_kecamatan;
-        $namalokasi = $request->input('nama_lokasi'). ' ' . ' | '. ' ' . $provinsi->nama_provinsi. ' ' . ' | '. ' ' . $kota->nama_kota;
-        $validateddata['nama_lokasi']=$namalokasi;
+        // $namalokasi = $request->input('nama_lokasi'). ' ' . ' | '. ' ' . $provinsi->nama_provinsi. ' ' . ' | '. ' ' . $kota->nama_kota;
+        // $validateddata['nama_lokasi']=$namalokasi;
 
         if($request->hasFile('gambar_event')){
            $gambar = $request->file('gambar_event')->getClientOriginalName();
@@ -106,7 +108,7 @@ class EventController extends Controller
 
         }
 
-        $create = db::table('events')->insert($validateddata);
+        $create = DB::table('events')->insert($validateddata);
 
        if($create){
 
@@ -173,8 +175,8 @@ class EventController extends Controller
         $validateddata['provinsi'] =$provinsi->nama_provinsi;
         $validateddata['kota']=$kota->nama_kota;
         $validateddata['kecamatan']=$kecamatan->nama_kecamatan;
-        $namalokasi = $request->input('nama_lokasi').''. '/'.''. $provinsi->nama_provinsi.''.'/'.''. $kota->nama_kota;
-        $validateddata['nama_lokasi']=$namalokasi;
+        // $namalokasi = $request->input('nama_lokasi').''. '/'.''. $provinsi->nama_provinsi.''.'/'.''. $kota->nama_kota;
+        // $validateddata['nama_lokasi']=$namalokasi;
 
         if($request->has('gambar_event')){
             $gambar = $request->file('gambar_event')->getClientOriginalName();

@@ -64,53 +64,35 @@
                 </div>
             </div>
 
-            <div id="data-wrapper">
-            <div data-aos="fade-up" data-aos-duration="2000" class="row" >
+            {{-- <div id="data-wrapper"> --}}
+            <div data-aos="fade-up" data-aos-duration="2000" class="row" id="data-wrapper">
 
-                @include('pages.user.data')
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <img src="{{ asset('images/card3.png') }}" class="card-img-top" alt="Project 1" />
-                        <div class="card-body text-center">
-                            <h5 class="card-title">ARCOFEST 2023</h5>
-                            <p class="card-text">Lapangan Basket BMX Pulomas | BMX International Center Pulomas</p>
-                            <a href="#" class="btn btn-primary">Pesan Tiket</a>
-                        </div>
-                        <ul class="list-group list-group-flush d-flex justify-content-between">
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span>Start From</span>
-                                <p class="text-right">200.000</p>
-                            </li>
-                        </ul>
-                        <div class="date-container">
-                            <span class="date-day">28</span>
-                        </div>
+                @if (count($events)>0)
+                    @include('pages.user.data')
+
+                @else
+                <div class="d-flex align-items-center justify-content-center vh-100" style="margin-top: -80px">
+                    <div class="text-center">
+                        <h1 class="display-1 fw-bold">404</h1>
+                        <p class="fs-3"> <span class="text-danger">Opps!</span> Page not found.</p>
+                        <p class="lead">
+                            The page you’re looking for doesn’t exist.
+                          </p>
+                       
                     </div>
                 </div>
-                {{-- <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <img src="{{ asset('images/card4.png') }}" class="card-img-top" alt="Project 1" />
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Progresif Festival</h5>
-                            <p class="card-text">Jalan Stadion Barat | <br> Stadion Diponegoro</p>
-                            <a href="#" class="btn btn-primary">Pesan Tiket</a>
-                        </div>
-                        <ul class="list-group list-group-flush d-flex justify-content-between">
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span>Start From</span>
-                                <p class="text-right">150.000</p>
-                            </li>
-                        </ul>
-                        <div class="date-container">
-                            <span class="date-day">28</span>
-                        </div>
-                    </div>
-                </div> --}}
+                @endif
+
+
+
             </div>
-        </div>
+       {{-- </div> --}}
+       @if (count($events)>5)
+
+
             <div class="row text-center  " style="padding:200px; margin-top:-180px">
                 <div class="col-12">
-                <button class="btn btn-primary load-more-data">Load More Data...
+                <button class="btn btn-custom2 load-more-data text-white">Load More Data...
 
                     <div class=" auto-load text-center">
                         <div class="d-flex justify-content-center">
@@ -125,6 +107,7 @@
 
 
             </div>
+            @endif
 
 
         </div>
@@ -211,6 +194,10 @@
     </section>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script>
+
+
+
+
         var ENDPOINT = "{{ route('home') }}";
         var page = 1;
 
@@ -232,10 +219,13 @@
                     console.log(response);
                     if (response.html == '') {
                         $('.auto-load').html("End :(");
+                        setTimeout( function() {
+                            window.location.reload();
+                        }, 1000);
                         return;
                     }
                     $('.auto-load').hide();
-                    $("#data-wrapper").append("<div class='row'>" + response.html + "</div>");
+                    $("#data-wrapper").append(  response.html  );
 
                 })
                 .fail(function(jqXHR, ajaxOptions, thrownError) {

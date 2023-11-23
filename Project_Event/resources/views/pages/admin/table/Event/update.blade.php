@@ -91,17 +91,28 @@
                                             </div>
                                             <br>
                                             <div class="row">
-                                                <div class="col-lg-6">
+                                                <div class="col-lg-4">
                                                     <div class="form-grup mb-3"></div>
                                                     <label>Tanggal Event</label></br>
 
-                                                    <input type="date" name="tgl_event" id="name"
+                                                    <input type="datetime-local" name="tgl_event" id="name" value="{{ old('tgl_event',$events->tgl_event) }}"
                                                         class="form-control @error('tgl_event') is-invalid  @enderror">
                                                     @error('tgl_event')
                                                         <div class="invalid-feedback">{{ $message }}</div>
                                                     @enderror
                                                 </div>
-                                                <div class="col-lg-6">
+                                                <div class="col-lg-4">
+                                                    <div class="form-grup mb-3"></div>
+                                                    <label>Tanggal Akhir Event</label></br>
+
+                                                    <input type="datetime-local" name="tgl_akhir_event" id="name" value="{{ old('tgl_akhir_event',$events->tgl_akhir_event) }}"
+                                                        class="form-control @error('tgl_akhir_event') is-invalid  @enderror">
+                                                    @error('tgl_akhir_event')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="col-lg-4">
                                                     <div class="form-grup mb-3"></div>
                                                     <label>Pilih Status</label></br>
 
@@ -123,12 +134,27 @@
                                                 </div>
                                             </div>
                                             <br>
-                                            <label>Gambar Event</label></br>
-                                            <input type="file" name="gambar_event" id="name"
-                                                class="form-control @error('gambar_event') is-invalid  @enderror">
-                                            @error('gambar_event')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <label>Gambar Event</label></br>
+                                                    <input type="file" name="gambar_event" id="name"
+                                                        class="form-control @error('gambar_event') is-invalid  @enderror">
+                                                    @error('gambar_event')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
+
+                                                </div>
+
+                                                <div class="col-lg-6">
+                                                    <label>Silahkan Input Link Maps </label></br>
+                                                    <input type="text" name="maps" id="maps" value="{{ old('maps',$events->maps) }}"
+                                                    class="form-control @error('maps') is-invalid  @enderror">
+                                                @error('maps')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                                </div>
+                                            </div>
+                                            <br>
                                             <label> Deskripsi Event </label></br>
                                             <textarea class="form-control @error('deskripsi_event') is-invalid @enderror" name="deskripsi_event" id=""
                                                 cols="40" rows="10">{{ old('deskripsi_event',$events->deskripsi_event) }}</textarea>

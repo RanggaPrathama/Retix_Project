@@ -21,65 +21,73 @@ class HomeController extends Controller
 
     public function homepage(Request $request)
     {
-        //         $events =  DB::select('SELECT
-        //         MIN(d.harga_event) AS min_harga,
-        //        e.id_event,
-        //        e.nama_event,
-        //        e.gambar_event,
-        //        DATE_FORMAT(e.tgl_event, "%e %b %y") AS Tanggal_Event,
-        //        e.nama_lokasi
-        //         FROM
-        //        detil_events d
-        //    JOIN
-        //        events e ON e.id_event = d.id_event
-        //    GROUP BY
-        //        e.id_event, e.nama_event, e.gambar_event, e.tgl_event, e.nama_lokasi');
+
 
         $events = DB::table('detil_events as d')
             ->select(
                 DB::raw('MIN(d.harga_event) AS min_harga'),
                 'e.id_event',
+                'e.status',
+                'e.slug',
                 'e.nama_event',
                 'e.gambar_event',
                 DB::raw('DATE_FORMAT(e.tgl_event, "%e %b %y") AS Tanggal_Event'),
-                'e.nama_lokasi')
+                DB::raw('CONCAT(e.nama_lokasi," | ",e.provinsi," | ",e.kota," | ", e.kecamatan) AS "nama_lokasi"')
+            )
             ->join('events as e', 'e.id_event', '=', 'd.id_event')
-            ->groupBy('e.id_event', 'e.nama_event', 'e.gambar_event', 'e.tgl_event', 'e.nama_lokasi')
+            ->groupBy('e.id_event', 'e.nama_event', 'e.gambar_event', 'e.tgl_event', 'e.nama_lokasi','e.provinsi','e.kota','e.kecamatan','e.status','e.slug')
+            ->where(
+                function ($query) {
+                    $query->where('e.status', '=', 1)
+                        ->orWhere('e.status', '=', 2);
+                }
+            )
             ->paginate(6);
 
-            if ($request->ajax()) {
+        if ($request->ajax()) {
 
-                return response()->json(['html' => view('pages.user.data', compact('events'))->render()]);
-
-            }
+            return response()->json(['html' => view('pages.user.data', compact('events'))->render()]);
+        }
 
 
         return view('pages.user.home', ['events' => $events]);
     }
 
-    
+    public function event($slug){
+        $events = DB::table('detil_events as d')
+                ->select(
+                    'd.id_detilEvent',
+                    'e.id_event',
+                    'e.nama_event',
+                    'e.slug',
+                    'e.maps',
+                    'e.status',
+                    DB::raw('CONCAT(e.nama_lokasi," | ",e.provinsi," | ",e.kota," | ", e.kecamatan) AS "nama_lokasi"'),
+                    'e.gambar_event',
+                    'e.deskripsi_event',
+                    DB::raw('DATE_FORMAT(e.tgl_event,"%d %M %Y") AS tgl_event'),
+                    DB::raw('TIME_FORMAT(e.tgl_event,"%H:%i") AS time_event'),
+                    'k.id_kategori',
+                    'k.nama_kategori'
+                )
+                    ->join('events as e','e.id_event','=','d.id_event')
+                    ->join('kategoris as k','k.id_kategori','=','d.id_kategori')
+                    ->where('e.slug','=',$slug)
+                    ->first();
+
+        $kategoris = DB::table('detil_events as d')
+                    ->select('d.id_detilEvent','k.id_kategori','k.nama_kategori','d.harga_event','d.kuota_event','d.sisa_kuota')
+                    ->join('kategoris as k','k.id_kategori','=','d.id_kategori')
+                    ->join('events as e','e.id_event','=','d.id_event')
+                    ->where('e.slug','=',$slug)
+                    ->get();
+                    return view('pages.user.event.index',['events'=>$events,'kategoris'=>$kategoris]);
+    }
 
 
-    // public function verifotp(){
-    //     return view('pages.verifyaccount');
-    // }
-
-    // public function useractivation(Request $request){
-    //     $get_token = $request->token;
-    //     $get_token = verifytoken::where('token',$get_token)->first();
-    //     if($get_token){
-    //         $get_token->is_actived=1;
-    //         $get_token->save();
-    //         $user = User::where('email',$get_token->email)->first();
-    //         $user->is_actived=1;
-    //         $user->save();
-    //         $getting_token = verifytoken::where('token',$get_token->token)->first();
-    //         $getting_token->delete();
-    //         return redirect()->route('home')->with('activated','Your Account Actived');
 
 
-    //     }
-    // }
+
 
 
 }

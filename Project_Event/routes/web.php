@@ -13,6 +13,7 @@ use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KatalogController;
 use App\Http\Controllers\VerificationController;
+use App\Models\Pemesanan;
 use App\Models\Provinsi;
 use Illuminate\Support\Facades\Route;
 
@@ -29,8 +30,7 @@ use Illuminate\Support\Facades\Route;
 
 
 // Route::get('/', function () {
-//     return view('welcome');
-// });
+//     return view('welcome')
 
 
 
@@ -41,7 +41,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'homepage'])->name('home');
 
 
-Route::middleware('guest')->group(function () {
+//Route::middleware('guest')->group(function () {
 
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'login_post'])->name('autentifikasi');
@@ -49,13 +49,13 @@ Route::middleware('guest')->group(function () {
     Route::post('/register', [AuthController::class, 'register_post']);
     Route::get('/verifikasiakun', [AuthController::class, 'verifikasi'])->name('verifyaccount');
     Route::post('/verifikasiakun', [AuthController::class, 'verifikasi_post'])->name('useractivation');
-});
+//});
 
 
-
-// Route::middleware('auth')->group(function(){
-Route::get('/events', [EventController::class, 'event'])->name('event');
-Route::get('/pesan', [PemesananController::class, 'pemesanan'])->name('pemesanan');
+//Route::middleware('auth')->group(function(){
+Route::get('/events/{slug}', [HomeController::class,'event'])->name('event');
+Route::post('/pesan', [PemesananController::class, 'store'])->name('pemesanan');
+Route::get('/checkout/{slug}',[PemesananController::class,'index']);
 Route::get('/riwayatpemesanan', [PemesananController::class, 'riwayatPemesanan'])->name('riwayatpesan');
 Route::get('/katalog', [KatalogController::class, 'index'])->name('katalog.index');
 Route::get('/profile', [UserController::class, 'profile'])->name('profile');
@@ -144,4 +144,4 @@ Route::post('/detilEvent/store', [DetilEventController::class, 'store'])->name('
 Route::get('/detilEvent/edit/{slug}', [DetilEventController::class, 'edit'])->name('detilevent.edit');
 Route::put('/detilEvent/update/{slug}', [DetilEventController::class, 'update'])->name('detilevent.update');
 Route::delete('/detilEvent/destroy/{slug}', [DetilEventController::class, 'destroy'])->name('detilevent.destroy');
-// });
+//});
