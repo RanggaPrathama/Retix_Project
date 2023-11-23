@@ -49,6 +49,7 @@ Route::get('/', [HomeController::class, 'homepage'])->name('home');
     Route::post('/register', [AuthController::class, 'register_post']);
     Route::get('/verifikasiakun', [AuthController::class, 'verifikasi'])->name('verifyaccount');
     Route::post('/verifikasiakun', [AuthController::class, 'verifikasi_post'])->name('useractivation');
+
 //});
 
 
@@ -60,6 +61,8 @@ Route::get('/riwayatpemesanan', [PemesananController::class, 'riwayatPemesanan']
 Route::get('/katalog', [KatalogController::class, 'index'])->name('katalog.index');
 Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/checkout',[PemesananController::class,'index']);
 
 
 Route::get('/bayar', function() {

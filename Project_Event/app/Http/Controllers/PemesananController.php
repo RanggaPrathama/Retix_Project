@@ -19,12 +19,12 @@ class PemesananController extends Controller
     }
 
     public function pemesanan(){
-        return view('pages.user.pemesanan.index');
+
     }
 
     public function index()
     {
-        //
+        return view('pages.user.pemesanan.index');
     }
 
     /**

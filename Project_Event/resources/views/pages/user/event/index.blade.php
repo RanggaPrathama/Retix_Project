@@ -96,7 +96,7 @@
                                                         type="button">-</button>
                                                     <input type="text" style="background-color: white"
                                                         class="form-control quantity text-center fs-5" name="quantity[]"
-                                                        value="0" readonly>
+                                                        value="0" max="5" readonly>
 
                                                     <button class="btn btn-outline-primary plus" type="button"
                                                         style="border-radius: 0 7px 7px 0">+</button>
@@ -211,9 +211,18 @@
         // PLUS
         plusButton.forEach(function(plusbtn, index) {
             plusbtn.addEventListener('click', function() {
-                quantity[index].value = parseInt(quantity[index].value) + 1;
-                updateHarga(index);
-                updateTotalHarga()
+
+                const quantity1  = parseInt(quantity[index].value) ;
+                const maxquantity = 5;
+                if(quantity1 < maxquantity){
+                    quantity[index].value = quantity1+1;
+                    updateHarga(index);
+                     updateTotalHarga()
+                }
+               else{
+                    alert('Maaf Anda Hanya Bisa Memesan 5 Tiket Event');
+               }
+
             });
 
         })
