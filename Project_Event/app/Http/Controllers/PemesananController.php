@@ -44,6 +44,8 @@ class PemesananController extends Controller
         // $validatedData = $request->validate([
         //     'id_user' =>'unique:pemesanans,id_user'
         // ]);
+
+
         $validatedData['id_user'] = $request->input('id_user');
         $validatedData['tgl_pemesanan'] = now();
         $validatedData['status_pemesanan'] = 1;
@@ -55,6 +57,7 @@ class PemesananController extends Controller
         $quantity_list = $request->input('quantity');
 
         $inputDataList = [];
+
 
         foreach($detilEvent_list as $index => $id_detilEvent){
             $quantity = $quantity_list[$index];
@@ -68,12 +71,24 @@ class PemesananController extends Controller
                 ];
                 $inputDataList[] = $inputdata;
 
+                $events = DB::table('detil_events')->where('id_detilEvent',$id_detilEvent)->first();
+
+                $update = $events->sisa_kuota -= $inputdata['quantity'];
+
+                // $inputDataKuota[]= $update;
+                DB::table('detil_events')->where('id_detilEvent', $id_detilEvent)->update(['sisa_kuota' => $update]);
+
             }
+
+
 
 
         }
 
+
         $create =DB::table('detil_pemesanans')->insert( $inputDataList);
+    //    $update1 = $events->update(['sisa_kuota'=> $inputDataKuota]);
+
         dd($create);
     }
 

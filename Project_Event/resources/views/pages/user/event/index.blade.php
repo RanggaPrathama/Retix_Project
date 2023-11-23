@@ -67,40 +67,52 @@
                             <h4>Kategori Tiket</h4>
                         </li>
 
-                        <li class="list-group-item">
+                        <li class="list-group-item" style="background-color: #fbfbfb">
 
                             @foreach ($kategoris as $kategori)
                                 <div class="card mb-3">
 
-                                    <div class="card-body">
+                                    <div class="card-body  ">
                                         <h5 class="card-title">{{ $kategori->nama_kategori }}</h5>
-                                        <p> {{ $kategori->id_detilEvent }}</p>
+                                        {{-- <p> {{ $kategori->id_detilEvent }}</p> --}}
                                         <input type="hidden" name="id_detilEvent[]" value="{{ $kategori->id_detilEvent }}">
                                         <input type="hidden" class="kuota" value="{{ $kategori->kuota_event }}">
                                         <input type="hidden" class="sisakuota" value="{{ $kategori->sisa_kuota }}">
-                                        <p class="card-text">
+                                        <div class="text-end d-flex justify-content-between">
+                                        <p class="card-text ">
                                             {{ 'Rp.' . number_format($kategori->harga_event, 0, ',', '.') }}
                                         </p>
                                         <input type="hidden" class="harga" value="{{ $kategori->harga_event }}">
                                         <input type="hidden" class="subtotal" value="0">
-                                        <button class="btn btn-primary milih-button" type="button">Submit</button>
-                                        <div class="wrapper d-none">
+                                        <button class="btn btn-custom2 text-white milih-button " type="button" >Submit</button>
 
-                                            <div class="col-sm-5">
+                                        @if ($kategori->sisa_kuota>0)
+
+                                        <div class="wrapper d-flex justify-content-end d-none">
+
+                                            <div class="col-sm-6">
                                                 <div class="input-group">
-                                                    <button class="btn btn-outline-secondary minus"
+                                                    <button class="btn btn-outline-primary minus"
                                                         type="button">-</button>
                                                     <input type="text" style="background-color: white"
                                                         class="form-control quantity text-center fs-5" name="quantity[]"
                                                         value="0" readonly>
 
-                                                    <button class="btn btn-outline-secondary plus" type="button"
+                                                    <button class="btn btn-outline-primary plus" type="button"
                                                         style="border-radius: 0 7px 7px 0">+</button>
 
                                                 </div>
                                             </div>
 
                                         </div>
+
+                                        @else
+                                        <button class= "btn btn-secondary disabled"  type="button">Sold Out</button>
+                                        @endif
+                                    </div>
+
+
+
 
                                     </div>
                                 </div>
