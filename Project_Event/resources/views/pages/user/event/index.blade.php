@@ -30,7 +30,7 @@
     <section class="artists-section section-padding" id="section_3">
 
         <div class="row" id="satutiket">
-            <div class="col-lg-8">
+            <div class="col-lg-8" style="overflow-y: auto; max-height: 450px"  >
                 <div class="card" style="width: 45rem;">
 
                     <ul class="list-group list-group-flush">
@@ -57,6 +57,7 @@
                     </ul>
                 </div>
             </div>
+
             <div class="col-lg-4">
 
                 <form id='form' action="{{ route('pemesanan') }}" method="POST">
