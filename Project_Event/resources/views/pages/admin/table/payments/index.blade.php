@@ -57,6 +57,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>Id_Payments</th>
+                                                    <th>Nama Payments</th>
                                                     <th>Atas Nama</th>
                                                     <th>Nomer Payments </th>
                                                     <th>Logo Payments </th>
@@ -70,6 +71,7 @@
                                                     <tr>
                                                         <td>{{ $payment->id_payments }}</td>
                                                         <td>{{ $payment->nama }}</td>
+                                                        <td>{{ $payment->atasnama }}</td>
                                                         <td>{{ $payment->nomer }}</td>
                                                         <td><img src="{{ asset('logoPayment/' . $payment->logo) }}"
                                                                 style="width: 55px"></td>
@@ -107,6 +109,7 @@
                                             <tfoot>
                                                 <tr>
                                                     <th>Id_Payments</th>
+                                                    <th>Nama Payments</th>
                                                     <th>Atas Nama</th>
                                                     <th>Nomer Payments </th>
                                                     <th>Logo Payments </th>

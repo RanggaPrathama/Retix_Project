@@ -43,6 +43,7 @@ class PaymentsController extends Controller
     {
         $validatedData = $request->validate([
             'nama'=>'required',
+            'atasnama'=>'required',
             'nomer' =>'required',
             'logo'=>'required',
             'status'=>'required',
@@ -104,6 +105,7 @@ class PaymentsController extends Controller
             'nama'=>'required',
             'nomer' =>'required',
             'logo'=>'required',
+            'atasnama'=>'required',
             'status'=>'required',
             'gambar'=>'required'
         ]);

@@ -47,7 +47,7 @@
                                             <div class="row">
                                                 <div class="col-lg-4">
 
-                                                        <label>Atas Nama </label></br>
+                                                        <label>Nama Payment </label></br>
                                                         <input type="text" name="nama" id="name" value="{{ old('nama',$payments->nama) }}"
                                                             class="form-control @error('nama') is-invalid  @enderror">
                                                         @error('nama')
@@ -57,6 +57,17 @@
                                                 </div>
 
                                                 <div class="col-lg-4">
+
+                                                    <label>Atas Nama </label></br>
+                                                    <input type="text" name="atasnama" id="name" value="{{ old('atasnama',$payments->atasnama) }}"
+                                                        class="form-control @error('atasnama') is-invalid  @enderror">
+                                                    @error('atasnama')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
+
+                                            </div>
+
+                                                <div class="col-lg-4">
                                                     <label>Nomer Payment </label></br>
                                                     <input class='form-control'type="text" name="nomer" value="{{ old('nomer',$payments->nomer) }}" />
                                                     @error('nomer')
@@ -64,30 +75,12 @@
                                                     @enderror <br>
                                                 </div>
 
-                                                <div class="col-lg-4">
-                                                    <label>Pilih Status</label></br>
-                                                    @php
-                                                        $oldStatus = old('status',$payments->status)
-                                                    @endphp
-                                                        <select name="status" id="" class="form-control @error('status') is-invalid @enderror">
-                                                            @foreach ( $status as $status1 => $deskripsi )
 
-                                                            <option value="{{ $status1 }}" {{ $oldStatus == $status1 ? 'selected' :''}}>
-                                                                {{ $deskripsi }}
-                                                            </option>
-                                                            @endforeach
-                                                        </select>
-
-                                                        @error('status')
-                                                            <div class="invalid-feedback"> {{ $message }}</div>
-                                                        @enderror
-                                                        <br>
-                                                 </div>
                                             </div>
 
 
                                             <div class="row">
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-4">
                                                 <label>Logo Payment</label></br>
                                                 <input type="file" name="logo" id="name"
                                                     class="form-control @error('logo') is-invalid  @enderror">
@@ -97,7 +90,7 @@
 
                                             </div>
 
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-4">
                                                 <label>Gambar Scan Payment</label></br>
                                                 <input type="file" name="gambar" id="name"
                                                     class="form-control @error('gambar') is-invalid  @enderror">
@@ -106,6 +99,26 @@
                                                 @enderror
 
                                             </div>
+
+                                            <div class="col-lg-4">
+                                                <label>Pilih Status</label></br>
+                                                @php
+                                                    $oldStatus = old('status',$payments->status)
+                                                @endphp
+                                                    <select name="status" id="" class="form-control @error('status') is-invalid @enderror">
+                                                        @foreach ( $status as $status1 => $deskripsi )
+
+                                                        <option value="{{ $status1 }}" {{ $oldStatus == $status1 ? 'selected' :''}}>
+                                                            {{ $deskripsi }}
+                                                        </option>
+                                                        @endforeach
+                                                    </select>
+
+                                                    @error('status')
+                                                        <div class="invalid-feedback"> {{ $message }}</div>
+                                                    @enderror
+                                                    <br>
+                                             </div>
 
 
                                             </div>

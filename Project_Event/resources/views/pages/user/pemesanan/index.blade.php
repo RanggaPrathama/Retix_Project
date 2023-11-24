@@ -143,7 +143,7 @@
                         </div>
                         <div class="card-body">
 
-                            <div class="row m-0 mb-3 ">
+                            {{-- <div class="row m-0 mb-3 ">
 
                                 <div class="col-sm-4 ">
                                     <div class="card" >
@@ -187,23 +187,27 @@
                                     </div>
                                 </div>
 
-                            </div>
+                            </div> --}}
 
                             <div class="row m-0">
+                                @foreach ( $payments  as $payment )
+
+
                                 <div class="col-md-9 mb-3">
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="form-check form">
-                                                <input class="form-check-input" type="radio" name="payment" value="" onsubmit="return validateForm()" checked required>
-                                                <label class="form-check-label" for="pembayaran1">
-                                                    <span class="text-success fw-bold">Jatim</span><br>
-                                                    <img class="img-fluid" src="{{ asset('images/jatim.png') }}" style="height: 60px; width: 100px" alt="">
+                                                <input class="form-check-input" type="radio" name="payment" value="{{ $payment->id_payments }}" onsubmit="return validateForm()" checked required>
+                                                <label class="form-check-label d-flex justify-content-between" for="pembayaran1">
+                                                    <span class="text-success fw-bold">{{ $payment->nama }}</span><br>
+                                                    <img class="img-fluid" src="{{ asset('logoPayment/'.$payment->logo) }}" style=" width: 100px; margin-top:-16px" alt="">
                                                 </label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-9 mb-3">
+                                @endforeach
+                                {{-- <div class="col-md-9 mb-3">
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="form-check form">
@@ -215,24 +219,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-9">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="form-check form">
-                                                <input class="form-check-input" type="radio" name="payment" value="" onsubmit="return validateForm()" checked required>
-                                                <label class="form-check-label" for="pembayaran3">
-                                                    <span class="text-success fw-bold">Jatim</span><br>
-                                                    <img class="img-fluid" src="{{ asset('images/jatim.png') }}" style="height: 60px; width: 100px" alt="">
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </div> --}}
+
                             </div>
 
                             <!-- Form-group radio buttons below -->
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <div class="custom-control custom-radio">
                                     <input type="radio" class="custom-control-input" name="payment" id="paypal">
                                     <label class="custom-control-label" for="paypal">Paypal</label>
@@ -249,7 +241,7 @@
                                     <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
                                     <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <div class="card-footer border-secondary bg-transparent">

@@ -24,7 +24,8 @@ class PemesananController extends Controller
 
     public function index()
     {
-        return view('pages.user.pemesanan.index');
+        $payments = DB::table('payments')->select('*')->get();
+        return view('pages.user.pemesanan.index',['payments'=>$payments]);
     }
 
     /**
