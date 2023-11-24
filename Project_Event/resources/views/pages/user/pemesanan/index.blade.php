@@ -26,11 +26,7 @@
     <div class="container-fluid bg-customPemesanan  mb-5">
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
             <h1 class="font-weight-semi-bold text-white mb-3">Checkout</h1>
-            {{-- <div class="d-inline-flex">
-                <p class="m-0"><a href="">Home</a></p>
-                <p class="m-0 px-2">-</p>
-                <p class="m-0">Checkout</p>
-            </div> --}}
+
         </div>
     </div>
     <!-- Page Header End -->
@@ -39,76 +35,76 @@
         <!-- Checkout Start -->
         <div class="container-fluid pt-5">
             <div class="row px-xl-5">
-                <div class="col-lg-8">
+                <div class="col-lg-7"  style="max-height: 480px; overflow-y: auto">
                     <div class="mb-4">
-                        <h4 class="font-weight-semi-bold mb-4">Data Diri</h4>
+
                         <div class="row">
-                            <div class="col-md-6 form-group">
-                                <label>Nama Lengkap</label>
-                                <input class="form-control" type="text" placeholder="Pregorian Purwacahyani">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>NIK</label>
-                                <input class="form-control" type="text" placeholder="3518253912520008">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>E-mail</label>
-                                <input class="form-control" type="text" placeholder="pregorianp123@gmail.com">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>No Telp</label>
-                                <input class="form-control" type="text" placeholder="082245678910">
+                            <div class="card border-secondary mb-5 p-0" style="margin-top: -30px">
+                                <div class="card-header bg-primary border-0 ">
+                                    <h4 class="font-weight-semi-bold text-white mb-4">Data Diri</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label>Nama Lengkap</label>
+                                        <input class="form-control" type="text" placeholder="Pregorian Purwacahyani">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>NIK</label>
+                                        <input class="form-control" type="text" placeholder="3518253912520008">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>E-mail</label>
+                                        <input class="form-control" type="text" placeholder="pregorianp123@gmail.com">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>No Telp</label>
+                                        <input class="form-control" type="text" placeholder="082245678910">
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
+
                     </div>
 
+                    <div class="mb-4">
 
-                    <div class="row">
-                        <h5 class="font-weight-semi-bold mb-4">Data Pemilik Tiket</h5>
-                        <div class="col-md-6 form-group">
-                            <label>Nama Lengkap</label>
-                            <input class="form-control" type="text" placeholder="Rangga Prathama Nugraha H">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>NIK</label>
-                            <input class="form-control" type="text" placeholder="3528253912520008">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>E-mail</label>
-                            <input class="form-control" type="text" placeholder="ranggapnh123@gmail.com">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>No Telp</label>
-                            <input class="form-control" type="text" placeholder="081345678910">
-                        </div>
-                    </div>
-
-                    <div class="collapse mb-4" id="shipping-address">
-                        <h4 class="font-weight-semi-bold mb-4">Shipping Address</h4>
                         <div class="row">
-                            <div class="col-md-6 form-group">
-                                <label>First Name</label>
-                                <input class="form-control" type="text" placeholder="John">
+                            <div class="card border-secondary mb-5 p-0" style="margin-top: -30px">
+                                <div class="card-header bg-primary border-0 ">
+                                    <h4 class="font-weight-semi-bold text-white mb-4">Data Diri</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label>Nama Lengkap</label>
+                                        <input class="form-control" type="text" placeholder="Pregorian Purwacahyani">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>NIK</label>
+                                        <input class="form-control" type="text" placeholder="3518253912520008">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>E-mail</label>
+                                        <input class="form-control" type="text" placeholder="pregorianp123@gmail.com">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>No Telp</label>
+                                        <input class="form-control" type="text" placeholder="082245678910">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-6 form-group">
-                                <label>Last Name</label>
-                                <input class="form-control" type="text" placeholder="Doe">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>E-mail</label>
-                                <input class="form-control" type="text" placeholder="example@email.com">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>Mobile No</label>
-                                <input class="form-control" type="text" placeholder="+123 456 789">
-                            </div>
-
-
-
                         </div>
+
+
                     </div>
+
+
+
                 </div>
-                <div class="col-lg-4">
+
+
+
+                <div class="col-lg-5">
                     <div class="card border-secondary mb-5">
                         <div class="card-header bg-primary border-0">
                             <h4 class="font-weight-semi-bold text-white m-0">Order Total</h4>
