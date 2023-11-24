@@ -179,11 +179,12 @@ class EventController extends Controller
         // $validateddata['nama_lokasi']=$namalokasi;
 
         if($request->has('gambar_event')){
+            $dataFoto = Event::where('slug',$slug)->first();
+            File::delete(public_path('gambarEvent').'/'.$dataFoto->gambar_event);
             $gambar = $request->file('gambar_event')->getClientOriginalName();
             $request->file('gambar_event')->move(public_path('gambarEvent'),$gambar);
             $validateddata['gambar_event']=$gambar;
-            $dataFoto = Event::where('slug',$slug)->first();
-            File::delete(public_path('gambarEvent').'/'.$dataFoto->gambar_event);
+
         }
 
 

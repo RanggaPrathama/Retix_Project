@@ -12,6 +12,7 @@ use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KatalogController;
+use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\VerificationController;
 use App\Models\Pemesanan;
 use App\Models\Provinsi;
@@ -148,3 +149,13 @@ Route::get('/detilEvent/edit/{slug}', [DetilEventController::class, 'edit'])->na
 Route::put('/detilEvent/update/{slug}', [DetilEventController::class, 'update'])->name('detilevent.update');
 Route::delete('/detilEvent/destroy/{slug}', [DetilEventController::class, 'destroy'])->name('detilevent.destroy');
 //});
+
+
+// PAYMENTS
+Route::get('/payments',[PaymentsController::class,'index'])->name('payment.index');
+Route::get('/payments/create',[PaymentsController::class,'create'])->name('payment.create');
+Route::post('/payments/store',[PaymentsController::class,'store'])->name('payment.store');
+Route::get('/payments/edit/{slug}',[PaymentsController::class,'edit'])->name('payment.edit');
+Route::put('/payments/update/{slug}',[PaymentsController::class,'update'])->name('payment.update');
+Route::delete('/payments/delete/{slug}',[PaymentsController::class,'destroy'])->name('payment.destroy');
+
