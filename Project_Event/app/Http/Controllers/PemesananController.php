@@ -24,7 +24,10 @@ class PemesananController extends Controller
 
     public function index()
     {
-        $payments = DB::table('payments')->select('*')->get();
+        $payments = DB::table('payments')->select('*')->where('status','=',1)->get();
+        // $pemesanans = DB::table('pemesanans')->select('*')->where('slug',$slug)->first();
+        // $detilPesan = DB::table('detil_pemesanans')->select('*')->where('id_pemesanan',$pemesanans->id_pemesanan)->get();
+        // return view('pages.user.pemesanan.index',['payments'=>$payments,'pemesanans'=>$pemesanans,'detilPesan'=>$detilPesan]);
         return view('pages.user.pemesanan.index',['payments'=>$payments]);
     }
 
@@ -90,7 +93,8 @@ class PemesananController extends Controller
         $create =DB::table('detil_pemesanans')->insert( $inputDataList);
     //    $update1 = $events->update(['sisa_kuota'=> $inputDataKuota]);
 
-        dd($create);
+       $pesan = DB::table('pemesanans')->where('id_pemesanan',$pemesanan)->get();
+       return redirect("/checkout/$pesan->slug");
     }
 
     /**

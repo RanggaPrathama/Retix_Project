@@ -254,7 +254,58 @@
             </div>
         </div>
         <!-- Checkout End -->
-    @endsection
+
+<!-- Modal -->
+<div class="modal fade" id="reloadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Modal content goes here -->
+                <p>This is a modal. You can customize its content.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const showModal = localStorage.getItem('showModalOnReload');
+
+        if (showModal === 'true') {
+            $('#reloadModal').modal('show');
+        }
+    });
+
+    // Listen to the modal's shown.bs.modal event
+    $('#reloadModal').on('shown.bs.modal', function () {
+        // Set the flag to avoid showing the modal on the next reload
+        localStorage.setItem('showModalOnReload', 'false');
+    });
+
+    // Listen to the page visibility change event
+    document.addEventListener('visibilitychange', function () {
+        // When the page becomes visible, set the flag to show the modal on the next reload
+        if (document.visibilityState === 'visible') {
+            localStorage.setItem('showModalOnReload', 'true');
+        }
+    });
+</script>
+
+@endsection
 </body>
 
 </html>
