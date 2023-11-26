@@ -256,21 +256,22 @@
         <!-- Checkout End -->
 
 <!-- Modal -->
-<div class="modal fade" id="reloadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Terms and Conditions</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <!-- Modal content goes here -->
-                <p>This is a modal. You can customize its content.</p>
+                <!-- Your terms content here -->
+                <p>Dengan membeli tiket ini, <strong>saya telah membaca dan menyetujui syarat dan ketentuan yang berlaku </strong>untuk melanjutkan pembayaran, singkatnya sebagai berikut: Jika terjadi FORCE MAJEURE (Gempa Bumi, Gunung Meletus, Banjir, Tsunami, Pandemik dan/atau Epidemik, Pernyataan Perang, Perang, Terorisme) dan/atau keputusan darurat nasional dari pemerintah, <strong>Panitia berhak</strong>  untuk membatalkan atau mengatur ulang jadwal acara secara sepihak. <strong>Saya sebagai pembeli setuju</strong>  untuk membebaskan Panitia dan Penyedia Layanan dari tuntutan apapun</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="agree()">Agree</button>
+                <button type="button" class="btn btn-danger" onclick="disagree()">Disagree</button>
             </div>
         </div>
     </div>
@@ -282,27 +283,24 @@
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const showModal = localStorage.getItem('showModalOnReload');
 
-        if (showModal === 'true') {
-            $('#reloadModal').modal('show');
-        }
+    $(document).ready(function() {
+        $('#myModal').modal('show');
     });
 
-    // Listen to the modal's shown.bs.modal event
-    $('#reloadModal').on('shown.bs.modal', function () {
-        // Set the flag to avoid showing the modal on the next reload
-        localStorage.setItem('showModalOnReload', 'false');
-    });
+    function agree() {
+        alert('You agreed to the terms!');
+        $('#myModal').modal('hide');
 
-    // Listen to the page visibility change event
-    document.addEventListener('visibilitychange', function () {
-        // When the page becomes visible, set the flag to show the modal on the next reload
-        if (document.visibilityState === 'visible') {
-            localStorage.setItem('showModalOnReload', 'true');
-        }
-    });
+    }
+
+    function disagree() {
+        alert('You disagreed to the terms!');
+        $('#myModal').modal('hide');
+        window.history.back();
+       // window.location.href = 'previous_page.html';
+
+    }
 </script>
 
 @endsection

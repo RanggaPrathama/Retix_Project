@@ -81,7 +81,6 @@ class PemesananController extends Controller
 
                 // $inputDataKuota[]= $update;
                 DB::table('detil_events')->where('id_detilEvent', $id_detilEvent)->update(['sisa_kuota' => $update]);
-
             }
 
 
