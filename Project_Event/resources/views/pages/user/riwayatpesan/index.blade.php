@@ -14,7 +14,7 @@
 
     @extends('layouts.appUser')
     @section('content')
-    <div class="untree_co-section before-footer-section" style="background-image:linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);">
+    <div class="untree_co-section before-footer-section" style="background-image:linear-gradient(90deg, rgba(58, 58, 62) 20%, rgb(58, 58, 62) 35%); margin-bottom: -40px;">
         <div class="container">
           <div class="row mb-5" >
             <form class="col-md-12" method="post">
@@ -23,11 +23,11 @@
                   <thead>
                     <tr>
                       <th class="product-thumbnail">Image</th>
-                      <th class="product-name">Product</th>
-                      <th class="product-price">Price</th>
+                      <th class="product-name">Invoice</th>
+                      <th class="product-price">Buy At</th>
                       <th class="product-quantity">Quantity</th>
                       <th class="product-total">Total</th>
-                      <th class="product-remove">Remove</th>
+                      <th class="product-remove">Details</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -36,23 +36,14 @@
                         <img src="{{ asset('images/card2.png') }}" alt="Image" class="img-fluid">
                       </td>
                       <td class="product-name">
-                        <h2 class="h5 text-white">Product 1</h2>
+                        <h2 class="h5 text-white">Y8MSPLWY</h2>
                       </td>
-                      <td>$49.00</td>
+                      <td>26 November 2023 | 10:08</td>
                       <td>
-                        <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
-                          <div class="input-group-prepend">
-                            <button class="btn btn-outline-black decrease" type="button">&minus;</button>
-                          </div>
-                          <input type="text" class="form-control text-center quantity-amount" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                          <div class="input-group-append">
-                            <button class="btn btn-outline-black increase" type="button">&plus;</button>
-                          </div>
-                        </div>
-
+                        2
                       </td>
-                      <td>$49.00</td>
-                      <td><a href="#" class="btn btn-black btn-sm">X</a></td>
+                      <td>Rp. 300.000</td>
+                      <td><a href="#" class="btn btn-black btn-sm"><button id="show" type="button">Show</button></a></td>
                     </tr>
 
                     <tr>
@@ -60,23 +51,16 @@
                         <img src="{{ asset('images/card3.png') }}" alt="Image" class="img-fluid">
                       </td>
                       <td class="product-name">
-                        <h2 class="h5 text-white">Product 2</h2>
+                        <h2 class="h5 text-white">GAHWNDG</h2>
                       </td>
-                      <td>$49.00</td>
+                      <td>27 November 2023 | 08:10</td>
                       <td>
-                        <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
-                          <div class="input-group-prepend">
-                            <button class="btn btn-outline-black decrease" type="button">&minus;</button>
-                          </div>
-                          <input type="text" class="form-control text-center quantity-amount" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                          <div class="input-group-append">
-                            <button class="btn btn-outline-black increase" type="button">&plus;</button>
-                          </div>
-                        </div>
-
+                        1
                       </td>
-                      <td>$49.00</td>
-                      <td><a href="#" class="btn btn-black btn-sm">X</a></td>
+                      <td>Rp. 200.000</td>
+                      <td><a href="#" class="btn btn-black btn-sm"><button type="button" id="show">Show</button></a>
+                    </td>
+                    </tr>
                     </tr>
                   </tbody>
                 </table>

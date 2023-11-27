@@ -1,7 +1,7 @@
 body{
     margin-top:800px;
 
-    background-image: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    background-image: linear-gradient(90deg, rgba(58, 58, 62) 20%, rgb(58, 58, 62) 35%);
 }
 /* .nav {
     margin-top: 90px;
@@ -19,7 +19,8 @@ body{
 }
 
 .user-box img {
-    width: 100%;
+    width: 250%;
+    margin-left: -80px;
     border-radius: 50%;
 	padding: 3px;
 	background: #fff;

@@ -17,6 +17,25 @@ body {
   font-size: 14px;
   background-color: #eff2f1; }
 
+  #show {
+    background-color: #0099ff;
+    color: #eff2f1;
+    border-radius: 8px; /* Menggunakan nilai absolut untuk border-radius */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Menambahkan shadow */
+  }
+  
+  #show:hover {
+    background-color: #e4de2f; /* Warna yang berbeda saat di-hover */
+  }
+  
 a {
   text-decoration: none;
   -webkit-transition: .3s all ease;
