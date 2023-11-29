@@ -7,7 +7,6 @@
                 <h2 class=" text-white py-5 px-4 mb-4 animated slideInDown">{{ $events->nama_event }}</h2>
                 <a href="{{ $events->maps }}" style="margin-left: 25px;  ">
                     <h6 style="color:#e0a502">View In Maps</h6>
-
                 </a>
                 <h6 style="float: right;">Status : <span style="color: #e0a502">
                         @if ($events->status == 0)

@@ -15,7 +15,7 @@ body {
   line-height: 28px;
   color: #6a6a6a;
   font-size: 14px;
-  background-color: #eff2f1; }
+  background-color: #ffffff; }
 
   #show {
     background-color: #0099ff;
@@ -31,11 +31,19 @@ body {
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Menambahkan shadow */
   }
-  
+
   #show:hover {
     background-color: #e4de2f; /* Warna yang berbeda saat di-hover */
   }
-  
+
+.card-header{
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  font-size: large;
+}
+
+
+
 a {
   text-decoration: none;
   -webkit-transition: .3s all ease;
@@ -138,7 +146,8 @@ a {
         font-size: 54px; } }
   .hero p {
     color: rgba(255, 255, 255, 0.5);
-    margin-botom: 30px; }
+    margin-bottom: 30px;
+   }
   .hero .hero-img-wrap {
     position: relative; }
     .hero .hero-img-wrap img {

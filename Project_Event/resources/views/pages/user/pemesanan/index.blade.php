@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>Document</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
@@ -37,6 +39,9 @@
             <div class="row px-xl-5">
                 <div class="col-lg-7" style="max-height: 480px; overflow-y: auto">
                     <div class="mb-4">
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
 
                         <div class="row">
                             <div class="card border-secondary mb-5 p-0" style="margin-top: -30px">
@@ -45,20 +50,21 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="mb-3">
+
                                         <label>Nama Lengkap</label>
-                                        <input class="form-control" type="text" placeholder="Pregorian Purwacahyani">
+                                        <input class="form-control" name= 'name' id = 'namaregistrasi' type="text" value="{{$users ->name}}">
                                     </div>
                                     <div class="mb-3">
                                         <label>NIK</label>
-                                        <input class="form-control" type="text" placeholder="3518253912520008">
+                                        <input class="form-control" name = 'no_ktp' id = 'ktpregistrasi' type="text" >
                                     </div>
                                     <div class="mb-3">
                                         <label>E-mail</label>
-                                        <input class="form-control" type="text" placeholder="pregorianp123@gmail.com">
+                                        <input class="form-control" id='emailregistrasi' type="text" value="{{$users->email}}" disabled>
                                     </div>
                                     <div class="mb-3">
                                         <label>No Telp</label>
-                                        <input class="form-control" type="text" placeholder="082245678910">
+                                        <input class="form-control" name='no_telp' id= 'notelpregistrasi' type="text" value="{{$users->no_telp}}">
                                     </div>
                                 </div>
                             </div>
@@ -83,19 +89,19 @@
                                     </div>
                                     <div class="mb-3">
                                         <label>Nama Lengkap</label>
-                                        <input class="form-control" type="text" placeholder="Pregorian Purwacahyani">
+                                        <input class="form-control" id='namapemilik' type="text" >
                                     </div>
                                     <div class="mb-3">
                                         <label>NIK</label>
-                                        <input class="form-control" type="text" placeholder="3518253912520008">
+                                        <input class="form-control" id="ktppemilik" type="text">
                                     </div>
                                     <div class="mb-3">
                                         <label>E-mail</label>
-                                        <input class="form-control" type="text" placeholder="pregorianp123@gmail.com">
+                                        <input class="form-control" id="emailpemilik" type="text">
                                     </div>
                                     <div class="mb-3">
                                         <label>No Telp</label>
-                                        <input class="form-control" type="text" placeholder="082245678910">
+                                        <input class="form-control" id="notelppemilik" type="text" >
                                     </div>
                                 </div>
                             </div>
@@ -117,21 +123,23 @@
                         </div>
 
                         <div class="card-body">
+
                             <h5 class="font-weight-medium mb-3">Tiket</h5>
+                            @foreach ($orders as $order)
+
+
                             <div class="d-flex justify-content-between">
-                                <p>Sciencesomnia 2023 -- Silver</p>
-                                <p>Rp 100.000</p>
+                                <p>{{$order->nama_event}} &nbsp; -- {{$order->nama_kategori}} &nbsp;  x {{$order->quantity}}</p>
+                                <p>{{$order->SUBTOTAL}}</p>
                             </div>
-                            <div class="d-flex justify-content-between">
-                                <p>Sciencesomnia 2023 -- Gold</p>
-                                <p>Rp 200.000</p>
-                            </div>
+                            @endforeach
+
                             <hr class="mt-0">
                         </div>
                         <div class="card-footer border-secondary bg-transparent">
                             <div class="d-flex justify-content-between mt-2">
                                 <h5 class="font-weight-bold">Total</h5>
-                                <h5 class="font-weight-bold">Rp 300.000</h5>
+                                <h5 class="font-weight-bold">{{$pemesanans->total_tagihan}}</h5>
                             </div>
                         </div>
                     </div>
@@ -197,7 +205,7 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="form-check form">
-                                                <input class="form-check-input" type="radio" name="payment" value="{{ $payment->id_payments }}" onsubmit="return validateForm()" checked required>
+                                                <input class="form-check-input radio" type="radio" name="id_payments" value="{{ $payment->id_payments }}" onsubmit="return validateForm()" >
                                                 <label class="form-check-label d-flex justify-content-between" for="pembayaran1">
                                                     <span class="text-success fw-bold">{{ $payment->nama }}</span><br>
                                                     <img class="img-fluid" src="{{ asset('logoPayment/'.$payment->logo) }}" style=" width: 100px; margin-top:-16px" alt="">
@@ -246,13 +254,14 @@
 
                         <div class="card-footer border-secondary bg-transparent">
 
-                            <a href="{{ route('riwayatpesan') }}"> <button
-                                    class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3"> Order</button></a>
+                             <button type="submit"
+                                    class="btn btn-lg  btn-primary font-weight-bold my-3 py-3"> Order</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </form>
         <!-- Checkout End -->
 
 <!-- Modal -->
@@ -270,8 +279,8 @@
                 <p>Dengan membeli tiket ini, <strong>saya telah membaca dan menyetujui syarat dan ketentuan yang berlaku </strong>untuk melanjutkan pembayaran, singkatnya sebagai berikut: Jika terjadi FORCE MAJEURE (Gempa Bumi, Gunung Meletus, Banjir, Tsunami, Pandemik dan/atau Epidemik, Pernyataan Perang, Perang, Terorisme) dan/atau keputusan darurat nasional dari pemerintah, <strong>Panitia berhak</strong>  untuk membatalkan atau mengatur ulang jadwal acara secara sepihak. <strong>Saya sebagai pembeli setuju</strong>  untuk membebaskan Panitia dan Penyedia Layanan dari tuntutan apapun</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="agree()">Agree</button>
                 <button type="button" class="btn btn-danger" onclick="disagree()">Disagree</button>
+                <button type="button" class="btn btn-primary" onclick="agree()">Agree</button>
             </div>
         </div>
     </div>
@@ -292,15 +301,82 @@
         alert('You agreed to the terms!');
         $('#myModal').modal('hide');
 
-    }
+    };
 
     function disagree() {
         alert('You disagreed to the terms!');
         $('#myModal').modal('hide');
-        window.history.back();
-       // window.location.href = 'previous_page.html';
 
-    }
+        var slug = '{{$pemesanans->slug}}';
+
+        $.ajax({
+            type: 'DELETE',
+            url: '/deletePemesanan/' + slug,
+            data: {
+                            _token: "{{ csrf_token() }}"
+                        },
+            success: function(response) {
+
+                // console.log('Pemesanan berhasil dihapus:', response);
+                window.history.back();
+            },
+            error: function(error) {
+
+                console.error('Gagal menghapus pemesanan:', error);
+            }
+        });
+    };
+
+    function validateForm() {
+        var radioButtons = document.querySelectorAll('.radio');
+
+        var isChecked = false;
+        for (var i = 0; i < radioButtons.length; i++) {
+            if (radioButtons[i].checked) {
+                isChecked = true;
+                break;
+            }
+        }
+
+        if (!isChecked) {
+            alert('Pilihlah metode pembayaran!');
+            return false;
+        }
+
+
+        return true;
+    };
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var checkbox = document.getElementById('flexCheckDefault');
+        var pemilikNama = document.getElementById('namapemilik');
+        var pemilikNIK = document.getElementById('ktppemilik');
+        var pemilikEmail = document.getElementById('emailpemilik');
+        var pemilikNoTelp = document.getElementById('notelppemilik');
+
+
+        var originalPemilikNama = pemilikNama.value;
+        var originalPemilikNIK = pemilikNIK.value;
+        var originalPemilikEmail = pemilikEmail.value;
+        var originalPemilikNoTelp = pemilikNoTelp.value;
+
+        checkbox.addEventListener('change', function () {
+            if (checkbox.checked) {
+                // Jika checkbox dicentang, setel nilai pemilik menjadi nilai dari data diri
+                pemilikNama.value = document.getElementById('namaregistrasi').value;
+                pemilikNIK.value = document.getElementById('ktpregistrasi').value;
+                pemilikEmail.value = document.getElementById('emailregistrasi').value;
+                pemilikNoTelp.value = document.getElementById('notelpregistrasi').value;
+            } else {
+
+                pemilikNama.value = originalPemilikNama;
+                pemilikNIK.value = originalPemilikNIK;
+                pemilikEmail.value = originalPemilikEmail;
+                pemilikNoTelp.value = originalPemilikNoTelp;
+            }
+        });
+    });
+
 </script>
 
 @endsection

@@ -8,6 +8,7 @@ use App\Http\Requests\UpdatePemesananRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class PemesananController extends Controller
 {
@@ -21,15 +22,29 @@ class PemesananController extends Controller
     public function pemesanan(){
 
     }
-
-    public function index()
+    public function index($slug)
     {
         $payments = DB::table('payments')->select('*')->where('status','=',1)->get();
-        // $pemesanans = DB::table('pemesanans')->select('*')->where('slug',$slug)->first();
-        // $detilPesan = DB::table('detil_pemesanans')->select('*')->where('id_pemesanan',$pemesanans->id_pemesanan)->get();
-        // return view('pages.user.pemesanan.index',['payments'=>$payments,'pemesanans'=>$pemesanans,'detilPesan'=>$detilPesan]);
-        return view('pages.user.pemesanan.index',['payments'=>$payments]);
+        $users = DB::table('users')->where('id_user',auth()->user()->id_user)->first();
+        $pemesanans = DB::table('pemesanans')->select('*')->where('slug',$slug)->first();
+        $orders = DB::table('detil_pemesanans as de')
+                ->select('e.nama_event','k.nama_kategori','de.quantity','d.harga_event',DB::raw('de.quantity * d.harga_event AS "SUBTOTAL"'))
+                ->join('detil_events as d','de.id_detilEvent','=','d.id_detilEvent')
+                ->join('events as e','d.id_event','=','e.id_event')
+                ->join ('kategoris as k','k.id_kategori','=','d.id_kategori')
+                ->join('pemesanans as p','p.id_pemesanan','=','de.id_pemesanan')
+                ->where('p.slug','=',$slug)
+                ->get();
+
+        return view('pages.user.pemesanan.index',['payments'=>$payments,'users'=>$users,'pemesanans'=>$pemesanans,'orders'=>$orders]);
     }
+
+    public function deletePemesanan($slug){
+        DB::table('pemesanans')->where('slug', $slug)->delete();
+
+        return response()->json(['status'=> 'success']);
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -52,7 +67,7 @@ class PemesananController extends Controller
 
         $validatedData['id_user'] = $request->input('id_user');
         $validatedData['tgl_pemesanan'] = now();
-        $validatedData['status_pemesanan'] = 1;
+        // $validatedData['status_pemesanan'] = 1;
         $validatedData['total_tagihan'] = $request->input('total_tagihan');
         $validatedData['slug'] = Str::random(40);
         $pemesanan = DB::table('pemesanans')->insertGetId($validatedData);
@@ -82,19 +97,56 @@ class PemesananController extends Controller
                 // $inputDataKuota[]= $update;
                 DB::table('detil_events')->where('id_detilEvent', $id_detilEvent)->update(['sisa_kuota' => $update]);
             }
-
-
-
-
         }
-
-
         $create =DB::table('detil_pemesanans')->insert( $inputDataList);
     //    $update1 = $events->update(['sisa_kuota'=> $inputDataKuota]);
 
-       $pesan = DB::table('pemesanans')->where('id_pemesanan',$pemesanan)->get();
+       $pesan = DB::table('pemesanans')->where('id_pemesanan',$pemesanan)->first();
+
        return redirect("/checkout/$pesan->slug");
     }
+
+    public function checkout($slug, Request $request){
+
+        $validatedDataUser = $request->validate([
+            'name'=>'required',
+            'no_ktp'=>'required',
+            'no_telp'=>'required',
+
+        ]);
+
+        $inputData = [
+            'status_pemesanan' => 1,
+            'id_payments'=>$request->input('id_payments'),
+        ];
+
+
+
+
+        $users = DB::table('users')->where('id_user',auth()->user()->id_user);
+      $updateU=  $users->update( $validatedDataUser);
+        $pemesanan = DB::table("pemesanans")->where('slug',$slug);
+       $updateP= $pemesanan->update($inputData);
+
+       $pemesanan1 = DB::table("pemesanans")->where('slug',$slug)->first();
+        $slug = Str::random(40);
+       $inputDataPembayaran= [
+        'id_user' => auth()->user()->id_user,
+        'id_pemesanan' => $pemesanan1->id_pemesanan,
+        'tgl_pembayaran'=>Carbon::now()->setTimezone('Asia/Jakarta'),
+        'status_pembayaran'=>2,
+        'slug'=>$slug,
+       ];
+
+
+       $pembayaran = DB::table('pembayarans');
+       $pembayaran->insert($inputDataPembayaran);
+
+       return redirect("/bayar/$pemesanan1->slug");
+
+
+
+   }
 
     /**
      * Display the specified resource.

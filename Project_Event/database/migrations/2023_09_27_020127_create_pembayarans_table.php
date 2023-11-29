@@ -22,7 +22,7 @@ return new class extends Migration
                     ->references('id_pemesanan')
                     ->on('pemesanans')
                     ->onDelete('cascade');
-            $table->date('tgl_pembayaran');
+            $table->dateTime('tgl_pembayaran');
             $table->boolean('status_pembayaran');
             $table->string('gambar')->nullable();
             $table->string('slug',100)->unique();

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DetilEventController;
+use App\Http\Controllers\DetilPemesananController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\KatalogController;
 use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\VerificationController;
@@ -59,18 +61,25 @@ Route::get('/events/{slug}', [HomeController::class,'event'])->name('event');
 Route::post('/pesan', [PemesananController::class, 'store'])->name('pemesanan');
 Route::get('/checkout/{slug}',[PemesananController::class,'index']);
 Route::get('/riwayatpemesanan', [PemesananController::class, 'riwayatPemesanan'])->name('riwayatpesan');
+Route::get('/detilpemesanan', [DetilpemesananController::class, 'riwayatPemesanan'])->name('detilpesan');
 Route::get('/katalog', [KatalogController::class, 'index'])->name('katalog.index');
 Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/checkout',[PemesananController::class,'index']);
+Route::delete('/deletePemesanan/{slug}',[PemesananController::class,'deletePemesanan']);
+
+// Route::get('/checkout',[PemesananController::class,'index']);
 
 
-Route::get('/bayar', function() {
-    return view('pages.user.pembayaran.index');
-});
+Route::get('/bayar/{slug}',[PembayaranController::class,'index']);
 
 
+Route::get('/checkout/{slug}',[PemesananController::class,'index']);
+Route::put('/checkout/{slug}',[PemesananController::class,'checkout']);
+
+Route::put('/batal/{slug}',[PembayaranController::class,'batal']);
+
+Route::post('/payment/{slug}',[PembayaranController::class,'payment'])->name('bayar');
 
 
 

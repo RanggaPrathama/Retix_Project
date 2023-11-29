@@ -8,25 +8,32 @@
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
 </head>
 <body>
+    <section class="header-section" id="section_1">
+        <div class="container-fluid page-header py-4 mb-5 wow fadeIn custom-header" style="height: 150px">
+            <div class="container py-5 mt-5">
+
+            </div>
+        </div>
+    </section>
 
 @extends('layouts.appUser')
 @section('content')
 <div class="container">
     <div class="row">
-            <div class="col-lg-4" style="margin-top: 120px">
+            <div class="col-lg-4" style="margin-top: -150px">
                <div class="profile-card-4 z-depth-3">
                 <div class="card">
-                  <div class="card-body text-center bg-primary rounded-top">
+                  <div class="card-body text-center bg-profile rounded-top">
                    <div class="user-box">
                     <img src="images/fotoku.jpeg" alt="user avatar">
                   </div>
                   <h5 class="mb-1 text-white">Rangga Prathama N.H</h5>
                  </div>
-                   
+
                  </div>
                </div>
             </div>
-            <div class="col-lg-8" style="margin-top: 120px">
+            <div class="col-lg-8" style="margin-top: -150px">
                <div class="card z-depth-3">
                 <div class="card-body">
                 <div class="tab-pane" id="edit">
@@ -91,7 +98,7 @@
                     </div>
 
 
-                           
+
                 </div>
             </div>
           </div>
