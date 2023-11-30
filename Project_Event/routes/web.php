@@ -60,8 +60,8 @@ Route::get('/', [HomeController::class, 'homepage'])->name('home');
 Route::get('/events/{slug}', [HomeController::class,'event'])->name('event');
 Route::post('/pesan', [PemesananController::class, 'store'])->name('pemesanan');
 Route::get('/checkout/{slug}',[PemesananController::class,'index']);
-Route::get('/riwayatpemesanan', [PemesananController::class, 'riwayatPemesanan'])->name('riwayatpesan');
-Route::get('/detilpemesanan', [DetilpemesananController::class, 'riwayatPemesanan'])->name('detilpesan');
+Route::get('/riwayatpemesanan', [PembayaranController::class, 'riwayatPemesanan'])->name('riwayatpesan');
+Route::get('/detilpemesanan', [DetilpemesananController::class, 'index'])->name('detilpesan');
 Route::get('/katalog', [KatalogController::class, 'index'])->name('katalog.index');
 Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -71,7 +71,7 @@ Route::delete('/deletePemesanan/{slug}',[PemesananController::class,'deletePemes
 // Route::get('/checkout',[PemesananController::class,'index']);
 
 
-Route::get('/bayar/{slug}',[PembayaranController::class,'index']);
+Route::get('/bayar/{slug}',[PembayaranController::class,'index'])->name('membayar');
 
 
 Route::get('/checkout/{slug}',[PemesananController::class,'index']);

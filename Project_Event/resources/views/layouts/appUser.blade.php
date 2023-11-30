@@ -23,7 +23,7 @@
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-
+   
 
 
 </head>
@@ -52,6 +52,9 @@
     <script>
         AOS.init();
       </script>
+
+      <!-- DataTables  & Plugins -->
+
     {{-- <!--  home -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script> --}}
     <!-- Core theme JS-->

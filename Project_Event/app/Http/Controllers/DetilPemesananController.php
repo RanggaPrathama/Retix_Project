@@ -5,26 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\DetilPemesanan;
 use App\Http\Requests\StoreDetilPemesananRequest;
 use App\Http\Requests\UpdateDetilPemesananRequest;
+use Illuminate\Support\Facades\DB;
 
 class DetilPemesananController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function riwayatPemesanan()
-    {
-        //DB::table('pemesanans as p')
-        //->select()
-        return view('pages.user.riwayatpesan.detailpesan');
-    }
 
     public function index(){
-        // $detilpesan = DB::table('detil_pesan')
-        // ->select('id_detilEvent','events.id_event','events.nama_event','kategoris.id_kategori','kategoris.nama_kategori','kuota_event','harga_event', 'detil_events.status')
-        // ->join('events','detil_events.id_event','=','events.id_event')
-        // ->join('kategoris','detil_events.id_kategori','=','kategoris.id_kategori')
-        // ->get();
-        // return view('pages.admin.table.detilEvent.index',['detilEvents'=>$detilpesan]);
+
+        return view('pages.user.riwayatpesan.detailpesan');
 
 
     }

@@ -56,7 +56,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label>NIK</label>
-                                        <input class="form-control" name = 'no_ktp' id = 'ktpregistrasi' type="text" >
+                                        <input class="form-control" name = 'no_ktp' id = 'ktpregistrasi' type="text" value="{{ $users->no_ktp }}" >
                                     </div>
                                     <div class="mb-3">
                                         <label>E-mail</label>

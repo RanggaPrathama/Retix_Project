@@ -142,7 +142,7 @@ class PemesananController extends Controller
        $pembayaran = DB::table('pembayarans');
        $pembayaran->insert($inputDataPembayaran);
 
-       return redirect("/bayar/$pemesanan1->slug");
+       return redirect("/bayar/$slug");
 
 
 
