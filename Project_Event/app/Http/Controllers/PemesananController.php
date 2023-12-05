@@ -40,9 +40,34 @@ class PemesananController extends Controller
     }
 
     public function deletePemesanan($slug){
-        DB::table('pemesanans')->where('slug', $slug)->delete();
 
-        return response()->json(['status'=> 'success']);
+        DB::beginTransaction();
+
+        try {
+            $pemesanans = DB::table('pemesanans')->where('slug',$slug)->first();
+
+            $detil_pesan =  DB::table('detil_pemesanans')->where('id_pemesanan',$pemesanans->id_pemesanan)->get();
+
+
+
+            foreach($detil_pesan as $detil){
+             $event = DB::table('detil_events')->where('id_detilEvent',$detil->id_detilEvent)->first();
+
+             DB::table('detil_events')->where('id_detilEvent',$detil->id_detilEvent)->update(['sisa_kuota'=>$event->sisa_kuota + $detil->quantity]);
+
+            }
+
+            DB::table('pemesanans')->where('slug', $slug)->delete();
+
+            DB::commit();
+
+             return response()->json(['status'=> 'success']);
+        } catch (\Throwable $e) {
+            DB::rollBack();
+
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        }
+
     }
 
 

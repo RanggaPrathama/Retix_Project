@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg">
     <div class="container">
-        <a class="navbar-brand" href="#page-top"><img src="{{ asset('images/logo.png') }}" alt="" width="100"
+        <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ asset('images/logo.png') }}" alt="" width="100"
                 height="50"></a>
 
                 <div class="d-flex ">
@@ -51,7 +51,7 @@
                         <i class="bi bi-person"></i>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ route('profile') }}">Profil</a></li>
+                        <li><a class="dropdown-item" href="{{ route('profile',auth()->user()->id_user) }}">Profil</a></li>
                         <li><a class="dropdown-item" href="{{ route('riwayatpesan') }}">Riwayat Pesanan</a></li>
                         <li>
                             <hr class="dropdown-divider">

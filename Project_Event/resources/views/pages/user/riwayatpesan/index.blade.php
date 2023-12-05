@@ -110,11 +110,11 @@
 
                                         </td>
                                         <td>
-                                            <a href="#" ><button type="button"
+                                            <a href="{{route('detilpesan',$pesan->slug)  }}" ><button type="button"
                                                     id="show">Show</button></a>
 
                                             @if ($pesan->status_pembayaran == 2 )
-                                                
+
                                             <a href="{{ route('membayar',$pesan->slug) }}" class="btn btn-warning btn-sm"><button type="button"
                                                 id="bayar">Bayar</button></a>
                                             @endif

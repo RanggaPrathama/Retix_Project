@@ -23,52 +23,105 @@
 <div class="container">
     <div class="row">
         <div class="card col-lg-3 mx-4" style="margin-top: -30px;">
-        <div class="card-header text-center">
+        <div class="card-header text-center"  style="margin-left: -15px; margin-right: -15px;">
             Detail Event
         </div>
+
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
-                <img class="text-center" src="gambarEvent/card2.png" alt="" width="250" height="125">
+                <img class="text-center" src="{{ asset('gambarEvent/'.$detilEvent->gambar_event) }}" alt="" width="200" height="125">
             </li>
             <li class="list-group-item">
-            📆 : 26 November 2023
+                <strong>{{ $detilEvent->nama_event }}</strong>
+            </li>
+            <li class="list-group-item">
+            📆 : {{ $detilEvent->tgl_event }}
             <br>
-            ⏰ : 16:00 - Selesai
+            ⏰ : {{ $detilEvent->time_event }} - Selesai
             <br>
-             📍  : Plaza Surabaya
+             📍  : {{ $detilEvent->nama_lokasi }}
             </li>
         </ul>
         </div>
 
         <div class="card col-lg-8" style="margin-top: -30px;">
-        <div class="card-header text-center">
+        <div class="card-header text-center" style="margin-left: -15px; margin-right: -15px;">
             Purchase Details
         </div>
+
+        {{-- @if (!empty('error'))
+        <div class="alert alert-danger alert-dismissible fade show text-center" role="alert" style="margin-top:20px">
+            <strong>{{ $error }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        @endif --}}
+
+        @foreach ($puchaseDetail as $purchase )
+
+
+       @if ($purchase->status_pembayaran == 0)
+
+
+        <div class="alert alert-danger alert-dismissible fade show text-center" role="alert" style="margin-top:20px">
+            <strong>Maaf Pembayaran Anda Telah Kedaluwarsa</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+
+         @elseif ($purchase->status_pembayaran == 1)
+          <div class="alert alert-success alert-dismissible fade show text-center" role="alert" style="margin-top:20px">
+            <strong>Anda Selesai Melakukan Pembayaran</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+
+       @elseif ($purchase->status_pembayaran == 2)
+        <div class="alert alert-warning alert-dismissible fade show text-center" role="alert" style="margin-top:20px">
+            <strong>Mohon Segera Melakukan Pembayaran</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+
+        @elseif ($purchase->status_pembayaran == 3)
+        <div class="alert alert-warning alert-dismissible fade show text-center" role="alert" style="margin-top:20px">
+            <strong>Mohon tunggu untuk ACC Pembayaran</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+
+        @else
+        <div class="alert alert-danger alert-dismissible fade show text-center" role="alert" style="margin-top:20px">
+            <strong>Pembayaran Anda Ditolak !</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+         @endif
+         @endforeach
+
         <ul class="list-group list-group-flush">
+            @foreach ($puchaseDetail as $purchase )
+
+
             <li class="list-group-item ">
                 <table class="table table-borderless">
                     <tr>
                         <td scope="col">Invoice</td>
                         <td scope="col">:</td>
-                        <td scope="col">Y8MSPLWY</td>
+                        <td scope="col">{{ $purchase->slug }}</td>
                     </tr>
                     <tr>
                         <td>Buy At</td>
                         <td>:</td>
-                        <td>26 November 2023 | 10:08</td>
+                        <td>{{\Carbon\Carbon::parse($purchase->tgl_pembayaran)->translatedFormat('l, d F Y | H:i')}}</td>
                     </tr>
                     <tr>
                         <td>Payment Method</td>
                         <td>:</td>
-                        <td>QRIS</td>
+                        <td>{{ $purchase->nama }}</td>
                     </tr>
                     <tr>
                         <td>Total Payment</td>
                         <td>:</td>
-                        <td>Rp. 300.000</td>
+                        <td>{{'Rp. '  . number_format( $purchase->total_tagihan,'0',',','.') }}</td>
                     </tr>
                 </table>
             </li>
+            @endforeach
         </ul>
         </div>
     </div>
@@ -77,39 +130,45 @@
 
 
 
-    </div>
-</div>
 
-<div class="container">
+
+
+{{-- <div class="container"> --}}
     <div class="row">
-        <div class="card col-lg-8" style="margin-left: 357px; margin-bottom: 70px;">
-        <div class="card-header text-center font-weight-bold">
+        <div class="card col-lg-8" style="margin-left: 310px; margin-bottom: 70px;">
+        <div class="card-header text-center font-weight-bold"  style="margin-left: -15px; margin-right: -15px;">
             Ticket Details
         </div>
         <ul class="list-group list-group-flush">
+
+             @foreach ( $ticketDetail as $tiket)
+
+
             <li class="list-group-item ">
                 <table class="table table-borderless">
                     <tr>
-                        <td>Tiket Gold <br> Rp. 150.000 x 2</td>
-                        <td style="text-align: right;" scope="col">Rp. 300.000</td>
+                        <td>Tiket {{ $tiket->nama_kategori }} <br> {{'RP '. number_format($tiket->harga_event,'0',',','.') }} x {{ $tiket->quantity}}</td>
+                        <td style="text-align: right;" scope="col">{{'Rp. ' . number_format($tiket->SUBTOTAL,'0',',','.')  }}</td>
                     </tr>
                 </table>
             </li>
-            <li class="list-group-item ">
+            @endforeach
+            {{-- <li class="list-group-item ">
                 <table class="table table-borderless">
                     <tr>
                         <td>Tiket Silver <br> Rp. 100.000 x 1</td>
                         <td style="text-align: right;" scope="col">Rp. 100.000</td>
                     </tr>
                 </table>
-            </li>
+            </li> --}}
+
         </ul>
         </div>
     </div>
-
-
-    </div>
 </div>
+
+  {{--</div>
+  --}}
 </body>
 </html>
 @endsection

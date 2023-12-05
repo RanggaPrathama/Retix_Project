@@ -7,6 +7,39 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+
+    public function profile(){
+        $users = DB::table('users')->where('id_user','=',auth()->user()->id_user)->first();
+        return view('pages.user.profile.index',['users'=>$users]);
+    }
+
+    public function profileupdate(Request $request){
+
+            $validatedData = $request->validate([
+                'name' =>'nullable',
+                'profile_user'=>'nullable|mimes:jpeg,png,jpg,gif,svg',
+                'no_ktp'=>'nullable',
+                'no_telp'=>'nullable'
+            ]);
+
+            if($request->hasFile('profile_user')){
+                $gambar = $request->file('profile_user')->getClientOriginalName();
+                $request->file('profile_user')->move(public_path('profileUser'),$gambar);
+
+              $validatedData['profile_user'] = $gambar;
+
+            }
+
+
+            $users = DB::table('users')->where('id_user',auth()->user()->id_user);
+            $users->update($validatedData);
+            return response()->json(['message'=>'Berhasil !']);
+
+
+
+
+    }
+
     public function index(){
         $users = DB::table('users')->select('*')->get();
         return view('pages.admin.table.user.index',['users'=>$users]);
@@ -51,7 +84,5 @@ class UserController extends Controller
     }
 
 
-    public function profile(){
-        return view('pages.user.profile.index');
-    }
+
 }

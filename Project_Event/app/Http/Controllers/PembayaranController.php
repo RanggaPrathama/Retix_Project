@@ -20,13 +20,14 @@ class PembayaranController extends Controller
 
         try {
             $riwayat = DB::table('pembayarans as pem')
-                ->select('e.gambar_event', 'e.nama_event', 'pem.slug', 'p.total_tagihan', 'pem.status_pembayaran','pem.tgl_pembayaran')
+                ->select('e.gambar_event', 'e.nama_event', 'pem.slug', 'p.total_tagihan', 'pem.status_pembayaran','pem.tgl_pembayaran','pem.id_pembayaran')
                 ->join('pemesanans as p', 'p.id_pemesanan', '=', 'pem.id_pemesanan')
                 ->join('detil_pemesanans as dep', 'dep.id_pemesanan', '=', 'p.id_pemesanan')
                 ->join('detil_events as dev', 'dev.id_detilEvent', '=', 'dep.id_detilEvent')
                 ->join('events as e', 'e.id_event', '=', 'dev.id_event')
                 ->where('pem.id_user', '=', auth()->user()->id_user)
-                ->groupBy('e.gambar_event', 'e.nama_event', 'pem.slug', 'p.total_tagihan', 'pem.status_pembayaran','pem.tgl_pembayaran')
+                ->groupBy('e.gambar_event', 'e.nama_event', 'pem.slug', 'p.total_tagihan', 'pem.status_pembayaran','pem.tgl_pembayaran','pem.id_pembayaran')
+                ->orderBy('pem.tgl_pembayaran','DESC')
                 ->get();
 
             return view('pages.user.riwayatpesan.index', ['riwayat' => $riwayat]);

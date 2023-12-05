@@ -13,9 +13,51 @@ class DetilPemesananController extends Controller
      * Display a listing of the resource.
      */
 
-    public function index(){
+    public function detailRiwayat($slug){
 
-        return view('pages.user.riwayatpesan.detailpesan');
+            // $ticketDetail = DB::table('pembayarans as pem')
+            // ->select('pem.slug','detp.quantity',DB::raw('detE.harga_event * detp.quantity AS "SUBTOTAL"'),'k.nama_kategori','detE.harga_event')
+            // ->join('pemesanans as p','pem.id_pemesanan','=','p.id_pemesanan')
+            // ->join('detil_pemesanans as detp ','detp.id_pemesanan','=','p.id_pemesanan')
+            // ->join('detil_events as detE','detE.id_detilEvent','=','detp.id_detilEvent')
+            // ->join('kategoris as k','detE.id_kategori','=','k.id_kategori')
+            // // ->where(
+            // //     function($query){
+            // //         $query ->where('pem.id_user','=',auth()->user()->id_user)
+            // //         ->orWhere('pem.slug','=',$slug);
+            // //     }
+            // // );
+            // ->where('pem.id_pembayaran','=',$id)
+            // ->get();
+
+           $detilEvent = DB::table('detil_events as detE')
+                        ->select('e.nama_event',  DB::raw('TIME_FORMAT(e.tgl_event,"%H:%i") AS time_event'),  DB::raw('DATE_FORMAT(e.tgl_event,"%d %M %Y") AS tgl_event'),'e.nama_lokasi','e.gambar_event')
+                        ->join('events as e','e.id_event','=','detE.id_event')
+                        ->join('detil_pemesanans as detp','detp.id_detilEvent','=','detE.id_detilEvent')
+                        ->join('pemesanans as p','p.id_pemesanan','=','detp.id_pemesanan')
+                        ->join('pembayarans as pem','pem.id_pemesanan','=','p.id_pemesanan')
+                        ->where('pem.slug','=',$slug)
+                        ->first();
+            $puchaseDetail = DB::table('pembayarans as pem')
+                            ->select('pem.slug','pay.id_payments','pem.tgl_pembayaran','pay.nama','p.total_tagihan','pem.status_pembayaran')
+                            ->join('pemesanans as p','p.id_pemesanan','=','pem.id_pemesanan')
+                            ->join('payments as pay','p.id_payments','=','pay.id_payments')
+                            ->where('pem.slug',$slug)
+                            ->get();
+
+            $ticketDetail = DB::table('detil_pemesanans as detp')
+            ->select('pem.slug','detp.quantity',DB::raw('detE.harga_event * detp.quantity AS "SUBTOTAL"'),'k.nama_kategori','detE.harga_event',)
+            ->join('pemesanans as p','p.id_pemesanan','=','detp.id_pemesanan')
+            ->join('pembayarans as pem','pem.id_pemesanan','=','p.id_pemesanan')
+            ->join('detil_events as detE','detE.id_detilEvent','=','detp.id_detilEvent')
+            ->join('kategoris as k','detE.id_kategori','=','k.id_kategori')
+            ->where('pem.slug','=',$slug)
+            ->get();
+
+
+             return view('pages.user.riwayatpesan.detailpesan',['ticketDetail' => $ticketDetail,'puchaseDetail'=>$puchaseDetail,'detilEvent'=>$detilEvent]);
+
+
 
 
     }
