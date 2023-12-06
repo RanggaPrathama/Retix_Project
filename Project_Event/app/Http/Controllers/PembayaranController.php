@@ -8,6 +8,7 @@ use App\Http\Requests\UpdatepembayaranRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 
 class PembayaranController extends Controller
 {
@@ -91,6 +92,22 @@ class PembayaranController extends Controller
 
     public function acc($slug){
         DB::table('pembayarans')->where('slug',$slug)->update(['status_pembayaran'=>1]);
+        $data = DB::table('pembayarans as pem')
+                ->selectRaw('pem.slug AS INVOICE,DATE_FORMAT(e.tgl_akhir_event,"%d %M %Y") AS "tanggal_event",e.nama_event,e.gambar_event, TIME_FORMAT(e.tgl_event,"%H:%i") AS time_event,e.nama_lokasi,u.email,u.name',)
+                ->join('users as u','u.id_user','=','pem.id_user')
+                ->join('pemesanans as peme','peme.id_pemesanan','=','pem.id_pemesanan')
+                ->join('detil_pemesanans as detilP','detilP.id_pemesanan','=','peme.id_pemesanan')
+                ->join('detil_events as detilE','detilE.id_detilEvent','=','detilP.id_detilEvent')
+                ->join('events as e','e.id_event','=','detilE.id_event')
+                ->first();
+
+                $dataArray = (array) $data;
+
+        Mail::send('tiket.index', compact('dataArray'), function ($message) use ($dataArray) {
+
+            $message->to($dataArray['email']);
+            $message->subject('Pemberitahuan ACC Pembayaran Tiket Retix');
+        });
 
        return redirect()->route('pembayaran.index')->with('success','Berhasil di ACC !');
     }

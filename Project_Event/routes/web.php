@@ -86,6 +86,10 @@ Route::get('/tiketindex',function(){
     return view('tiket.index');
 });
 
+Route::get('/email',function(){
+    return view('emails.email');
+});
+
 //////////////////////        PAGE ADMIN     //////////////////////////////////////////////////
 
 Route::get('/adminDashboard', [HomeController::class, 'homeAdmin'])->name('admin.home');

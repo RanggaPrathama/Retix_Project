@@ -104,7 +104,10 @@
                                                             <div class="text-warning">
                                                                 Menunggu Acc
                                                             </div>
-
+                                                        @else
+                                                        <div class="text-danger">
+                                                            Ditolak
+                                                        </div>
                                                         @endif
                                                         </td>
                                                         <td>
