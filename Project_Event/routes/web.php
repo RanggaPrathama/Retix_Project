@@ -169,3 +169,15 @@ Route::get('/payments/edit/{slug}',[PaymentsController::class,'edit'])->name('pa
 Route::put('/payments/update/{slug}',[PaymentsController::class,'update'])->name('payment.update');
 Route::delete('/payments/delete/{slug}',[PaymentsController::class,'destroy'])->name('payment.destroy');
 
+
+//PEMESANAN & DETIL PEMESANAN
+
+// Route::get('/pemesanan',[DetilPemesananController::class,' indexPemesanan'])->name('pemesanan.index');
+Route::get('/detilpemesanan',[DetilPemesananController::class,'index'])->name('detilPemesanan.index');
+Route::delete('/pemesanan/destroy',[PemesananController::class,'destroy'])->name('pemesanan.destroy');
+Route::delete('detilpesan/destroy',[DetilPemesananController::class,'destroy'])->name('detilpesan.destroy');
+
+//PEMBAYARAN
+Route::get('/pembayaran',[PembayaranController::class,'indexAdmin'])->name('pembayaran.index');
+Route::put('/pembayaran/acc/{slug}',[PembayaranController::class,'acc'])->name('bayar.acc');
+Route::put('/pembayaran/tolak/{slug}',[PembayaranController::class,'tolak'])->name('bayar.tolak');

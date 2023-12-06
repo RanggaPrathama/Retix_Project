@@ -62,6 +62,27 @@ class DetilPemesananController extends Controller
 
     }
 
+       // ADMIN
+
+   public function index(){
+    try {
+        $pemesanans= DB::table('pemesanans as pem')
+        ->select('pem.*','pay.nama','u.name',DB::raw('DATE_FORMAT(pem.tgl_pemesanan, "%d %M %Y") AS tgl_pesan'))
+        ->join('payments as pay','pay.id_payments','=','pem.id_payments')
+        ->join('users as u','u.id_user','=','pem.id_user')
+        ->get();
+
+        $detilPesans = DB::table('detil_pemesanans')->select('*')->get();
+
+return view('pages.admin.table.pemesanan.index',['pemesanans'=>$pemesanans,'detilPesans'=>$detilPesans]);
+    }
+    catch (\Throwable $th) {
+        return view('pages.admin.table.pemesanan.index',['error' => $th->getMessage()]);
+    }
+
+}
+
+
     /**
      * Show the form for creating a new resource.
      */

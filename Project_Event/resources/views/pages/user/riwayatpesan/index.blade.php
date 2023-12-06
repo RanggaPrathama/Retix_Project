@@ -106,6 +106,12 @@
                                                     Menunggu Acc
                                                 </div>
 
+                                         @elseif($pesan->status_pembayaran == 4)
+                                                <div class="text-danger">
+                                                    Ditolak
+                                                </div>
+
+
                                             @endif
 
                                         </td>

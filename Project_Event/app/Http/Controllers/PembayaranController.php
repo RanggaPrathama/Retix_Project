@@ -71,6 +71,35 @@ class PembayaranController extends Controller
         return redirect('/riwayatpemesanan')->with('success', 'Berhasil ! ');
     }
 
+
+    public function indexAdmin(){
+        try {
+            $pembayarans = DB::table('pembayarans as pem')
+            ->select('pem.*','u.name',DB::raw('DATE_FORMAT(pem.tgl_pembayaran,"%d %M %Y") as tgl_pembayaran','pem.status_pembayaran'))
+            ->join('users as u','u.id_user','=','pem.id_user')
+            ->orderByRaw("pem.tgl_pembayaran DESC")
+            ->get();
+
+            return view('pages.admin.table.pembayaran.index',['pembayarans'=>$pembayarans]);
+        } catch (\Throwable $th) {
+            return view('pages.admin.table.pembayaran.index',['error'=>$th->getMessage()]);
+        }
+
+
+
+    }
+
+    public function acc($slug){
+        DB::table('pembayarans')->where('slug',$slug)->update(['status_pembayaran'=>1]);
+
+       return redirect()->route('pembayaran.index')->with('success','Berhasil di ACC !');
+    }
+
+    public function tolak($slug){
+        DB::table('pembayarans')->where('slug',$slug)->update(['status_pembayaran'=>4]);
+
+        return redirect()->route('pembayaran.index')->with('success','PEMBAYARAN DI TOLAK !');
+    }
     /**
      * Show the form for creating a new resource.
      */

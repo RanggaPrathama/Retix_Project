@@ -15,13 +15,12 @@ class PemesananController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function riwayatPemesanan(){
-        return view('pages.user.riwayatpesan.index');
-    }
+    // public function riwayatPemesanan(){
+    //     return view('pages.user.riwayatpesan.index');
+    // }
 
-    public function pemesanan(){
+    // USER
 
-    }
     public function index($slug)
     {
         $payments = DB::table('payments')->select('*')->where('status','=',1)->get();
@@ -172,6 +171,18 @@ class PemesananController extends Controller
 
 
    }
+
+   //TUTUP USER
+
+
+
+   // ADMIN
+
+//    public function indexPemesanan(){
+//         $pemesanans= DB::table('pemesanans')->get();
+
+//         return view('pages.admin.table.pemesanan.index',['pemesanans'=>$pemesanans]);
+//    }
 
     /**
      * Display the specified resource.
