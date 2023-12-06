@@ -82,7 +82,9 @@ Route::put('/batal/{slug}',[PembayaranController::class,'batal']);
 
 Route::post('/payment/{slug}',[PembayaranController::class,'payment'])->name('bayar');
 
-
+Route::get('/tiketindex',function(){
+    return view('tiket.index');
+});
 
 //////////////////////        PAGE ADMIN     //////////////////////////////////////////////////
 
