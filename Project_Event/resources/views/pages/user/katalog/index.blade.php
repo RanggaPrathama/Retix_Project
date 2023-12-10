@@ -35,9 +35,9 @@
                                 <div class="col-lg-8 text-start">
                                     <h4 class="fs-4 text-white">Terbaru</h4>
                                     <h1 class="text-white mb-5 animated slideInRight">Sciensomnia 2k23</h1>
-                                    <a href=""
+                                    {{-- <a href=""
                                         class="btn btn-secondary rounded-pill py-3 px-5 animated slideInRight">Explore
-                                        More</a>
+                                        More</a> --}}
                                 </div>
                             </div>
                         </div>
@@ -52,9 +52,9 @@
                                     <p class="fs-4 text-white">Welcome to our dairy farm</p>
                                     <h1 class="display-1 text-white mb-5 animated slideInRight">Best Organic Dairy
                                         Products</h1>
-                                    <a href=""
+                                    {{-- <a href=""
                                         class="btn btn-secondary rounded-pill py-3 px-5 animated slideInLeft">Explore
-                                        More</a>
+                                        More</a> --}}
                                 </div>
                             </div>
                         </div>
