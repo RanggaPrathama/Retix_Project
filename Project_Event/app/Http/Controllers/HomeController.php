@@ -12,7 +12,14 @@ class HomeController extends Controller
 
     public function homeAdmin()
     {
-        return view('pages.admin.home');
+        $events = DB::table('detil_events')->get();
+        $event = count($events);
+
+        $pembayaran =count(DB::table('pembayarans')->get()) ;
+        $payment = count(DB::table('payments')->get());
+        $user = count(DB::table('users')->where('role','=',0)->get());
+
+        return view('pages.admin.home',['event'=>$event,'pembayaran'=>$pembayaran,'payment'=>$payment,'user'=>$user]);
     }
     public function index()
     {

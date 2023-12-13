@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>RETIX</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    {{-- <link rel="icon" type="image/x-icon" href="assets/favicon.ico" /> --}}
     <!-- Font Awesome icons (free version)-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -23,7 +23,7 @@
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-   
+
 
 
 </head>
@@ -45,7 +45,7 @@
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/jquery.sticky.js') }}"></script>
-    <script src="{{ asset('js/click-scroll.js') }}"></script>
+    {{-- <script src="{{ asset('js/click-scroll.js') }}"></script> --}}
     <script src="{{ asset('js/custom.js') }}"></script>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
