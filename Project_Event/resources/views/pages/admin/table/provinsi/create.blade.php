@@ -47,7 +47,7 @@
                             {{ $message }}
                         </div>
                     @enderror<br>
-                   
+
 
                     <input type="submit" value="Save" class="btn btn-success"></br>
 
@@ -76,7 +76,7 @@
 </div>
 
 <!-- AdminLTE App -->
- <script src="{{ asset('js/adminlte.min.js') }}"></script>
+ {{-- <script src="{{ asset('js/adminlte.min.js') }}"></script> --}}
 
 </body>
 

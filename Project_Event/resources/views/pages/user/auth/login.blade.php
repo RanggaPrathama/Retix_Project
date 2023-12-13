@@ -25,13 +25,13 @@
                                     <form action="" method="POST" class="row g-3 needs-validation" novalidate>
                                         @csrf
                                         <div class="col-12">
-                                            <label for="yourEmail" class="form-label">Your Email</label>
+                                            <label  class="form-label">Your Email</label>
                                             <input type="email" name="email" class="form-control" id="yourEmail" required>
                                             <div class="invalid-feedback">Please enter a valid Email address!</div>
                                         </div>
 
                                         <div class="col-12">
-                                            <label for="yourPassword" class="form-label">Password</label>
+                                            <label  class="form-label">Password</label>
                                             <input type="password" name="password" class="form-control" id="" required>
                                             <div class="invalid-feedback">Please enter your password!</div>
                                         </div>
@@ -39,7 +39,7 @@
                                         <div class="col-12">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
-                                                <label class="form-check-label" for="rememberMe">Remember me</label>
+                                                <label class="form-check-label">Remember me</label>
                                             </div>
                                         </div>
                                         <div class="col-12">

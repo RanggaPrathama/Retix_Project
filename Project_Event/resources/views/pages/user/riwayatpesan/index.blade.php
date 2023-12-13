@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link href="riwayatpesan/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('riwayatpesan/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="riwayatpesan/tiny-slider.css" rel="stylesheet">
-    <link href="riwayatpesan/style.css" rel="stylesheet">
+    <link href=" {{asset('riwayatpesan/tiny-slider.css') }}" rel="stylesheet">
+    <link href="{{ asset('riwayatpesan/style.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png" sizes="16x16">
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
 

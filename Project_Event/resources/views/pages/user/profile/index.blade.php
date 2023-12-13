@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Document</title>
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png" sizes="16x16">
 </head>
 
 <body>

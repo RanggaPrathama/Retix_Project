@@ -81,7 +81,7 @@
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                             <br>
-                                           
+
 
 
 
@@ -112,7 +112,7 @@
         </div>
 
         <!-- AdminLTE App -->
-        <script src="{{ asset('js/adminlte.min.js') }}"></script>
+      
 
     </body>
 @endsection

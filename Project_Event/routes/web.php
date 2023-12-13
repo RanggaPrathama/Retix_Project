@@ -44,7 +44,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'homepage'])->name('home');
 
 
-//Route::middleware('guest')->group(function () {
+Route::middleware('guest')->group(function () {
 
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'login_post'])->name('autentifikasi');
@@ -53,10 +53,11 @@ Route::get('/', [HomeController::class, 'homepage'])->name('home');
     Route::get('/verifikasiakun', [AuthController::class, 'verifikasi'])->name('verifyaccount');
     Route::post('/verifikasiakun', [AuthController::class, 'verifikasi_post'])->name('useractivation');
 
-//});
+});
 
 
-//Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function(){
+
 Route::get('/events/{slug}', [HomeController::class,'event'])->name('event');
 Route::post('/pesan', [PemesananController::class, 'store'])->name('pemesanan');
 Route::get('/checkout/{slug}',[PemesananController::class,'index']);
@@ -187,3 +188,4 @@ Route::delete('detilpesan/destroy',[DetilPemesananController::class,'destroy'])-
 Route::get('/pembayaran',[PembayaranController::class,'indexAdmin'])->name('pembayaran.index');
 Route::put('/pembayaran/acc/{slug}',[PembayaranController::class,'acc'])->name('bayar.acc');
 Route::put('/pembayaran/tolak/{slug}',[PembayaranController::class,'tolak'])->name('bayar.tolak');
+});
